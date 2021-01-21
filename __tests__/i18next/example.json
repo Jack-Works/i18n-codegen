@@ -1,0 +1,13 @@
+// Should parse JSONC
+{
+    "normal_key": "this is a normal key",
+    // TODO: support this
+    "nested": {
+        "key": "access via nested.key"
+    },
+    "with_param": "Hello, {{name}}!",
+    "with_tag": "<i>hi</i>",
+    "with_prop_access": "I am {{author.name}}",
+    "unescaped": "dangerous {{- var}}",
+    "formatted": "The current date is {{date, MM/DD/YYYY}}"
+}

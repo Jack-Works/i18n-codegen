@@ -1,0 +1,130 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "ConfigFile": {
+            "type": "object",
+            "properties": {
+                "version": {
+                    "type": "number",
+                    "enum": [1],
+                    "title": "version"
+                },
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Config"
+                    },
+                    "title": "list"
+                }
+            },
+            "required": ["list", "version"]
+        },
+        "Config": {
+            "description": "Each configuration entry",
+            "title": "Config",
+            "type": "object",
+            "properties": {
+                "input": {
+                    "description": "The input file, must be a JSON (can be a JSON with comment)",
+                    "type": "string",
+                    "title": "input"
+                },
+                "output": {
+                    "description": "The base name of the output files. It might generate multiple files.",
+                    "type": "string",
+                    "title": "output"
+                },
+                "parser": {
+                    "anyOf": [
+                        {
+                            "allOf": [
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "enum": ["i18next"],
+                                            "title": "type"
+                                        }
+                                    },
+                                    "required": ["type"]
+                                },
+                                {
+                                    "$ref": "#/definitions/Parser_I18NextConfig"
+                                }
+                            ]
+                        },
+                        {
+                            "enum": ["i18next"],
+                            "type": "string"
+                        }
+                    ],
+                    "title": "parser"
+                },
+                "generator": {
+                    "anyOf": [
+                        {
+                            "allOf": [
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "enum": ["i18next/react-hooks"],
+                                            "title": "type"
+                                        }
+                                    },
+                                    "required": ["type"]
+                                },
+                                {
+                                    "$ref": "#/definitions/Generator_I18Next_ReactHooks"
+                                }
+                            ]
+                        },
+                        {
+                            "enum": ["i18next/react-hooks"],
+                            "type": "string"
+                        }
+                    ],
+                    "title": "generator"
+                }
+            },
+            "required": ["generator", "input", "output", "parser"]
+        },
+        "ParserList": {
+            "type": "string",
+            "enum": ["i18next"]
+        },
+        "GeneratorList": {
+            "type": "string",
+            "enum": ["i18next/react-hooks"]
+        },
+        "Parser_I18NextConfig": {
+            "title": "Parser_I18NextConfig",
+            "type": "object"
+        },
+        "Generator_I18Next_ReactHooks": {
+            "title": "Generator_I18Next_ReactHooks",
+            "type": "object",
+            "properties": {
+                "namespace": {
+                    "description": "The namespace of this generator should use",
+                    "type": "string",
+                    "title": "namespace"
+                },
+                "hooks": {
+                    "description": "The hooks name, must starts with \"use\"",
+                    "type": "string",
+                    "title": "hooks"
+                },
+                "trans": {
+                    "description": "The component name that provides typed version of Trans component.",
+                    "type": "string",
+                    "title": "trans"
+                }
+            }
+        }
+    },
+    "type": "object",
+    "$ref": "#/definitions/ConfigFile"
+}
