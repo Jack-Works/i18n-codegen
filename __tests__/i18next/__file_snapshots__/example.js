@@ -5,10 +5,24 @@ const bind = (i18nKey) => (props) => createElement(Trans, { i18nKey, ...props })
 export function useTypedTranslation() {
     const { t } = useTranslation()
     return useMemo(
-        () => ({
-            ["normal_key"]: () => t("normal_key"), ["with_param"]: x => t("with_param", x), ["with_prop_access"]: x => t("with_prop_access", x), ["unescaped"]: x => t("unescaped", x), ["formatted"]: x => t("formatted", x)
-        }),
+        function proxyBasedHooks() {
+    return new Proxy({ __proto__: null }, {
+        get(target, key) {
+            if (target[key])
+                return target[key];
+            return (target[key] = t.bind(null, key));
+        },
+    });
+}
         [t],
     )
 }
-export const TypedTrans = { ["with_tag"]: bind("with_tag") }
+export const TypedTrans = function proxyBasedTrans() {
+    return new Proxy({ __proto__: null }, {
+        get(target, key) {
+            if (target[key])
+                return target[key];
+            return (target[key] = bind(key));
+        },
+    });
+}()

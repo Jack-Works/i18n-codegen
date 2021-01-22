@@ -14,3 +14,20 @@ it('should generate i18next output correctly', () => {
         expect(content).toMatchFile(path)
     }
 })
+
+it('should generate i18next output correctly, with options', () => {
+    const input = join(__dirname, './example.json')
+    const parsed = i18NextParser(ParserInput.fromFileSystem(input))
+    const out = i18next_reactHooksGenerator(
+        new GeneratorInput(parsed, input, join(__dirname, './__file_snapshots__/example-options'), {
+            es6Proxy: false,
+            hooks: 'useMyHooks',
+            namespace: 'ns',
+            sourceMap: 'inline',
+            trans: 'TypedMyTrans',
+        }),
+    )
+    for (const [path, content] of out) {
+        expect(content).toMatchFile(path)
+    }
+})

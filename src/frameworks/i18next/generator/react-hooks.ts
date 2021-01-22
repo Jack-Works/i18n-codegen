@@ -107,6 +107,7 @@ type TypedTransProps<Value, Components> = Omit<TransProps<string>, 'values' | 'n
 function generateJS(gen: GenType): string {
     const items = getTopLevelItems(gen.parseResult)
     const ns = gen.generatorOptions?.namespace
+    const useProxy = gen.generatorOptions?.es6Proxy !== false
     return `/* eslint-disable */
 import { createElement, useMemo } from 'react'
 import { useTranslation, Trans } from 'react-i18next'
@@ -116,20 +117,27 @@ const bind = (i18nKey) => (props) => createElement(Trans, { i18nKey, ${
 export function ${gen.generatorOptions?.hooks || 'useTypedTranslation'}() {
     const { t } = useTranslation(${ns ? JSON.stringify(ns) : ''})
     return useMemo(
-        () => ({
+        ${
+            useProxy
+                ? proxyBasedHooks.toString()
+                : `() => ({
             ${[...items]
                 .map(generateUseTKeys)
                 .filter((x) => x)
                 .join(', ')}
-        }),
+        }),`
+        }
         [t],
     )
 }
-export const TypedTrans = { ${[...items]
-        .map(generateComponentBinding)
-        .filter((x) => x)
-        .join(', ')} }
-`
+export const TypedTrans = ${
+        useProxy
+            ? proxyBasedTrans.toString() + '()'
+            : `{${[...items]
+                  .map(generateComponentBinding)
+                  .filter((x) => x)
+                  .join(', ')}}`
+    }`
 }
 function generateUseTKeys([k, r]: [k: string, r: I18NextResult]) {
     if (r.type !== 'key') return null
@@ -155,4 +163,25 @@ function isIdentifier(x: string) {
 function getTopLevelItems(x: I18NextResult) {
     if (x.type !== 'object') throw new Error()
     return x.items
+}
+
+function proxyBasedHooks() {
+    // @ts-ignore
+    declare const t: any
+    return new Proxy({ __proto__: null } as any, {
+        get(target, key) {
+            if (target[key]) return target[key]
+            return (target[key] = t.bind(null, key))
+        },
+    })
+}
+function proxyBasedTrans() {
+    // @ts-ignore
+    declare const bind: any
+    return new Proxy({ __proto__: null } as any, {
+        get(target, key) {
+            if (target[key]) return target[key]
+            return (target[key] = bind(key))
+        },
+    })
 }
