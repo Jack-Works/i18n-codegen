@@ -4,7 +4,9 @@
     "module": "CommonJS",
     "rootDir": "./",
     "outDir": "../dist/",
-    "sourceMap": true
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true
   },
   "ts-node": {
     "transpileOnly": true
