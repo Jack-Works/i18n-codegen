@@ -1,0 +1,17 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### 0.0.1 (2021-01-22)
+
+
+### Features
+
+* extract sourcemap by default ([b7d8988](https://github.com/Jack-Works/i18n-codegen/commit/b7d898829f3d87fa9f7001f9ff5020be6f28c269))
+* first init ([db231c8](https://github.com/Jack-Works/i18n-codegen/commit/db231c8cde8b10e031f81384bacb6bd1c30c647f))
+* use proxy for js files for default ([04c5cd3](https://github.com/Jack-Works/i18n-codegen/commit/04c5cd3c1c77bc76a647201fd60d6bf207ca354f))
+
+
+### Bug Fixes
+
+* cli not working ([3b2fd67](https://github.com/Jack-Works/i18n-codegen/commit/3b2fd670b53ffdea33809815285b6cd472b6b131))
