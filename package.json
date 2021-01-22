@@ -35,8 +35,8 @@
     "typescript": "^4"
   },
   "files": [
-    "./dist/",
-    "./src/",
+    "dist",
+    "src",
     "schema.json"
   ]
 }
