@@ -36,6 +36,7 @@
   },
   "files": [
     "./dist/",
-    "./src/"
+    "./src/",
+    "schema.json"
   ]
 }
