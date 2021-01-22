@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest"
   },
+  "bin": "./dist/cli.js",
   "keywords": [
     "i18n",
     "typescript"
@@ -32,5 +33,9 @@
   },
   "peerDependencies": {
     "typescript": "^4"
-  }
+  },
+  "files": [
+    "./dist/",
+    "./src/"
+  ]
 }

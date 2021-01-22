@@ -3,7 +3,8 @@
   "compilerOptions": {
     "module": "CommonJS",
     "rootDir": "./",
-    "outDir": "../dist/"
+    "outDir": "../dist/",
+    "sourceMap": true
   },
   "ts-node": {
     "transpileOnly": true
