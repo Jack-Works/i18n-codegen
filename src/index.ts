@@ -7,66 +7,77 @@ import { readFileSync, writeFileSync } from 'fs'
 import { watch } from 'chokidar'
 export * from './json-schema'
 
-export function runOneConfig(config: Config, configBaseURL: string, onError: (e: any) => void) {
-    try {
-        let { generator, input, output, parser } = config
-        if (typeof generator === 'string') generator = { type: generator }
-        if (typeof parser === 'string') parser = { type: parser }
+type Args = [config: Pick<Config, 'generator' | 'parser'>, absoluteInputPath: string, absoluteOutputPath: string]
+type E = (error: unknown, ...args: Args) => void
+export function handleConfig(...[config, input, output]: Args) {
+    let { generator, parser } = config
+    if (typeof generator === 'string') generator = { type: generator }
+    if (typeof parser === 'string') parser = { type: parser }
 
-        input = resolve(configBaseURL, input)
-        output = resolve(configBaseURL, output)
+    const table = { [ParserList.i18next]: i18NextParser }
+    const table2 = { [GeneratorList.i18next_reactHooks]: i18next_reactHooksGenerator }
 
-        const table = { [ParserList.i18next]: i18NextParser }
-        const table2 = { [GeneratorList.i18next_reactHooks]: i18next_reactHooksGenerator }
+    const result = table[parser.type](ParserInput.fromFileSystem(input, parser))
+    const files = table2[generator.type](new GeneratorInput(result, input, output, generator))
 
-        const result = table[parser.type](ParserInput.fromFileSystem(input, parser))
-        const files = table2[generator.type](new GeneratorInput(result, input, output, generator))
-
-        for (const [file, content] of files) {
-            writeFileSync(file, content)
-        }
-    } catch (e) {
-        onError(e)
+    for (const [file, content] of files) {
+        writeFileSync(file, content)
     }
-    return () => {}
 }
-export function watchOneConfig(config: Config, configBaseURL: string, onError: (e: any) => void) {
-    const watcher = watch(resolve(configBaseURL, config.input))
-    watcher.on('all', () => runOneConfig(config, configBaseURL, onError))
+
+const watchOptions = { atomic: true, awaitWriteFinish: true, ignoreInitial: false }
+export function watchConfig(onError: E, ...[config, input, output]: Args) {
+    const watcher = watch(input, watchOptions)
+    watcher.on('all', () => {
+        try {
+            handleConfig(config, input, output)
+        } catch (e) {
+            onError(e, config, input, output)
+        }
+    })
     return () => watcher.close()
 }
-export function runConfigList(watchMode: boolean, configs: Config[], configBaseURL: string, onError = console.error) {
-    const cancel = configs.map((x) => (watchMode ? runOneConfig : watchOneConfig)(x, configBaseURL, onError))
-    return () => cancel.forEach((x) => x())
-}
-export function runConfig(watchMode: boolean, x: ConfigFile, configBaseURL: string, onError = console.error) {
-    if (x.version !== 1) return onError(new Error('Unknown version')), () => {}
-    return runConfigList(watchMode, x.list, configBaseURL, onError)
-}
-export function runConfigFile(configFilePath: string, onError = console.error) {
-    try {
-        const config = JSON.parse(readFileSync(configFilePath, 'utf-8'))
-        const base = dirname(configFilePath)
-        return runConfig(true, config, base, onError)
-    } catch (e) {
-        onError(e)
-    }
-    return () => {}
-}
-export function watchConfigFile(configFilePath: string, onError = console.error) {
-    const watcher = watch(configFilePath)
-    console.log('running in watch mode')
 
-    const cancel: Function[] = []
-    watcher.on('all', () => {
-        cancel.forEach((x) => x())
-        cancel.length = 0
-        cancel.push(runConfigFile(configFilePath, onError))
-    })
-    runConfigFile(configFilePath, onError)
+export function runConfigList(watchMode: true, onError: E, configs: Args[]): () => void
+export function runConfigList(watchMode: false, onError: E, configs: Args[]): void
+export function runConfigList(watchMode: boolean, onError: E, configs: Args[]): void | (() => void)
+export function runConfigList(watchMode: boolean, onError: E, configs: Args[]) {
+    if (watchMode) {
+        const cancel = configs.map((x) => watchConfig(onError, ...x))
+        return () => cancel.forEach((x) => x())
+    }
+    for (const x of configs) {
+        try {
+            handleConfig(...x)
+        } catch (e) {
+            onError(e, ...x)
+        }
+    }
+    return
 }
-export function runCli(argv: { config?: string; cwd?: string; watch?: boolean }, onError = console.error) {
+export function runConfigFile(watchMode: true, onRecoverableError: E, configFilePath: string): () => void
+export function runConfigFile(watchMode: false, onRecoverableError: E, configFilePath: string): void
+export function runConfigFile(watchMode: boolean, onRecoverableError: E, configFilePath: string): void | (() => void)
+export function runConfigFile(watchMode: boolean, onRecoverableError: E, configFilePath: string) {
+    const config: ConfigFile = JSON.parse(readFileSync(configFilePath, 'utf-8'))
+    if (config.version !== 1) return
+    const base = dirname(configFilePath)
+    const configList = config.list.map(({ input, output, ...rest }) => {
+        const absoluteInputPath = resolve(base, input)
+        const absoluteOutputPath = resolve(base, output)
+        return [rest, absoluteInputPath, absoluteOutputPath] as Args
+    })
+    return runConfigList(watchMode, onRecoverableError, configList)
+}
+export function runCli(argv: { config?: string; cwd?: string; watch?: boolean }, onError: E) {
     const config = resolve(process.cwd(), argv.config || './.i18n-codegen.json')
-    if (argv.watch) watchConfigFile(config, onError)
-    else runConfigFile(config, onError)
+    if (argv.watch) {
+        const watcher = watch(config, watchOptions)
+        let r = runConfigFile(true, onError, config)
+        watcher.addListener('all', () => {
+            r()
+            r = runConfigFile(true, onError, config)
+        })
+        return () => watcher.close()
+    } else return runConfigFile(false, onError, config)
 }
