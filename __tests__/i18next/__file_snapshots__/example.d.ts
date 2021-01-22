@@ -16,5 +16,3 @@ export declare const TypedTrans: {
 }
 import { TransProps } from 'react-i18next'
 type TypedTransProps<Value, Components> = Omit<TransProps<string>, 'values' | 'ns' | 'i18nKey'> & ({} extends Value ? {} : { values: Value }) & { components: Components }
-
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL2V4YW1wbGUuanNvbiJdLCJuYW1lcyI6WyIiLCJ0aGlzIGlzIGEgbm9ybWFsIGtleSIsIkhlbGxvLCB7e25hbWV9fSEiLCJJIGFtIHt7YXV0aG9yLm5hbWV9fSIsImF1dGhvci5uYW1lIiwiZGFuZ2Vyb3VzIHt7LSB2YXJ9fSIsIlRoZSBjdXJyZW50IGRhdGUgaXMge3tkYXRlLCBNTS9ERC9ZWVlZfX0iXSwibWFwcGluZ3MiOiJnQkFBQUEsbUI7O0lBRWtCQyxVOztJQUtBQyxVLFlBQVUsSTs7SUFFSkMsZ0IsWUFBUUMsZTs7SUFDZkMsUyxZQUFjLEc7O0lBQ2RDLFMsWUFBdUIsSTs7OztJQUh4QixRLDRDQUFFLEMiLCJmaWxlIjoiZXhhbXBsZS5kLnRzIn0=

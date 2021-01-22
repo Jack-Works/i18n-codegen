@@ -1,0 +1,17 @@
+{
+    "version": 3,
+    "sources": [
+        "../example.json"
+    ],
+    "names": [
+        "",
+        "this is a normal key",
+        "Hello, {{name}}!",
+        "I am {{author.name}}",
+        "author.name",
+        "dangerous {{- var}}",
+        "The current date is {{date, MM/DD/YYYY}}"
+    ],
+    "mappings": "gBAAAA,mB;;IAEkBC,U;;IAKAC,U,YAAU,I;;IAEJC,gB,YAAQC,e;;IACfC,S,YAAc,G;;IACdC,S,YAAuB,I;;;;IAHxB,Q,4CAAE,C",
+    "file": "example.d.ts"
+}

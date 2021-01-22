@@ -10,10 +10,7 @@ import { Generator_I18Next_ReactHooks } from '../../../json-schema'
 type GenType = GeneratorInput<I18NextResultExtra, Generator_I18Next_ReactHooks>
 
 export function i18NextReactHooksGenerator(gen: GenType) {
-    return new Map([
-        [gen.outputBase + '.js', generateJS(gen)],
-        [gen.outputBase + '.d.ts', generateDTS(gen)],
-    ])
+    return new Map([[gen.outputBase + '.js', generateJS(gen)], ...Object.entries(generateDTS(gen))])
 }
 
 //#region Generate .d.ts and .d.ts.map
@@ -70,7 +67,16 @@ function generateDTS(gen: GenType) {
         node.addLine(`import { TransProps } from 'react-i18next'
 type TypedTransProps<Value, Components> = Omit<TransProps<string>, 'values' | 'ns' | 'i18nKey'> & ({} extends Value ? {} : { values: Value }) & { components: Components }`)
     //#endregion
-    return node.toStringWithInlineSourceMap({ file: basename(gen.outputBase) + '.d.ts' })
+    const useSourceMap = gen.generatorOptions?.sourceMap !== false
+    const useInlineSourceMap = useSourceMap && gen.generatorOptions?.sourceMap === 'inline'
+    const dtsPath = gen.outputBase + '.d.ts'
+    if (!useSourceMap) return { [dtsPath]: node.toString() }
+
+    const sourceMapOption = { file: basename(gen.outputBase) + '.d.ts' }
+    if (useInlineSourceMap) return { [dtsPath]: node.toStringWithInlineSourceMap(sourceMapOption) }
+
+    const s = node.toStringWithSourceMap(sourceMapOption)
+    return { [dtsPath]: s.code, [gen.outputBase + '.d.ts.map']: JSON.stringify(s.map, undefined, 4) }
 
     function appendComment(value: string, pos: Position) {
         if (!value.includes('*/')) {

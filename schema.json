@@ -121,6 +121,18 @@
                     "description": "The component name that provides typed version of Trans component.",
                     "type": "string",
                     "title": "trans"
+                },
+                "sourceMap": {
+                    "description": "Generate sourcemap for .d.ts file",
+                    "default": true,
+                    "enum": [false, "inline", true],
+                    "title": "sourceMap"
+                },
+                "es6Proxy": {
+                    "description": "Use ES6 Proxy for .js file",
+                    "default": true,
+                    "type": "boolean",
+                    "title": "es6Proxy"
                 }
             }
         }

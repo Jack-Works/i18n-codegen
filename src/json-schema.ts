@@ -36,6 +36,15 @@ export interface Generator_I18Next_ReactHooks {
     hooks?: string
     /** The component name that provides typed version of Trans component. */
     trans?: string
-    // hmr?: ('module.hot' | 'import.meta.hot' | 'import.meta.webpackHot')[]
+    /**
+     * Generate sourcemap for .d.ts file
+     * @default true
+     */
+    sourceMap?: boolean | 'inline'
+    /**
+     * Use ES6 Proxy for .js file
+     * @default true
+     */
+    es6Proxy?: boolean
 }
 //#endregion
