@@ -119,7 +119,7 @@ export function ${gen.generatorOptions?.hooks || 'useTypedTranslation'}() {
     return useMemo(
         ${
             useProxy
-                ? proxyBasedHooks.toString()
+                ? proxyBasedHooks.toString() + ','
                 : `() => ({
             ${[...items]
                 .map(generateUseTKeys)

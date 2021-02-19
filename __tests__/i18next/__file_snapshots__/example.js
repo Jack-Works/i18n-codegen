@@ -13,7 +13,7 @@ export function useTypedTranslation() {
             return (target[key] = t.bind(null, key));
         },
     });
-}
+},
         [t],
     )
 }
