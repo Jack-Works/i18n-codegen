@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/Jack-Works/i18n-codegen/compare/v0.0.5...v0.0.6) (2021-05-12)
+
+
+### Bug Fixes
+
+* trans component in dts and js does not match ([bfef4fe](https://github.com/Jack-Works/i18n-codegen/commit/bfef4fed5e59ec0990fa740fcdf202faeb8c0c0b))
+
 ### [0.0.5](https://github.com/Jack-Works/i18n-codegen/compare/v0.0.4...v0.0.5) (2021-02-19)
 
 

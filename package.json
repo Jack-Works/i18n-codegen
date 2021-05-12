@@ -1,6 +1,6 @@
 {
   "name": "@magic-works/i18n-codegen",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A code generator for strongly-typed i18n resources",
   "main": "dist/index.js",
   "scripts": {
