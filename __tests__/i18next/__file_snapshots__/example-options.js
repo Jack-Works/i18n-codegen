@@ -11,4 +11,4 @@ export function useMyHooks() {
         [t],
     )
 }
-export const TypedTrans = {["with_tag"]: bind("with_tag")}
+export const TypedMyTrans = {["with_tag"]: bind("with_tag")}

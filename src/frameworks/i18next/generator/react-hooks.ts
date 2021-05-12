@@ -130,7 +130,7 @@ export function ${gen.generatorOptions?.hooks || 'useTypedTranslation'}() {
         [t],
     )
 }
-export const TypedTrans = ${
+export const ${gen.generatorOptions?.trans || 'TypedTrans'} = ${
         useProxy
             ? proxyBasedTrans.toString() + '()'
             : `{${[...items]
