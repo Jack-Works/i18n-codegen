@@ -1,6 +1,6 @@
 import { Token, GeneratorInput } from '../../../type'
 import { Position } from '../../../utils/position'
-import { Source } from '../../../utils/source'
+import { Source } from '../../../utils/Source'
 // @ts-ignore private api
 import { isIdentifierText, ScriptTarget } from 'typescript'
 import { I18NextResult, I18NextResultExtra } from '../parser/types'
