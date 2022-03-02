@@ -45,12 +45,14 @@ export function i18NextParser({ mockSourceFile, sourceFile }: ParserInput<{}>): 
             } else if (node.type === 'interpolation' || node.type === 'interpolation_unescaped') {
                 let { variable, prefix } = node
                 const filtered = variable.split(',')[0] // format: x, mm/DD/YYYY
-                interpolations.set(filtered, [
+                const propertyAccess = filtered.split('.')
+                interpolations.set(propertyAccess[0], [
                     {
                         content: variable,
                         position: addPosition(value_position, [0, pos + prefix.length + StartQuoteLength]),
                     },
-                    'string',
+                    propertyAccess.length > 1 ? 'object' : 'string',
+                    // propertyAccess.slice(1).reduce((acc, cur) => `{ ["${cur}"]: ${acc} }`, 'string'),
                 ])
             }
         })

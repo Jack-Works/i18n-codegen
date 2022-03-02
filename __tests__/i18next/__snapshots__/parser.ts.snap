@@ -169,15 +169,15 @@ Object {
       },
       "with_prop_access" => Object {
         "interpolations": Map {
-          "author.name" => Array [
+          "author" => Array [
             Object {
-              "content": "author.name",
+              "content": "author.name.last",
               "position": Array [
                 10,
-                32,
+                54,
               ],
             },
-            "string",
+            "object",
           ],
         },
         "position": Array [
@@ -186,7 +186,7 @@ Object {
         ],
         "tags": Map {},
         "type": "key",
-        "value": "I am {{author.name}}",
+        "value": "I am {{author.name.first}} {{author.name.last}}",
         "value_position": Array [
           10,
           24,

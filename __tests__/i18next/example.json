@@ -7,7 +7,7 @@
     },
     "with_param": "Hello, {{name}}!",
     "with_tag": "<i>hi</i>",
-    "with_prop_access": "I am {{author.name}}",
+    "with_prop_access": "I am {{author.name.first}} {{author.name.last}}",
     "unescaped": "dangerous {{- var}}",
     "formatted": "The current date is {{date, MM/DD/YYYY}}",
     "key_zero": "zero",
@@ -15,5 +15,5 @@
     "key_two": "two",
     "key_few": "few",
     "key_many": "many",
-    "key_other": "other {{things}}"
+    "key_other": "other {{things}}",
 }

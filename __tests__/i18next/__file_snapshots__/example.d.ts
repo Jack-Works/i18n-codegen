@@ -3,8 +3,8 @@ export function useTypedTranslation(): {
     normal_key(): string
     /** `Hello, {{name}}!` */
     with_param(options: { name: string }): string
-    /** `I am {{author.name}}` */
-    with_prop_access(options: { ["author.name"]: string }): string
+    /** `I am {{author.name.first}} {{author.name.last}}` */
+    with_prop_access(options: { author: object }): string
     /** `dangerous {{- var}}` */
     unescaped(options: { var: string }): string
     /** `The current date is {{date, MM/DD/YYYY}}` */

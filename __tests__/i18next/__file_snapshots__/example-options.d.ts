@@ -3,8 +3,8 @@ export function useMyHooks(): {
     normal_key(): string
     /** `Hello, {{name}}!` */
     with_param(options: { name: string }): string
-    /** `I am {{author.name}}` */
-    with_prop_access(options: { ["author.name"]: string }): string
+    /** `I am {{author.name.first}} {{author.name.last}}` */
+    with_prop_access(options: { author: object }): string
     /** `dangerous {{- var}}` */
     unescaped(options: { var: string }): string
     /** `The current date is {{date, MM/DD/YYYY}}` */
@@ -31,4 +31,4 @@ export declare const TypedMyTrans: {
 import { TransProps } from 'react-i18next'
 type TypedTransProps<Value, Components> = Omit<TransProps<string>, 'values' | 'ns' | 'i18nKey'> & ({} extends Value ? {} : { values: Value }) & { components: Components }
 
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL2V4YW1wbGUuanNvbiJdLCJuYW1lcyI6WyIiLCJ0aGlzIGlzIGEgbm9ybWFsIGtleSIsIkhlbGxvLCB7e25hbWV9fSEiLCJJIGFtIHt7YXV0aG9yLm5hbWV9fSIsImF1dGhvci5uYW1lIiwiZGFuZ2Vyb3VzIHt7LSB2YXJ9fSIsIlRoZSBjdXJyZW50IGRhdGUgaXMge3tkYXRlLCBNTS9ERC9ZWVlZfX0iLCJ6ZXJvIiwic2luZ3VsYXIiLCJ0d28iLCJmZXciLCJtYW55Iiwib3RoZXIge3t0aGluZ3N9fSJdLCJtYXBwaW5ncyI6ImdCQUFBQSxVOztJQUVrQkMsVTs7SUFLQUMsVSxZQUFVLEk7O0lBRUpDLGdCLFlBQVFDLGU7O0lBQ2ZDLFMsWUFBYyxHOztJQUNkQyxTLFlBQXVCLEk7O0lBQ3hCQyxROztJQUNEQyxPOztJQUNBQyxPOztJQUNBQyxPOztJQUNDQyxROztJQUNDQyxTLFlBQVMsTTs7bUJBQUEsTTs7OztJQVRWLFEsNENBQUUsQyIsImZpbGUiOiJleGFtcGxlLW9wdGlvbnMuZC50cyJ9
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL2V4YW1wbGUuanNvbiJdLCJuYW1lcyI6WyIiLCJ0aGlzIGlzIGEgbm9ybWFsIGtleSIsIkhlbGxvLCB7e25hbWV9fSEiLCJJIGFtIHt7YXV0aG9yLm5hbWUuZmlyc3R9fSB7e2F1dGhvci5uYW1lLmxhc3R9fSIsImRhbmdlcm91cyB7ey0gdmFyfX0iLCJUaGUgY3VycmVudCBkYXRlIGlzIHt7ZGF0ZSwgTU0vREQvWVlZWX19IiwiemVybyIsInNpbmd1bGFyIiwidHdvIiwiZmV3IiwibWFueSIsIm90aGVyIHt7dGhpbmdzfX0iXSwibWFwcGluZ3MiOiJnQkFBQUEsVTs7SUFFa0JDLFU7O0lBS0FDLFUsWUFBVSxJOztJQUVKQyxnQixZQUE4QixNOztJQUNyQ0MsUyxZQUFjLEc7O0lBQ2RDLFMsWUFBdUIsSTs7SUFDeEJDLFE7O0lBQ0RDLE87O0lBQ0FDLE87O0lBQ0FDLE87O0lBQ0NDLFE7O0lBQ0NDLFMsWUFBUyxNOzttQkFBQSxNOzs7O0lBVFYsUSw0Q0FBRSxDIiwiZmlsZSI6ImV4YW1wbGUtb3B0aW9ucy5kLnRzIn0=
