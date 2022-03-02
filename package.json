@@ -4,7 +4,8 @@
   "description": "A code generator for strongly-typed i18n resources",
   "main": "dist/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:update": "jest -u"
   },
   "bin": "./dist/cli.js",
   "keywords": [

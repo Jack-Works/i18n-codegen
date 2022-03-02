@@ -10,8 +10,14 @@
         "I am {{author.name}}",
         "author.name",
         "dangerous {{- var}}",
-        "The current date is {{date, MM/DD/YYYY}}"
+        "The current date is {{date, MM/DD/YYYY}}",
+        "zero",
+        "singular",
+        "two",
+        "few",
+        "many",
+        "other"
     ],
-    "mappings": "gBAAAA,mB;;IAEkBC,U;;IAKAC,U,YAAU,I;;IAEJC,gB,YAAQC,e;;IACfC,S,YAAc,G;;IACdC,S,YAAuB,I;;;;IAHxB,Q,4CAAE,C",
+    "mappings": "gBAAAA,mB;;IAEkBC,U;;IAKAC,U,YAAU,I;;IAEJC,gB,YAAQC,e;;IACfC,S,YAAc,G;;IACdC,S,YAAuB,I;;IACxBC,Q;;IACDC,O;;IACAC,O;;IACAC,O;;IACCC,Q;;IACCC,S;;;;IATD,Q,4CAAE,C",
     "file": "example.d.ts"
 }

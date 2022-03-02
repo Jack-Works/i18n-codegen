@@ -9,5 +9,11 @@
     "with_tag": "<i>hi</i>",
     "with_prop_access": "I am {{author.name}}",
     "unescaped": "dangerous {{- var}}",
-    "formatted": "The current date is {{date, MM/DD/YYYY}}"
+    "formatted": "The current date is {{date, MM/DD/YYYY}}",
+    "key_zero": "zero",
+    "key_one": "singular",
+    "key_two": "two",
+    "key_few": "few",
+    "key_many": "many",
+    "key_other": "other"
 }

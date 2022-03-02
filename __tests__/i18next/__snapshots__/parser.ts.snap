@@ -127,6 +127,90 @@ Object {
         17,
       ],
     },
+    "key_zero" => Object {
+      "interpolations": Map {},
+      "position": Array [
+        13,
+        4,
+      ],
+      "tags": Map {},
+      "type": "key",
+      "value": "zero",
+      "value_position": Array [
+        13,
+        16,
+      ],
+    },
+    "key_one" => Object {
+      "interpolations": Map {},
+      "position": Array [
+        14,
+        4,
+      ],
+      "tags": Map {},
+      "type": "key",
+      "value": "singular",
+      "value_position": Array [
+        14,
+        15,
+      ],
+    },
+    "key_two" => Object {
+      "interpolations": Map {},
+      "position": Array [
+        15,
+        4,
+      ],
+      "tags": Map {},
+      "type": "key",
+      "value": "two",
+      "value_position": Array [
+        15,
+        15,
+      ],
+    },
+    "key_few" => Object {
+      "interpolations": Map {},
+      "position": Array [
+        16,
+        4,
+      ],
+      "tags": Map {},
+      "type": "key",
+      "value": "few",
+      "value_position": Array [
+        16,
+        15,
+      ],
+    },
+    "key_many" => Object {
+      "interpolations": Map {},
+      "position": Array [
+        17,
+        4,
+      ],
+      "tags": Map {},
+      "type": "key",
+      "value": "many",
+      "value_position": Array [
+        17,
+        16,
+      ],
+    },
+    "key_other" => Object {
+      "interpolations": Map {},
+      "position": Array [
+        18,
+        4,
+      ],
+      "tags": Map {},
+      "type": "key",
+      "value": "other",
+      "value_position": Array [
+        18,
+        17,
+      ],
+    },
   },
   "position": Array [
     0,

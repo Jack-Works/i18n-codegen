@@ -9,6 +9,18 @@ export function useTypedTranslation(): {
     unescaped(options: { var: string }): string
     /** `The current date is {{date, MM/DD/YYYY}}` */
     formatted(options: { date: string }): string
+    /** `zero` */
+    key_zero(): string
+    /** `singular` */
+    key_one(): string
+    /** `two` */
+    key_two(): string
+    /** `few` */
+    key_few(): string
+    /** `many` */
+    key_many(): string
+    /** `other` */
+    key_other(): string
 }
 export declare const TypedTrans: {
     /** `<i>hi</i>` */
