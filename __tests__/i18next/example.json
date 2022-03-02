@@ -15,5 +15,5 @@
     "key_two": "two",
     "key_few": "few",
     "key_many": "many",
-    "key_other": "other"
+    "key_other": "other {{things}}"
 }

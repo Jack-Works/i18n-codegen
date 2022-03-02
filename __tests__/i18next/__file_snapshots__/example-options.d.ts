@@ -19,8 +19,10 @@ export function useMyHooks(): {
     key_few(): string
     /** `many` */
     key_many(): string
-    /** `other` */
-    key_other(): string
+    /** `other {{things}}` */
+    key_other(options: { things: string }): string
+    /** `` */
+    key(options: { things: string, count: number }): string
 }
 export declare const TypedMyTrans: {
     /** `<i>hi</i>` */
@@ -29,4 +31,4 @@ export declare const TypedMyTrans: {
 import { TransProps } from 'react-i18next'
 type TypedTransProps<Value, Components> = Omit<TransProps<string>, 'values' | 'ns' | 'i18nKey'> & ({} extends Value ? {} : { values: Value }) & { components: Components }
 
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL2V4YW1wbGUuanNvbiJdLCJuYW1lcyI6WyIiLCJ0aGlzIGlzIGEgbm9ybWFsIGtleSIsIkhlbGxvLCB7e25hbWV9fSEiLCJJIGFtIHt7YXV0aG9yLm5hbWV9fSIsImF1dGhvci5uYW1lIiwiZGFuZ2Vyb3VzIHt7LSB2YXJ9fSIsIlRoZSBjdXJyZW50IGRhdGUgaXMge3tkYXRlLCBNTS9ERC9ZWVlZfX0iLCJ6ZXJvIiwic2luZ3VsYXIiLCJ0d28iLCJmZXciLCJtYW55Iiwib3RoZXIiXSwibWFwcGluZ3MiOiJnQkFBQUEsVTs7SUFFa0JDLFU7O0lBS0FDLFUsWUFBVSxJOztJQUVKQyxnQixZQUFRQyxlOztJQUNmQyxTLFlBQWMsRzs7SUFDZEMsUyxZQUF1QixJOztJQUN4QkMsUTs7SUFDREMsTzs7SUFDQUMsTzs7SUFDQUMsTzs7SUFDQ0MsUTs7SUFDQ0MsUzs7OztJQVRELFEsNENBQUUsQyIsImZpbGUiOiJleGFtcGxlLW9wdGlvbnMuZC50cyJ9
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL2V4YW1wbGUuanNvbiJdLCJuYW1lcyI6WyIiLCJ0aGlzIGlzIGEgbm9ybWFsIGtleSIsIkhlbGxvLCB7e25hbWV9fSEiLCJJIGFtIHt7YXV0aG9yLm5hbWV9fSIsImF1dGhvci5uYW1lIiwiZGFuZ2Vyb3VzIHt7LSB2YXJ9fSIsIlRoZSBjdXJyZW50IGRhdGUgaXMge3tkYXRlLCBNTS9ERC9ZWVlZfX0iLCJ6ZXJvIiwic2luZ3VsYXIiLCJ0d28iLCJmZXciLCJtYW55Iiwib3RoZXIge3t0aGluZ3N9fSJdLCJtYXBwaW5ncyI6ImdCQUFBQSxVOztJQUVrQkMsVTs7SUFLQUMsVSxZQUFVLEk7O0lBRUpDLGdCLFlBQVFDLGU7O0lBQ2ZDLFMsWUFBYyxHOztJQUNkQyxTLFlBQXVCLEk7O0lBQ3hCQyxROztJQUNEQyxPOztJQUNBQyxPOztJQUNBQyxPOztJQUNDQyxROztJQUNDQyxTLFlBQVMsTTs7bUJBQUEsTTs7OztJQVRWLFEsNENBQUUsQyIsImZpbGUiOiJleGFtcGxlLW9wdGlvbnMuZC50cyJ9

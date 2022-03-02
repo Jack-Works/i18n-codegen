@@ -24,5 +24,4 @@ Options:
 ## i18next generator
 
 -   [ ] Support generation for nested namespace
--   [ ] Support count?
 -   [ ] Support interpolation like `author.name`, should generate as `{ author: { name: string } }`

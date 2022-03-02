@@ -19,8 +19,10 @@ export function useTypedTranslation(): {
     key_few(): string
     /** `many` */
     key_many(): string
-    /** `other` */
-    key_other(): string
+    /** `other {{things}}` */
+    key_other(options: { things: string }): string
+    /** `` */
+    key(options: { things: string, count: number }): string
 }
 export declare const TypedTrans: {
     /** `<i>hi</i>` */

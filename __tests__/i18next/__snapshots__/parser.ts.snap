@@ -2,220 +2,347 @@
 
 exports[`should parse i18next format correctly: i18next-parse-example 1`] = `
 Object {
-  "items": Map {
-    "normal_key" => Object {
-      "interpolations": Map {},
-      "position": Array [
-        3,
-        4,
-      ],
-      "tags": Map {},
-      "type": "key",
-      "value": "this is a normal key",
-      "value_position": Array [
-        3,
-        18,
-      ],
-    },
-    "with_param" => Object {
-      "interpolations": Map {
-        "name" => Object {
-          "content": "name",
-          "position": Array [
-            8,
-            28,
+  "plurals": Map {
+    "key" => Map {
+      "zero" => Object {
+        "interpolations": Map {},
+        "position": Array [
+          13,
+          4,
+        ],
+        "tags": Map {},
+        "type": "key",
+        "value": "zero",
+        "value_position": Array [
+          13,
+          16,
+        ],
+      },
+      "one" => Object {
+        "interpolations": Map {},
+        "position": Array [
+          14,
+          4,
+        ],
+        "tags": Map {},
+        "type": "key",
+        "value": "singular",
+        "value_position": Array [
+          14,
+          15,
+        ],
+      },
+      "two" => Object {
+        "interpolations": Map {},
+        "position": Array [
+          15,
+          4,
+        ],
+        "tags": Map {},
+        "type": "key",
+        "value": "two",
+        "value_position": Array [
+          15,
+          15,
+        ],
+      },
+      "few" => Object {
+        "interpolations": Map {},
+        "position": Array [
+          16,
+          4,
+        ],
+        "tags": Map {},
+        "type": "key",
+        "value": "few",
+        "value_position": Array [
+          16,
+          15,
+        ],
+      },
+      "many" => Object {
+        "interpolations": Map {},
+        "position": Array [
+          17,
+          4,
+        ],
+        "tags": Map {},
+        "type": "key",
+        "value": "many",
+        "value_position": Array [
+          17,
+          16,
+        ],
+      },
+      "other" => Object {
+        "interpolations": Map {
+          "things" => Array [
+            Object {
+              "content": "things",
+              "position": Array [
+                18,
+                26,
+              ],
+            },
+            "string",
           ],
         },
+        "position": Array [
+          18,
+          4,
+        ],
+        "tags": Map {},
+        "type": "key",
+        "value": "other {{things}}",
+        "value_position": Array [
+          18,
+          17,
+        ],
       },
-      "position": Array [
-        8,
-        4,
-      ],
-      "tags": Map {},
-      "type": "key",
-      "value": "Hello, {{name}}!",
-      "value_position": Array [
-        8,
-        18,
-      ],
-    },
-    "with_tag" => Object {
-      "interpolations": Map {},
-      "position": Array [
-        9,
-        4,
-      ],
-      "tags": Map {
-        "i" => Object {
-          "content": "i",
-          "position": Array [
-            9,
-            18,
-          ],
-        },
-      },
-      "type": "key",
-      "value": "<i>hi</i>",
-      "value_position": Array [
-        9,
-        16,
-      ],
-    },
-    "with_prop_access" => Object {
-      "interpolations": Map {
-        "author.name" => Object {
-          "content": "author.name",
-          "position": Array [
-            10,
-            32,
-          ],
-        },
-      },
-      "position": Array [
-        10,
-        4,
-      ],
-      "tags": Map {},
-      "type": "key",
-      "value": "I am {{author.name}}",
-      "value_position": Array [
-        10,
-        24,
-      ],
-    },
-    "unescaped" => Object {
-      "interpolations": Map {
-        "var" => Object {
-          "content": "var",
-          "position": Array [
-            11,
-            31,
-          ],
-        },
-      },
-      "position": Array [
-        11,
-        4,
-      ],
-      "tags": Map {},
-      "type": "key",
-      "value": "dangerous {{- var}}",
-      "value_position": Array [
-        11,
-        17,
-      ],
-    },
-    "formatted" => Object {
-      "interpolations": Map {
-        "date" => Object {
-          "content": "date, MM/DD/YYYY",
-          "position": Array [
-            12,
-            40,
-          ],
-        },
-      },
-      "position": Array [
-        12,
-        4,
-      ],
-      "tags": Map {},
-      "type": "key",
-      "value": "The current date is {{date, MM/DD/YYYY}}",
-      "value_position": Array [
-        12,
-        17,
-      ],
-    },
-    "key_zero" => Object {
-      "interpolations": Map {},
-      "position": Array [
-        13,
-        4,
-      ],
-      "tags": Map {},
-      "type": "key",
-      "value": "zero",
-      "value_position": Array [
-        13,
-        16,
-      ],
-    },
-    "key_one" => Object {
-      "interpolations": Map {},
-      "position": Array [
-        14,
-        4,
-      ],
-      "tags": Map {},
-      "type": "key",
-      "value": "singular",
-      "value_position": Array [
-        14,
-        15,
-      ],
-    },
-    "key_two" => Object {
-      "interpolations": Map {},
-      "position": Array [
-        15,
-        4,
-      ],
-      "tags": Map {},
-      "type": "key",
-      "value": "two",
-      "value_position": Array [
-        15,
-        15,
-      ],
-    },
-    "key_few" => Object {
-      "interpolations": Map {},
-      "position": Array [
-        16,
-        4,
-      ],
-      "tags": Map {},
-      "type": "key",
-      "value": "few",
-      "value_position": Array [
-        16,
-        15,
-      ],
-    },
-    "key_many" => Object {
-      "interpolations": Map {},
-      "position": Array [
-        17,
-        4,
-      ],
-      "tags": Map {},
-      "type": "key",
-      "value": "many",
-      "value_position": Array [
-        17,
-        16,
-      ],
-    },
-    "key_other" => Object {
-      "interpolations": Map {},
-      "position": Array [
-        18,
-        4,
-      ],
-      "tags": Map {},
-      "type": "key",
-      "value": "other",
-      "value_position": Array [
-        18,
-        17,
-      ],
     },
   },
-  "position": Array [
-    0,
-    0,
-  ],
-  "type": "object",
+  "root": Object {
+    "items": Map {
+      "normal_key" => Object {
+        "interpolations": Map {},
+        "position": Array [
+          3,
+          4,
+        ],
+        "tags": Map {},
+        "type": "key",
+        "value": "this is a normal key",
+        "value_position": Array [
+          3,
+          18,
+        ],
+      },
+      "with_param" => Object {
+        "interpolations": Map {
+          "name" => Array [
+            Object {
+              "content": "name",
+              "position": Array [
+                8,
+                28,
+              ],
+            },
+            "string",
+          ],
+        },
+        "position": Array [
+          8,
+          4,
+        ],
+        "tags": Map {},
+        "type": "key",
+        "value": "Hello, {{name}}!",
+        "value_position": Array [
+          8,
+          18,
+        ],
+      },
+      "with_tag" => Object {
+        "interpolations": Map {},
+        "position": Array [
+          9,
+          4,
+        ],
+        "tags": Map {
+          "i" => Array [
+            Object {
+              "content": "i",
+              "position": Array [
+                9,
+                18,
+              ],
+            },
+            "JSX.Element",
+          ],
+        },
+        "type": "key",
+        "value": "<i>hi</i>",
+        "value_position": Array [
+          9,
+          16,
+        ],
+      },
+      "with_prop_access" => Object {
+        "interpolations": Map {
+          "author.name" => Array [
+            Object {
+              "content": "author.name",
+              "position": Array [
+                10,
+                32,
+              ],
+            },
+            "string",
+          ],
+        },
+        "position": Array [
+          10,
+          4,
+        ],
+        "tags": Map {},
+        "type": "key",
+        "value": "I am {{author.name}}",
+        "value_position": Array [
+          10,
+          24,
+        ],
+      },
+      "unescaped" => Object {
+        "interpolations": Map {
+          "var" => Array [
+            Object {
+              "content": "var",
+              "position": Array [
+                11,
+                31,
+              ],
+            },
+            "string",
+          ],
+        },
+        "position": Array [
+          11,
+          4,
+        ],
+        "tags": Map {},
+        "type": "key",
+        "value": "dangerous {{- var}}",
+        "value_position": Array [
+          11,
+          17,
+        ],
+      },
+      "formatted" => Object {
+        "interpolations": Map {
+          "date" => Array [
+            Object {
+              "content": "date, MM/DD/YYYY",
+              "position": Array [
+                12,
+                40,
+              ],
+            },
+            "string",
+          ],
+        },
+        "position": Array [
+          12,
+          4,
+        ],
+        "tags": Map {},
+        "type": "key",
+        "value": "The current date is {{date, MM/DD/YYYY}}",
+        "value_position": Array [
+          12,
+          17,
+        ],
+      },
+      "key_zero" => Object {
+        "interpolations": Map {},
+        "position": Array [
+          13,
+          4,
+        ],
+        "tags": Map {},
+        "type": "key",
+        "value": "zero",
+        "value_position": Array [
+          13,
+          16,
+        ],
+      },
+      "key_one" => Object {
+        "interpolations": Map {},
+        "position": Array [
+          14,
+          4,
+        ],
+        "tags": Map {},
+        "type": "key",
+        "value": "singular",
+        "value_position": Array [
+          14,
+          15,
+        ],
+      },
+      "key_two" => Object {
+        "interpolations": Map {},
+        "position": Array [
+          15,
+          4,
+        ],
+        "tags": Map {},
+        "type": "key",
+        "value": "two",
+        "value_position": Array [
+          15,
+          15,
+        ],
+      },
+      "key_few" => Object {
+        "interpolations": Map {},
+        "position": Array [
+          16,
+          4,
+        ],
+        "tags": Map {},
+        "type": "key",
+        "value": "few",
+        "value_position": Array [
+          16,
+          15,
+        ],
+      },
+      "key_many" => Object {
+        "interpolations": Map {},
+        "position": Array [
+          17,
+          4,
+        ],
+        "tags": Map {},
+        "type": "key",
+        "value": "many",
+        "value_position": Array [
+          17,
+          16,
+        ],
+      },
+      "key_other" => Object {
+        "interpolations": Map {
+          "things" => Array [
+            Object {
+              "content": "things",
+              "position": Array [
+                18,
+                26,
+              ],
+            },
+            "string",
+          ],
+        },
+        "position": Array [
+          18,
+          4,
+        ],
+        "tags": Map {},
+        "type": "key",
+        "value": "other {{things}}",
+        "value_position": Array [
+          18,
+          17,
+        ],
+      },
+    },
+    "position": Array [
+      0,
+      0,
+    ],
+    "type": "object",
+  },
 }
 `;

@@ -16,8 +16,8 @@
         "two",
         "few",
         "many",
-        "other"
+        "other {{things}}"
     ],
-    "mappings": "gBAAAA,mB;;IAEkBC,U;;IAKAC,U,YAAU,I;;IAEJC,gB,YAAQC,e;;IACfC,S,YAAc,G;;IACdC,S,YAAuB,I;;IACxBC,Q;;IACDC,O;;IACAC,O;;IACAC,O;;IACCC,Q;;IACCC,S;;;;IATD,Q,4CAAE,C",
+    "mappings": "gBAAAA,mB;;IAEkBC,U;;IAKAC,U,YAAU,I;;IAEJC,gB,YAAQC,e;;IACfC,S,YAAc,G;;IACdC,S,YAAuB,I;;IACxBC,Q;;IACDC,O;;IACAC,O;;IACAC,O;;IACCC,Q;;IACCC,S,YAAS,M;;mBAAA,M;;;;IATV,Q,4CAAE,C",
     "file": "example.d.ts"
 }
