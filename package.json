@@ -4,6 +4,8 @@
   "description": "A code generator for strongly-typed i18n resources",
   "main": "dist/index.js",
   "scripts": {
+    "start": "tsc -p src -w",
+    "build": "tsc -p src",
     "test": "jest",
     "test:update": "jest -u"
   },
@@ -15,6 +17,7 @@
   "author": "Jack Works <zjwpeter@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@jest/globals": "^27.5.1",
     "@types/node": "^17.0.21",
     "@types/yargs": "^17.0.8",
     "jest": "^27.5.1",

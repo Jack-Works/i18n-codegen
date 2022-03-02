@@ -1,6 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@jest/globals': ^27.5.1
   '@types/node': ^17.0.21
   '@types/yargs': ^17.0.8
   chokidar: ^3.5.3
@@ -23,6 +24,7 @@ dependencies:
   yargs: 17.3.1
 
 devDependencies:
+  '@jest/globals': 27.5.1
   '@types/node': 17.0.21
   '@types/yargs': 17.0.8
   jest: 27.5.1_ts-node@10.6.0

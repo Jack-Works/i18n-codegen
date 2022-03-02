@@ -18,6 +18,7 @@ const argv = yargs(hideBin(process.argv))
     .command('gen', 'Generate the i18n files', { watch: { alias: 'w', type: 'boolean' } }).argv
 
 let hasError = false
+if (argv instanceof Promise) throw new TypeError()
 runCli(argv, (error, config, i, o) => {
     hasError = true
     if (!argv.quite) console.error('Error happened:', error, i, '=>', o, 'with config', config)
