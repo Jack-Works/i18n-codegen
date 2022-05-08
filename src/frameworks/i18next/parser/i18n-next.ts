@@ -51,7 +51,7 @@ export function i18NextParser({ mockSourceFile, sourceFile }: ParserInput<{}>): 
                         content: variable,
                         position: addPosition(value_position, [0, pos + prefix.length + StartQuoteLength]),
                     },
-                    propertyAccess.length > 1 ? 'object' : 'string',
+                    propertyAccess.length > 1 ? 'object' : 'string | number',
                     // propertyAccess.slice(1).reduce((acc, cur) => `{ ["${cur}"]: ${acc} }`, 'string'),
                 ])
             }

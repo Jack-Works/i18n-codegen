@@ -2,13 +2,13 @@ export function useMyHooks(): {
     /** `this is a normal key` */
     normal_key(): string
     /** `Hello, {{name}}!` */
-    with_param(options: { name: string }): string
+    with_param(options: { name: string | number }): string
     /** `I am {{author.name.first}} {{author.name.last}}` */
     with_prop_access(options: { author: object }): string
     /** `dangerous {{- var}}` */
-    unescaped(options: { var: string }): string
+    unescaped(options: { var: string | number }): string
     /** `The current date is {{date, MM/DD/YYYY}}` */
-    formatted(options: { date: string }): string
+    formatted(options: { date: string | number }): string
     /** `zero` */
     key_zero(): string
     /** `singular` */
@@ -20,9 +20,9 @@ export function useMyHooks(): {
     /** `many` */
     key_many(): string
     /** `other {{things}}` */
-    key_other(options: { things: string }): string
+    key_other(options: { things: string | number }): string
     /** `` */
-    key(options: { things: string, count: number }): string
+    key(options: { things: string | number, count: number }): string
 }
 export declare const TypedMyTrans: {
     /** `<i>hi</i>` */

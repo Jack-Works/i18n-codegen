@@ -1,4 +1,4 @@
-lockfileVersion: 5.3
+lockfileVersion: 5.4
 
 specifiers:
   '@jest/globals': ^27.5.1
@@ -32,8 +32,8 @@ devDependencies:
   npm-run-all: 4.1.5
   prettier: 2.5.1
   standard-version: 9.3.2
-  ts-jest: 27.1.3_jest@27.5.1+typescript@4.6.2
-  ts-node: 10.6.0_e79e62fe450383fd2d418267dc75e645
+  ts-jest: 27.1.3_cq7676jphrjwjojsru3xahznwm
+  ts-node: 10.6.0_46pgf7sfaob72lkbqjt5y5pgiu
   typescript: 4.6.2
 
 packages:
@@ -1708,6 +1708,7 @@ packages:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
+    requiresBuild: true
     optional: true
 
   /function-bind/1.1.1:
@@ -2213,7 +2214,7 @@ packages:
       pretty-format: 27.5.1
       slash: 3.0.0
       strip-json-comments: 3.1.1
-      ts-node: 10.6.0_e79e62fe450383fd2d418267dc75e645
+      ts-node: 10.6.0_46pgf7sfaob72lkbqjt5y5pgiu
     transitivePeerDependencies:
       - bufferutil
       - canvas
@@ -3745,7 +3746,7 @@ packages:
       escape-string-regexp: 1.0.5
     dev: true
 
-  /ts-jest/27.1.3_jest@27.5.1+typescript@4.6.2:
+  /ts-jest/27.1.3_cq7676jphrjwjojsru3xahznwm:
     resolution: {integrity: sha512-6Nlura7s6uM9BVUAoqLH7JHyMXjz8gluryjpPXxr3IxZdAXnU6FhjvVLHFtfd1vsE1p8zD1OJfskkc0jhTSnkA==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     hasBin: true
@@ -3778,7 +3779,7 @@ packages:
       yargs-parser: 20.2.9
     dev: true
 
-  /ts-node/10.6.0_e79e62fe450383fd2d418267dc75e645:
+  /ts-node/10.6.0_46pgf7sfaob72lkbqjt5y5pgiu:
     resolution: {integrity: sha512-CJen6+dfOXolxudBQXnVjRVvYTmTWbyz7cn+xq2XTsvnaXbHqr4gXSCNbS2Jj8yTZMuGwUoBESLaOkLascVVvg==}
     hasBin: true
     peerDependencies:
@@ -3861,6 +3862,7 @@ packages:
     resolution: {integrity: sha512-peeoTk3hSwYdoc9nrdiEJk+gx1ALCtTjdYuKSXMTDqq7n1W7dHPqWDdSi+BPL0ni2YMeHD7hKUSdbj3TZauY2A==}
     engines: {node: '>=0.8.0'}
     hasBin: true
+    requiresBuild: true
     dev: true
     optional: true
 
