@@ -6,7 +6,11 @@ expect.extend({ toMatchFile })
 
 it('should generate i18next output correctly', () => {
     const input = join(__dirname, './example.json')
-    const parsed = i18NextParser(ParserInput.fromFileSystem(input))
+    const parsed = i18NextParser(
+        ParserInput.fromFileSystem(input, {
+            pluralSeparator: '$',
+        }),
+    )
     const out = i18next_reactHooksGenerator(
         new GeneratorInput(parsed, input, join(__dirname, './__file_snapshots__/example')),
     )
@@ -17,7 +21,11 @@ it('should generate i18next output correctly', () => {
 
 it('should generate i18next output correctly, with options', () => {
     const input = join(__dirname, './example.json')
-    const parsed = i18NextParser(ParserInput.fromFileSystem(input))
+    const parsed = i18NextParser(
+        ParserInput.fromFileSystem(input, {
+            pluralSeparator: '$',
+        }),
+    )
     const out = i18next_reactHooksGenerator(
         new GeneratorInput(parsed, input, join(__dirname, './__file_snapshots__/example-options'), {
             es6Proxy: false,

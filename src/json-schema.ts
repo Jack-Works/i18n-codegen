@@ -28,7 +28,11 @@ export enum GeneratorList {
     i18next_reactHooks = 'i18next/react-hooks',
 }
 //#region i18next
-export interface Parser_I18NextConfig {}
+export interface Parser_I18NextConfig {
+    nsSeparator?: string
+    pluralSeparator?: string
+    contextSeparator?: string
+}
 export interface Generator_I18Next_ReactHooks {
     /** The namespace of this generator should use */
     namespace?: string

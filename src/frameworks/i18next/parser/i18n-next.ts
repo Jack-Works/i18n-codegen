@@ -10,13 +10,25 @@ import { ParserInput, ParseNode } from '../../../type'
 import { addPosition, Position } from '../../../utils/position'
 import { AST, Node, parse } from 'i18next-translation-parser'
 import { I18NextParsedFile, I18NextParseNodeInfo, I18NextParseNode_String } from './types'
+import { Parser_I18NextConfig } from '../../../json-schema'
+
+function escapeRegExp(input: string) {
+    return input.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')
+}
 
 const StartQuoteLength = 1
 const TagStartLength = 1
-const pluralPostfix = /(_zero|_one|_two|_few|_many|_other)$/
-export function i18NextParser({ mockSourceFile, sourceFile }: ParserInput<{}>): I18NextParsedFile {
+const defaultPluralPostfix = /(_zero|_one|_two|_few|_many|_other)$/
+export function i18NextParser({
+    mockSourceFile,
+    sourceFile,
+    parserOptions,
+}: ParserInput<Parser_I18NextConfig>): I18NextParsedFile {
+    let pluralPostfix = defaultPluralPostfix
+    if (parserOptions?.pluralSeparator) {
+        pluralPostfix = new RegExp(pluralPostfix.source.replace(/_/g, escapeRegExp(parserOptions.pluralSeparator)))
+    }
     const result = new Map<string, ParseNode<I18NextParseNodeInfo>>()
-
     if (!isObjectLiteralExpression(sourceFile)) return makeResult()
 
     for (const prop of sourceFile.properties as NodeArray<PropertyAssignment>) {

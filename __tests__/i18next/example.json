@@ -10,10 +10,10 @@
     "with_prop_access": "I am {{author.name.first}} {{author.name.last}}",
     "unescaped": "dangerous {{- var}}",
     "formatted": "The current date is {{date, MM/DD/YYYY}}",
-    "key_zero": "zero",
-    "key_one": "singular",
-    "key_two": "two",
-    "key_few": "few",
-    "key_many": "many",
-    "key_other": "other {{things}}",
+    "key$zero": "zero",
+    "key$one": "singular",
+    "key$two": "two",
+    "key$few": "few",
+    "key$many": "many",
+    "key$other": "other {{things}}"
 }

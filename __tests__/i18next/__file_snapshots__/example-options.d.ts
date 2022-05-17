@@ -10,17 +10,17 @@ export function useMyHooks(): {
     /** `The current date is {{date, MM/DD/YYYY}}` */
     formatted(options: { date: string }): string
     /** `zero` */
-    key_zero(): string
+    key$zero(): string
     /** `singular` */
-    key_one(): string
+    key$one(): string
     /** `two` */
-    key_two(): string
+    key$two(): string
     /** `few` */
-    key_few(): string
+    key$few(): string
     /** `many` */
-    key_many(): string
+    key$many(): string
     /** `other {{things}}` */
-    key_other(options: { things: string }): string
+    key$other(options: { things: string }): string
     /** `` */
     key(options: { things: string, count: number }): string
 }
