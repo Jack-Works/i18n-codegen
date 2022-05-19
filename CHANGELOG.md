@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/Jack-Works/i18n-codegen/compare/v0.0.6...v0.2.0) (2022-05-19)
+
+
+### Features
+
+* base case of property access in interop ([de14916](https://github.com/Jack-Works/i18n-codegen/commit/de14916bae952aa4f52455c611ce3fa3fc0fc9ab))
+* support plurals ([eb73026](https://github.com/Jack-Works/i18n-codegen/commit/eb7302623b3723af1f1b7c7ca0dfea016ab3709f))
+
+
+### Bug Fixes
+
+* case sensitive of import name ([d07fa3a](https://github.com/Jack-Works/i18n-codegen/commit/d07fa3af0056f4b8f3a4fa1fae7a5094b1d2931e))
+* context ([cbba954](https://github.com/Jack-Works/i18n-codegen/commit/cbba954caf6406baf814a96596b8695ce7731b77))
+* project ([2793ceb](https://github.com/Jack-Works/i18n-codegen/commit/2793ceb111193ff288937ddd226cc0b9b2d2fdbe))
+* 修复 import 的 Source 文件名大小写在 Windows 引发的错误 ([4f21d68](https://github.com/Jack-Works/i18n-codegen/commit/4f21d68fcc2d50c96e71df1929d6a8cf919d7c84))
+
 ### [0.0.6](https://github.com/Jack-Works/i18n-codegen/compare/v0.0.5...v0.0.6) (2021-05-12)
 
 
