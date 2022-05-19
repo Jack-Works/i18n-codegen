@@ -66,7 +66,7 @@ export function i18NextParser(opts: ParserInput<Parser_I18NextConfig>): I18NextP
         })
 
         for (const [baseName, [pos, rec]] of interpolationMap) {
-            interpolations.set(baseName, [pos, rec.toType()])
+            interpolations.set(baseName, [pos, rec.toType(), true])
         }
 
         result.set(key, propResult)
@@ -74,6 +74,7 @@ export function i18NextParser(opts: ParserInput<Parser_I18NextConfig>): I18NextP
 
     const plurals = new Map<string, Map<string, ParseNode<I18NextParseNodeInfo>>>()
     const contexts = new Map<string, Map<string, ParseNode<I18NextParseNodeInfo>>>()
+    const variantList = new Map<string, [string, string][]>()
     // https://www.i18next.com/translation-function/plurals
     // https://www.i18next.com/translation-function/context
     // https://tc39.es/ecma402/#sec-pluralruleselect
@@ -88,6 +89,10 @@ export function i18NextParser(opts: ParserInput<Parser_I18NextConfig>): I18NextP
             if (!contexts.has(base)) contexts.set(base, new Map())
             contexts.get(base)!.set(context, parsed)
         }
+        if (parsed.type === 'key') {
+            if (!variantList.has(base)) variantList.set(base, [])
+            variantList.get(base)!.push([key, parsed.value])
+        }
     }
     return makeResult()
 
@@ -100,6 +105,7 @@ export function i18NextParser(opts: ParserInput<Parser_I18NextConfig>): I18NextP
             root: { type: 'object', position: [0, 0], items: result },
             plurals,
             contexts,
+            variantList,
         }
     }
 }

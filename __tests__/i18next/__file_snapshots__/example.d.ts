@@ -100,14 +100,57 @@ export function useTypedTranslation(): {
       * `{{count}} orange boxes`
       */
     box_orange_other(options: {
-        readonly count: string;
+        readonly count: string | number | bigint;
     }): string;
     /**
+      * `1 blue box`
+      */
+    box_blue_one(): string;
+    /**
+      * `{{count}} blue boxes`
+      */
+    box_blue_other(options: {
+        readonly count: (string | number | bigint) & (string | number | bigint);
+    }): string;
+    /**
+      * `{{x.data}}`
     
+      * - mergeProps_other: `{{x.data2}}`
+      */
+    mergeProps(options: Readonly<{
+        x: {
+            readonly data: string;
+        } & {
+            readonly data2: string;
+        };
+        count?: string | number | bigint;
+    }>): string;
+    /**
+      * `{{x.data2}}`
+      */
+    mergeProps_other(options: {
+        readonly x: {
+            readonly data2: string;
+        };
+    }): string;
+    /**
+      * - box_zero: `No box`
+    
+      * - box_one: `1 box`
+    
+      * - box_other: `{{count}} boxes`
+    
+      * - box_orange_one: `1 orange box`
+    
+      * - box_orange_other: `{{count}} orange boxes`
+    
+      * - box_blue_one: `1 blue box`
+    
+      * - box_blue_other: `{{count}} blue boxes`
       */
     box(options: Readonly<{
-        count: string | number | bigint;
-        box: "orange";
+        count?: string | number | bigint;
+        context?: "orange" | "blue";
     }>): string;
 };
 export declare const TypedTrans: {

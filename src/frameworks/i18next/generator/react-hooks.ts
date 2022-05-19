@@ -1,8 +1,7 @@
 import { GeneratorInput, ParseNode } from '../../../type'
 import ts, { Statement, factory, addSyntheticLeadingComment, TypeNode } from 'typescript'
-import { I18NextParsedFile, I18NextParseNode } from '../parser/types'
+import { I18NextParsedFile, I18NextParseNode, I18NextParseNodeInfo } from '../parser/types'
 import { Generator_I18Next_ReactHooks } from '../../../json-schema'
-import { Position } from '../../../utils/position'
 import {
     createPropertyName,
     NUMBER_TYPE,
@@ -131,7 +130,7 @@ function generateDTS(gen: GenType, [items, comments]: ReturnType<typeof getTopLe
     function getCommentForKey(key: string) {
         const comment = comments.get(key)
         if (!comment) return null
-        const string = comment.map((x) => `  * ${x}`).join('\n')
+        const string = comment.map((x) => `  * ${x}`).join('\n\n')
         if (string.includes('*/')) return null
         return `*\n${string}\n  `
     }
@@ -220,11 +219,16 @@ function createTagType(props: TypeNode, tagNames: string[]) {
         ]),
     ])
 }
-function createInterpolationType(interpolations: Map<string, [Position, ts.TypeNode]>) {
+function createInterpolationType(interpolations: I18NextParseNodeInfo['interpolations']) {
     return createReadonlyType(
         factory.createTypeLiteralNode(
-            [...interpolations].map(([key, [, type]]) =>
-                factory.createPropertySignature(undefined, key, undefined, type),
+            [...interpolations].map(([key, [, type, required]]) =>
+                factory.createPropertySignature(
+                    undefined,
+                    key,
+                    required ? undefined : factory.createToken(ts.SyntaxKind.QuestionToken),
+                    type,
+                ),
             ),
         ),
     )
@@ -298,6 +302,12 @@ function getTopLevelKeys(x: I18NextParsedFile) {
         if (node.type !== 'key') continue
         appendComment(key, '`' + node.value + '`')
     }
+    for (const [key, variants] of x.variantList) {
+        for (const [k, v] of variants) {
+            if (k === key) continue
+            appendComment(key, '- ' + k + ': `' + v + '`')
+        }
+    }
 
     // setup all synthetic nodes
     for (const [base, details] of [...x.plurals, ...x.contexts]) {
@@ -311,7 +321,6 @@ function getTopLevelKeys(x: I18NextParsedFile) {
                 value_position: [null, null],
             })
         }
-        comments.set(base, [])
 
         const baseNode = nodes.get(base)!
         for (const [_, detail] of details) {
@@ -319,17 +328,26 @@ function getTopLevelKeys(x: I18NextParsedFile) {
 
             if (baseNode.type === 'key') {
                 // append all interpolation/tags of the plural version to the base version
-                detail.interpolations.forEach((t, k) => baseNode.interpolations.set(k, t))
+                detail.interpolations.forEach((t, k) => {
+                    if (k === 'count') t[1] = NUMBER_TYPE
+                    if (!baseNode.interpolations.has(k)) baseNode.interpolations.set(k, t)
+                    else {
+                        const orig = baseNode.interpolations.get(k)!
+                        if (orig[2] || t[2]) orig[2] = true
+                        orig[1] = factory.createIntersectionTypeNode([orig[1], t[1]])
+                    }
+                })
                 detail.tags.forEach((t, k) => baseNode.tags.set(k, t))
             }
         }
     }
 
-    for (const [pluralBase, pluralNodes] of x.plurals) {
+    // TODO: should calculate if context and plural is required property.
+    for (const [pluralBase] of x.plurals) {
         const baseNode = nodes.get(pluralBase)!
 
         if (baseNode.type === 'key') {
-            baseNode.interpolations.set('count', [[null, null], NUMBER_TYPE])
+            baseNode.interpolations.set('count', [[null, null], NUMBER_TYPE, false])
         }
     }
 
@@ -337,14 +355,14 @@ function getTopLevelKeys(x: I18NextParsedFile) {
         const baseNode = nodes.get(contextBase)!
 
         if (baseNode.type === 'key') {
-            const key = realNodes.has(contextBase) ? contextBase + '?' : contextBase
-            baseNode.interpolations.set(key, [
+            baseNode.interpolations.set('context', [
                 [null, null],
                 factory.createUnionTypeNode(
                     [...contextNodes.keys()]
                         .map(String)
                         .map((string) => factory.createLiteralTypeNode(factory.createStringLiteral(string))),
                 ),
+                false,
             ])
         }
     }

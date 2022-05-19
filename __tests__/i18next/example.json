@@ -22,4 +22,9 @@
     "box_other": "{{count}} boxes",
     "box_orange_one": "1 orange box",
     "box_orange_other": "{{count}} orange boxes",
+    "box_blue_one": "1 blue box",
+    "box_blue_other": "{{count}} blue boxes",
+
+    "mergeProps": "{{x.data}}",
+    "mergeProps_other": "{{x.data2}}",
 }

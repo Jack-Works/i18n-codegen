@@ -100,14 +100,57 @@ export function useMyHooks(): {
       * `{{count}} orange boxes`
       */
     ["box@orange@other"](options: {
-        readonly count: string;
+        readonly count: string | number | bigint;
     }): string;
     /**
+      * `1 blue box`
+      */
+    ["box@blue@one"](): string;
+    /**
+      * `{{count}} blue boxes`
+      */
+    ["box@blue@other"](options: {
+        readonly count: (string | number | bigint) & (string | number | bigint);
+    }): string;
+    /**
+      * `{{x.data}}`
     
+      * - merge_props@other: `{{x.data2}}`
+      */
+    merge_props(options: Readonly<{
+        x: {
+            readonly data: string;
+        } & {
+            readonly data2: string;
+        };
+        count?: string | number | bigint;
+    }>): string;
+    /**
+      * `{{x.data2}}`
+      */
+    ["merge_props@other"](options: {
+        readonly x: {
+            readonly data2: string;
+        };
+    }): string;
+    /**
+      * - box@zero: `No box`
+    
+      * - box@one: `1 box`
+    
+      * - box@other: `{{count}} boxes`
+    
+      * - box@orange@one: `1 orange box`
+    
+      * - box@orange@other: `{{count}} orange boxes`
+    
+      * - box@blue@one: `1 blue box`
+    
+      * - box@blue@other: `{{count}} blue boxes`
       */
     box(options: Readonly<{
-        count: string | number | bigint;
-        box: "orange";
+        count?: string | number | bigint;
+        context?: "orange" | "blue";
     }>): string;
 };
 export declare const TypedMyTrans: {

@@ -20,6 +20,7 @@ Object {
               "pos": -1,
               "transformFlags": 1,
             },
+            true,
           ],
         },
         "position": Array [
@@ -32,6 +33,37 @@ Object {
         "value_position": Array [
           24,
           24,
+        ],
+      },
+      "blue" => Object {
+        "interpolations": Map {
+          "count" => Array [
+            Array [
+              26,
+              25,
+            ],
+            TokenObject {
+              "end": -1,
+              "flags": 8,
+              "kind": 149,
+              "modifierFlagsCache": 0,
+              "parent": undefined,
+              "pos": -1,
+              "transformFlags": 1,
+            },
+            true,
+          ],
+        },
+        "position": Array [
+          26,
+          4,
+        ],
+        "tags": Map {},
+        "type": "key",
+        "value": "{{count}} blue boxes",
+        "value_position": Array [
+          26,
+          22,
         ],
       },
     },
@@ -55,23 +87,23 @@ Object {
       "one" => Object {
         "interpolations": Map {},
         "position": Array [
-          23,
+          25,
           4,
         ],
         "tags": Map {},
         "type": "key",
-        "value": "1 orange box",
+        "value": "1 blue box",
         "value_position": Array [
-          23,
-          22,
+          25,
+          20,
         ],
       },
       "other" => Object {
         "interpolations": Map {
           "count" => Array [
             Array [
-              24,
-              27,
+              26,
+              25,
             ],
             TokenObject {
               "end": -1,
@@ -82,17 +114,99 @@ Object {
               "pos": -1,
               "transformFlags": 1,
             },
+            true,
           ],
         },
         "position": Array [
-          24,
+          26,
           4,
         ],
         "tags": Map {},
         "type": "key",
-        "value": "{{count}} orange boxes",
+        "value": "{{count}} blue boxes",
         "value_position": Array [
-          24,
+          26,
+          22,
+        ],
+      },
+    },
+    "mergeProps" => Map {
+      "other" => Object {
+        "interpolations": Map {
+          "x" => Array [
+            Array [
+              29,
+              27,
+            ],
+            NodeObject {
+              "end": -1,
+              "flags": 8,
+              "kind": 181,
+              "members": Array [
+                NodeObject {
+                  "decorators": undefined,
+                  "end": -1,
+                  "flags": 8,
+                  "kind": 165,
+                  "localSymbol": undefined,
+                  "locals": undefined,
+                  "modifierFlagsCache": 0,
+                  "modifiers": Array [
+                    TokenObject {
+                      "end": -1,
+                      "flags": 8,
+                      "kind": 144,
+                      "modifierFlagsCache": 0,
+                      "parent": undefined,
+                      "pos": -1,
+                      "transformFlags": 1,
+                    },
+                  ],
+                  "name": IdentifierObject {
+                    "end": -1,
+                    "escapedText": "data2",
+                    "flags": 8,
+                    "kind": 79,
+                    "modifierFlagsCache": 0,
+                    "originalKeywordKind": undefined,
+                    "parent": undefined,
+                    "pos": -1,
+                    "transformFlags": 0,
+                  },
+                  "nextContainer": undefined,
+                  "parent": undefined,
+                  "pos": -1,
+                  "questionToken": undefined,
+                  "symbol": undefined,
+                  "transformFlags": 1,
+                  "type": TokenObject {
+                    "end": -1,
+                    "flags": 8,
+                    "kind": 149,
+                    "modifierFlagsCache": 0,
+                    "parent": undefined,
+                    "pos": -1,
+                    "transformFlags": 1,
+                  },
+                },
+              ],
+              "modifierFlagsCache": 0,
+              "parent": undefined,
+              "pos": -1,
+              "transformFlags": 1,
+            },
+            true,
+          ],
+        },
+        "position": Array [
+          29,
+          4,
+        ],
+        "tags": Map {},
+        "type": "key",
+        "value": "{{x.data2}}",
+        "value_position": Array [
+          29,
           24,
         ],
       },
@@ -130,6 +244,7 @@ Object {
               "pos": -1,
               "transformFlags": 1,
             },
+            true,
           ],
         },
         "position": Array [
@@ -160,6 +275,7 @@ Object {
               "pos": -1,
               "transformFlags": 1,
             },
+            true,
           ],
           "lastName" => Array [
             Array [
@@ -175,6 +291,7 @@ Object {
               "pos": -1,
               "transformFlags": 1,
             },
+            true,
           ],
         },
         "position": Array [
@@ -349,6 +466,7 @@ Object {
               "pos": -1,
               "transformFlags": 1,
             },
+            true,
           ],
         },
         "position": Array [
@@ -447,6 +565,7 @@ Object {
                 },
               ],
             },
+            true,
           ],
         },
         "position": Array [
@@ -477,6 +596,7 @@ Object {
               "pos": -1,
               "transformFlags": 1,
             },
+            true,
           ],
         },
         "position": Array [
@@ -536,6 +656,7 @@ Object {
                 },
               ],
             },
+            true,
           ],
         },
         "position": Array [
@@ -578,6 +699,7 @@ Object {
                 "transformFlags": 0,
               },
             },
+            true,
           ],
         },
         "position": Array [
@@ -637,6 +759,7 @@ Object {
                 },
               ],
             },
+            true,
           ],
         },
         "position": Array [
@@ -696,6 +819,7 @@ Object {
                 },
               ],
             },
+            true,
           ],
         },
         "position": Array [
@@ -745,6 +869,7 @@ Object {
                 "transformFlags": 1,
               },
             },
+            true,
           ],
         },
         "position": Array [
@@ -822,6 +947,7 @@ Object {
               "pos": -1,
               "transformFlags": 1,
             },
+            true,
           ],
         },
         "position": Array [
@@ -866,6 +992,7 @@ Object {
               "pos": -1,
               "transformFlags": 1,
             },
+            true,
           ],
         },
         "position": Array [
@@ -880,12 +1007,329 @@ Object {
           24,
         ],
       },
+      "box_blue_one" => Object {
+        "interpolations": Map {},
+        "position": Array [
+          25,
+          4,
+        ],
+        "tags": Map {},
+        "type": "key",
+        "value": "1 blue box",
+        "value_position": Array [
+          25,
+          20,
+        ],
+      },
+      "box_blue_other" => Object {
+        "interpolations": Map {
+          "count" => Array [
+            Array [
+              26,
+              25,
+            ],
+            TokenObject {
+              "end": -1,
+              "flags": 8,
+              "kind": 149,
+              "modifierFlagsCache": 0,
+              "parent": undefined,
+              "pos": -1,
+              "transformFlags": 1,
+            },
+            true,
+          ],
+        },
+        "position": Array [
+          26,
+          4,
+        ],
+        "tags": Map {},
+        "type": "key",
+        "value": "{{count}} blue boxes",
+        "value_position": Array [
+          26,
+          22,
+        ],
+      },
+      "mergeProps" => Object {
+        "interpolations": Map {
+          "x" => Array [
+            Array [
+              28,
+              21,
+            ],
+            NodeObject {
+              "end": -1,
+              "flags": 8,
+              "kind": 181,
+              "members": Array [
+                NodeObject {
+                  "decorators": undefined,
+                  "end": -1,
+                  "flags": 8,
+                  "kind": 165,
+                  "localSymbol": undefined,
+                  "locals": undefined,
+                  "modifierFlagsCache": 0,
+                  "modifiers": Array [
+                    TokenObject {
+                      "end": -1,
+                      "flags": 8,
+                      "kind": 144,
+                      "modifierFlagsCache": 0,
+                      "parent": undefined,
+                      "pos": -1,
+                      "transformFlags": 1,
+                    },
+                  ],
+                  "name": IdentifierObject {
+                    "end": -1,
+                    "escapedText": "data",
+                    "flags": 8,
+                    "kind": 79,
+                    "modifierFlagsCache": 0,
+                    "originalKeywordKind": undefined,
+                    "parent": undefined,
+                    "pos": -1,
+                    "transformFlags": 0,
+                  },
+                  "nextContainer": undefined,
+                  "parent": undefined,
+                  "pos": -1,
+                  "questionToken": undefined,
+                  "symbol": undefined,
+                  "transformFlags": 1,
+                  "type": TokenObject {
+                    "end": -1,
+                    "flags": 8,
+                    "kind": 149,
+                    "modifierFlagsCache": 0,
+                    "parent": undefined,
+                    "pos": -1,
+                    "transformFlags": 1,
+                  },
+                },
+              ],
+              "modifierFlagsCache": 0,
+              "parent": undefined,
+              "pos": -1,
+              "transformFlags": 1,
+            },
+            true,
+          ],
+        },
+        "position": Array [
+          28,
+          4,
+        ],
+        "tags": Map {},
+        "type": "key",
+        "value": "{{x.data}}",
+        "value_position": Array [
+          28,
+          18,
+        ],
+      },
+      "mergeProps_other" => Object {
+        "interpolations": Map {
+          "x" => Array [
+            Array [
+              29,
+              27,
+            ],
+            NodeObject {
+              "end": -1,
+              "flags": 8,
+              "kind": 181,
+              "members": Array [
+                NodeObject {
+                  "decorators": undefined,
+                  "end": -1,
+                  "flags": 8,
+                  "kind": 165,
+                  "localSymbol": undefined,
+                  "locals": undefined,
+                  "modifierFlagsCache": 0,
+                  "modifiers": Array [
+                    TokenObject {
+                      "end": -1,
+                      "flags": 8,
+                      "kind": 144,
+                      "modifierFlagsCache": 0,
+                      "parent": undefined,
+                      "pos": -1,
+                      "transformFlags": 1,
+                    },
+                  ],
+                  "name": IdentifierObject {
+                    "end": -1,
+                    "escapedText": "data2",
+                    "flags": 8,
+                    "kind": 79,
+                    "modifierFlagsCache": 0,
+                    "originalKeywordKind": undefined,
+                    "parent": undefined,
+                    "pos": -1,
+                    "transformFlags": 0,
+                  },
+                  "nextContainer": undefined,
+                  "parent": undefined,
+                  "pos": -1,
+                  "questionToken": undefined,
+                  "symbol": undefined,
+                  "transformFlags": 1,
+                  "type": TokenObject {
+                    "end": -1,
+                    "flags": 8,
+                    "kind": 149,
+                    "modifierFlagsCache": 0,
+                    "parent": undefined,
+                    "pos": -1,
+                    "transformFlags": 1,
+                  },
+                },
+              ],
+              "modifierFlagsCache": 0,
+              "parent": undefined,
+              "pos": -1,
+              "transformFlags": 1,
+            },
+            true,
+          ],
+        },
+        "position": Array [
+          29,
+          4,
+        ],
+        "tags": Map {},
+        "type": "key",
+        "value": "{{x.data2}}",
+        "value_position": Array [
+          29,
+          24,
+        ],
+      },
     },
     "position": Array [
       0,
       0,
     ],
     "type": "object",
+  },
+  "variantList": Map {
+    "normal" => Array [
+      Array [
+        "normal",
+        "this is a normal key",
+      ],
+    ],
+    "introprolation" => Array [
+      Array [
+        "introprolation",
+        "I am {{firstName}}",
+      ],
+    ],
+    "introprolationsSimple" => Array [
+      Array [
+        "introprolationsSimple",
+        "I am {{firstName}} {{lastName}}",
+      ],
+    ],
+    "introprolationsComplex" => Array [
+      Array [
+        "introprolationsComplex",
+        "I am {{author.name.first}} {{author.name.last}}",
+      ],
+    ],
+    "introprolationsMixed" => Array [
+      Array [
+        "introprolationsMixed",
+        "I am {{author.name}} {{author}}",
+      ],
+    ],
+    "unescaped" => Array [
+      Array [
+        "unescaped",
+        "dangerous {{- var}}",
+      ],
+    ],
+    "formattedNumber" => Array [
+      Array [
+        "formattedNumber",
+        "The number is {{date, number}}",
+      ],
+    ],
+    "formattedDate" => Array [
+      Array [
+        "formattedDate",
+        "The current date is {{date, datetime}}",
+      ],
+    ],
+    "formattedDate2" => Array [
+      Array [
+        "formattedDate2",
+        "Lorem {{val, relativetime(quarter)}}",
+      ],
+    ],
+    "formattedCurrency" => Array [
+      Array [
+        "formattedCurrency",
+        "It costs {{date, currency(USD)}}",
+      ],
+    ],
+    "formattedList" => Array [
+      Array [
+        "formattedList",
+        "A list of {{val, list}}",
+      ],
+    ],
+    "htmlTag" => Array [
+      Array [
+        "htmlTag",
+        "<i>hi</i>",
+      ],
+    ],
+    "box" => Array [
+      Array [
+        "box_zero",
+        "No box",
+      ],
+      Array [
+        "box_one",
+        "1 box",
+      ],
+      Array [
+        "box_other",
+        "{{count}} boxes",
+      ],
+      Array [
+        "box_orange_one",
+        "1 orange box",
+      ],
+      Array [
+        "box_orange_other",
+        "{{count}} orange boxes",
+      ],
+      Array [
+        "box_blue_one",
+        "1 blue box",
+      ],
+      Array [
+        "box_blue_other",
+        "{{count}} blue boxes",
+      ],
+    ],
+    "mergeProps" => Array [
+      Array [
+        "mergeProps",
+        "{{x.data}}",
+      ],
+      Array [
+        "mergeProps_other",
+        "{{x.data2}}",
+      ],
+    ],
   },
 }
 `;
