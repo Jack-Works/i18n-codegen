@@ -5,10 +5,6 @@ import { JSONNode, parseJson } from './utils/parseJSON'
 import { dirname, join, relative } from 'path'
 import { GeneratorList, ParserList } from './json-schema'
 
-export interface Token {
-    content: string
-    position: Position
-}
 export { GeneratorList, ParserList } from './json-schema'
 export interface PluginConfig {
     input: string

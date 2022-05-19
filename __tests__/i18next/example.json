@@ -1,19 +1,25 @@
 // Should parse JSONC
 {
-    "normal_key": "this is a normal key",
-    // TODO: support this
-    "nested": {
-        "key": "access via nested.key"
-    },
-    "with_param": "Hello, {{name}}!",
-    "with_tag": "<i>hi</i>",
-    "with_prop_access": "I am {{author.name.first}} {{author.name.last}}",
+    "normal": "this is a normal key",
+
+    "introprolation": "I am {{firstName}}",
+    "introprolationsSimple": "I am {{firstName}} {{lastName}}",
+    "introprolationsComplex": "I am {{author.name.first}} {{author.name.last}}",
+    "introprolationsMixed": "I am {{author.name}} {{author}}",
+
     "unescaped": "dangerous {{- var}}",
-    "formatted": "The current date is {{date, MM/DD/YYYY}}",
-    "key_zero": "zero",
-    "key_one": "singular",
-    "key_two": "two",
-    "key_few": "few",
-    "key_many": "many",
-    "key_other": "other {{things}}",
+
+    "formattedNumber": "The number is {{date, number}}",
+    "formattedDate": "The current date is {{date, datetime}}",
+    "formattedDate2": "Lorem {{val, relativetime(quarter)}}",
+    "formattedCurrency": "It costs {{date, currency(USD)}}",
+    "formattedList": "A list of {{val, list}}",
+
+    "htmlTag": "<i>hi</i>",
+
+    "box_zero": "No box",
+    "box_one": "1 box",
+    "box_other": "{{count}} boxes",
+    "box_orange_one": "1 orange box",
+    "box_orange_other": "{{count}} orange boxes",
 }

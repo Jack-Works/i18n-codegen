@@ -1,107 +1,239 @@
-import { Token, GeneratorInput } from '../../../type'
-import { Position } from '../../../utils/position'
-import { Source } from '../../../utils/Source'
-// @ts-ignore private api
-import { isIdentifierText, ScriptTarget, TypeNode } from 'typescript'
+import { GeneratorInput, ParseNode } from '../../../type'
+import ts, { Statement, factory, addSyntheticLeadingComment, TypeNode } from 'typescript'
 import { I18NextParsedFile, I18NextParseNode } from '../parser/types'
-import { basename } from 'path'
 import { Generator_I18Next_ReactHooks } from '../../../json-schema'
-import { SourceNode } from 'source-map'
+import { Position } from '../../../utils/position'
+import {
+    createPropertyName,
+    NUMBER_TYPE,
+    createReadonlyType,
+    printer,
+    ImportComponentTypeFromReact,
+} from '../../../utils/typescript'
 
 type GenType = GeneratorInput<I18NextParsedFile, Generator_I18Next_ReactHooks>
 
 export function i18NextReactHooksGenerator(gen: GenType) {
-    return new Map([[gen.outputBase + '.js', generateJS(gen)], ...Object.entries(generateDTS(gen))])
+    // nested key not supported yet.
+    const items = getTopLevelKeys(gen.parseResult)
+    return new Map([
+        //
+        [gen.outputBase + '.js', generateJS(gen, items)],
+        ...Object.entries(generateDTS(gen, items)),
+    ])
 }
-//#region Generate .d.ts and .d.ts.map
-function generateDTS(gen: GenType) {
-    const relativeSourceFilePath = gen.outputRelativePathToInput
-    const items = getTopLevelItems(gen.parseResult)
 
-    const node = new Source()
+//#region Generate .d.ts
+function generateDTS(gen: GenType, [items, comments]: ReturnType<typeof getTopLevelKeys>) {
+    const statements: Statement[] = []
 
     const htmlTags: typeof items = new Map()
-    //#region useTypedTranslation
-    node.addLine(
-        `export function `,
-        new Source(1, 0, relativeSourceFilePath, gen.generatorOptions?.hooks || 'useTypedTranslation', ''),
-        '(): {',
-    )
-    for (const [key, detail] of items) {
-        if (detail.type !== 'key') continue // TODO
-        if (detail.tags.size) {
-            htmlTags.set(key, detail)
-            continue
-        }
-        node.addLine(appendComment(detail.value))
-        // key(
-        node.append('    ', stringifiedKey(key, detail.value_position, detail.value), '(')
-        if (detail.interpolations.size) {
-            // key(options: { ... }
-            node.append('options: ', appendAttributes(detail.interpolations))
-        }
-        // key(): string
-        node.addLine('): string')
-    }
-    node.addLine('}')
-    //#endregion
 
-    //#region TypedTrans
+    // useTypedTranslation
+    {
+        const elements: ts.TypeElement[] = []
+
+        for (const [key, detail] of items) {
+            if (detail.type !== 'key') continue // TODO
+            if (detail.tags.size) {
+                htmlTags.set(key, detail)
+                continue
+            }
+
+            const params: ts.ParameterDeclaration[] = []
+            if (detail.interpolations.size) {
+                params.push(
+                    factory.createParameterDeclaration(
+                        undefined,
+                        undefined,
+                        undefined,
+                        'options',
+                        undefined,
+                        createInterpolationType(detail.interpolations),
+                    ),
+                )
+            }
+            // TODO: maybe support return JSX from the hooks, then this should be a JSXElement
+            const returnType = factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword)
+
+            // key(...params): type
+            const node = factory.createMethodSignature(
+                undefined,
+                createPropertyName(key),
+                undefined,
+                undefined,
+                params,
+                returnType,
+            )
+            const comment = getCommentForKey(key)
+            comment && addSyntheticLeadingComment(node, ts.SyntaxKind.MultiLineCommentTrivia, comment, true)
+            elements.push(node)
+        }
+
+        // export function useTypedTranslation(): { elements... }
+        statements.push(
+            factory.createFunctionDeclaration(
+                undefined,
+                factory.createModifiersFromModifierFlags(ts.ModifierFlags.Export),
+                undefined,
+                gen.generatorOptions?.hooks || 'useTypedTranslation',
+                undefined,
+                [],
+                factory.createTypeLiteralNode(elements),
+                undefined,
+            ),
+        )
+    }
+
+    // TypedTrans
     if (htmlTags.size) {
-        node.addLine(`export declare const ${gen.generatorOptions?.trans || 'TypedTrans'}: {`)
+        statements.unshift(ImportComponentTypeFromReact, TransProps, TypedTransProps)
+
+        const elements: ts.TypeElement[] = []
         for (const [key, detail] of htmlTags) {
             if (detail.type !== 'key') continue // TODO
-            node.addLine(appendComment(detail.value))
-            // key: React.ComponentType<TypedTransProps<{ ['what']: string }, { ['italic']: JSX.Element }>>
-            node.append('    ', stringifiedKey(key, detail.value_position), ': React.ComponentType<TypedTransProps<')
-            node.append(appendAttributes(detail.interpolations), ', ', appendAttributes(detail.tags))
-            node.addLine('>>')
+            const node = factory.createPropertySignature(
+                undefined,
+                createPropertyName(key),
+                undefined,
+                createTagType(createInterpolationType(detail.interpolations), [...detail.tags.keys()]),
+            )
+            const comment = getCommentForKey(key)
+            comment && addSyntheticLeadingComment(node, ts.SyntaxKind.MultiLineCommentTrivia, comment, true)
+            elements.push(node)
         }
-        node.addLine('}')
-    }
-    htmlTags.size &&
-        node.addLine(`import { TransProps } from 'react-i18next'
-type TypedTransProps<Value, Components> = Omit<TransProps<string>, 'values' | 'ns' | 'i18nKey'> & ({} extends Value ? {} : { values: Value }) & { components: Components }`)
-    //#endregion
-    const useSourceMap = gen.generatorOptions?.sourceMap !== false
-    const useInlineSourceMap = useSourceMap && gen.generatorOptions?.sourceMap === 'inline'
-    const dtsPath = gen.outputBase + '.d.ts'
-    if (!useSourceMap) return { [dtsPath]: node.toString() }
-
-    const sourceMapOption = { file: basename(gen.outputBase) + '.d.ts' }
-    if (useInlineSourceMap) return { [dtsPath]: node.toStringWithInlineSourceMap(sourceMapOption) }
-
-    const s = node.toStringWithSourceMap(sourceMapOption)
-    return { [dtsPath]: s.code, [gen.outputBase + '.d.ts.map']: JSON.stringify(s.map, undefined, 4) }
-
-    function appendComment(value: string) {
-        if (!value.includes('*/')) {
-            return Source.of('    /** `', value, '` */')
-        }
-        return ''
-    }
-    function appendAttributes(attrs: Map<string, readonly [Token, string]>) {
-        if (attrs.size === 0) return '{}'
-        const attrNodes = [...attrs].map(([attr, [token, type]]) =>
-            Source.of(stringifiedKey(attr, token.position), ': ', type),
+        statements.push(
+            factory.createVariableStatement(
+                [
+                    factory.createModifier(ts.SyntaxKind.ExportKeyword),
+                    factory.createModifier(ts.SyntaxKind.DeclareKeyword),
+                ],
+                factory.createVariableDeclarationList(
+                    [
+                        factory.createVariableDeclaration(
+                            factory.createIdentifier(gen.generatorOptions?.trans || 'TypedTrans'),
+                            undefined,
+                            factory.createTypeLiteralNode(elements),
+                            undefined,
+                        ),
+                    ],
+                    ts.NodeFlags.Const,
+                ),
+            ),
         )
-        return Source.of('{ ', Source.of(...attrNodes).join(', '), ' }')
     }
-    function stringifiedKey(key: string, pos: Position, orig = key) {
-        const needEscape = !isIdentifier(key)
-        return new Source(
-            ...(pos as [number | null, number | null]),
-            relativeSourceFilePath,
-            needEscape ? `[${JSON.stringify(key)}]` : key,
-            !needEscape && orig === key ? undefined : orig,
-        )
+
+    const file = ts.createSourceFile('index.d.ts', '', ts.ScriptTarget.ESNext, false, ts.ScriptKind.TS)
+    return {
+        [gen.outputBase + '.d.ts']: printer.printFile(ts.factory.updateSourceFile(file, statements, true)),
+    }
+
+    function getCommentForKey(key: string) {
+        const comment = comments.get(key)
+        if (!comment) return null
+        const string = comment.map((x) => `  * ${x}`).join('\n')
+        if (string.includes('*/')) return null
+        return `*\n${string}\n  `
     }
 }
+
+// type TypedTransProps<Value, Components> = Omit<TransProps<string>, 'values' | 'ns' | 'i18nKey'> & ({} extends Value ? {} : { values: Value }) & { components: Components }
+const TypedTransProps = factory.createTypeAliasDeclaration(
+    undefined,
+    undefined,
+    factory.createIdentifier('TypedTransProps'),
+    [
+        factory.createTypeParameterDeclaration(factory.createIdentifier('Value'), undefined, undefined),
+        factory.createTypeParameterDeclaration(factory.createIdentifier('Components'), undefined, undefined),
+    ],
+    factory.createIntersectionTypeNode([
+        factory.createTypeReferenceNode(factory.createIdentifier('Omit'), [
+            factory.createTypeReferenceNode(factory.createIdentifier('TransProps'), [
+                factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword),
+            ]),
+            factory.createUnionTypeNode([
+                factory.createLiteralTypeNode(factory.createStringLiteral('values')),
+                factory.createLiteralTypeNode(factory.createStringLiteral('ns')),
+                factory.createLiteralTypeNode(factory.createStringLiteral('i18nKey')),
+            ]),
+        ]),
+        factory.createParenthesizedType(
+            factory.createConditionalTypeNode(
+                factory.createTypeLiteralNode([]),
+                factory.createTypeReferenceNode(factory.createIdentifier('Value'), undefined),
+                factory.createTypeLiteralNode([]),
+                factory.createTypeLiteralNode([
+                    factory.createPropertySignature(
+                        undefined,
+                        factory.createIdentifier('values'),
+                        undefined,
+                        factory.createTypeReferenceNode(factory.createIdentifier('Value'), undefined),
+                    ),
+                ]),
+            ),
+        ),
+        factory.createTypeLiteralNode([
+            factory.createPropertySignature(
+                undefined,
+                factory.createIdentifier('components'),
+                undefined,
+                factory.createTypeReferenceNode(factory.createIdentifier('Components'), undefined),
+            ),
+        ]),
+    ]),
+)
+
+// import type { TransProps } from 'react-i18next'
+const TransProps = factory.createImportDeclaration(
+    undefined,
+    undefined,
+    factory.createImportClause(
+        true,
+        undefined,
+        factory.createNamedImports([
+            factory.createImportSpecifier(false, undefined, factory.createIdentifier('TransProps')),
+        ]),
+    ),
+    factory.createStringLiteral('react-i18next'),
+)
+
+function createTagType(props: TypeNode, tagNames: string[]) {
+    return factory.createTypeReferenceNode(factory.createIdentifier('ComponentType'), [
+        factory.createTypeReferenceNode(factory.createIdentifier('TypedTransProps'), [
+            props,
+            factory.createTypeLiteralNode(
+                tagNames.map((tag) =>
+                    factory.createPropertySignature(
+                        undefined,
+                        createPropertyName(tag),
+                        undefined,
+                        factory.createTypeReferenceNode(
+                            factory.createQualifiedName(
+                                factory.createIdentifier('JSX'),
+                                factory.createIdentifier('Element'),
+                            ),
+                            undefined,
+                        ),
+                    ),
+                ),
+            ),
+        ]),
+    ])
+}
+function createInterpolationType(interpolations: Map<string, [Position, ts.TypeNode]>) {
+    return createReadonlyType(
+        factory.createTypeLiteralNode(
+            [...interpolations].map(([key, [, type]]) =>
+                factory.createPropertySignature(undefined, key, undefined, type),
+            ),
+        ),
+    )
+}
+
 //#endregion
 
-//#region Generate JS, don't need sourcemap so we join the text directly
-function generateJS(gen: GenType): string {
-    const items = getTopLevelItems(gen.parseResult)
+//#region Generate JS
+function generateJS(gen: GenType, [items]: ReturnType<typeof getTopLevelKeys>): string {
     const ns = gen.generatorOptions?.namespace
     const useProxy = gen.generatorOptions?.es6Proxy !== false
     return `/* eslint-disable */
@@ -152,19 +284,25 @@ function generateComponentBinding([k, r]: [k: string, r: I18NextParseNode]) {
 }
 //#endregion
 
-function isIdentifier(x: string) {
-    return isIdentifierText(x, ScriptTarget.ESNext)
-}
-
-function getTopLevelItems(x: I18NextParsedFile) {
+function getTopLevelKeys(x: I18NextParsedFile) {
     if (x.root.type !== 'object') throw new Error()
-    const y = x.root.items
+    const realNodes: ReadonlyMap<string, ParseNode<I18NextParseNode>> = x.root.items
+    const nodes = new Map(realNodes)
+    const comments = new Map<string, string[]>()
+    function appendComment(key: string, content: string) {
+        if (!comments.has(key)) comments.set(key, [])
+        return comments.get(key)!.push(content)
+    }
 
-    for (const [pluralBase, plurals] of x.plurals) {
-        let comments: SourceNode[] = []
+    for (const [key, node] of realNodes) {
+        if (node.type !== 'key') continue
+        appendComment(key, '`' + node.value + '`')
+    }
 
-        if (!y.has(pluralBase)) {
-            y.set(pluralBase, {
+    // setup all synthetic nodes
+    for (const [base, details] of [...x.plurals, ...x.contexts]) {
+        if (!nodes.has(base)) {
+            nodes.set(base, {
                 type: 'key',
                 interpolations: new Map(),
                 tags: new Map(),
@@ -173,23 +311,44 @@ function getTopLevelItems(x: I18NextParsedFile) {
                 value_position: [null, null],
             })
         }
-        const baseNode = y.get(pluralBase)!
+        comments.set(base, [])
 
-        for (const [postfix, node] of plurals) {
-            if (node.type !== 'key') continue
-            if ((pluralBase + postfix + node.value).includes('*/')) continue
-            comments.push(Source.of(pluralBase, postfix, ': ', node.value, '\n'))
+        const baseNode = nodes.get(base)!
+        for (const [_, detail] of details) {
+            if (detail.type !== 'key') continue
 
             if (baseNode.type === 'key') {
-                node.interpolations.forEach((t, k) => baseNode.interpolations.set(k, t))
-                node.tags.forEach((t, k) => baseNode.tags.set(k, t))
+                // append all interpolation/tags of the plural version to the base version
+                detail.interpolations.forEach((t, k) => baseNode.interpolations.set(k, t))
+                detail.tags.forEach((t, k) => baseNode.tags.set(k, t))
             }
         }
+    }
+
+    for (const [pluralBase, pluralNodes] of x.plurals) {
+        const baseNode = nodes.get(pluralBase)!
+
         if (baseNode.type === 'key') {
-            baseNode.interpolations.set('count', [{ content: '', position: [null, null] }, 'number'])
+            baseNode.interpolations.set('count', [[null, null], NUMBER_TYPE])
         }
     }
-    return y
+
+    for (const [contextBase, contextNodes] of x.contexts) {
+        const baseNode = nodes.get(contextBase)!
+
+        if (baseNode.type === 'key') {
+            const key = realNodes.has(contextBase) ? contextBase + '?' : contextBase
+            baseNode.interpolations.set(key, [
+                [null, null],
+                factory.createUnionTypeNode(
+                    [...contextNodes.keys()]
+                        .map(String)
+                        .map((string) => factory.createLiteralTypeNode(factory.createStringLiteral(string))),
+                ),
+            ])
+        }
+    }
+    return [nodes, comments] as const
 }
 
 function proxyBasedHooks() {

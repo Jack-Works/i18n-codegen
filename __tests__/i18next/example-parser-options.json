@@ -1,0 +1,25 @@
+// Should parse JSONC
+{
+    "normal": "this is a normal key",
+
+    "introprolation": "I am {{firstName}}",
+    "introprolations_simple": "I am {{firstName}} {{lastName}}",
+    "introprolations_complex": "I am {{author.name.first}} {{author.name.last}}",
+    "introprolations_mixed": "I am {{author.name}} {{author}}",
+
+    "unescaped": "dangerous {{- var}}",
+
+    "formatted_number": "The number is {{date, number}}",
+    "formatted_Date": "The current date is {{date, datetime}}",
+    "formatted_Date2": "Lorem {{val, relativetime(quarter)}}",
+    "formatted_currency": "It costs {{date, currency(USD)}}",
+    "formatted_list": "A list of {{val, list}}",
+
+    "html_tag": "<i>hi</i>",
+
+    "box@zero": "No box",
+    "box@one": "1 box",
+    "box@other": "{{count}} boxes",
+    "box@orange@one": "1 orange box",
+    "box@orange@other": "{{count}} orange boxes",
+}

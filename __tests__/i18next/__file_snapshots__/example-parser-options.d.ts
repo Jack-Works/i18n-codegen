@@ -5,7 +5,7 @@ type TypedTransProps<Value, Components> = Omit<TransProps<string>, "values" | "n
 }) & {
     components: Components;
 };
-export function useTypedTranslation(): {
+export function useMyHooks(): {
     /**
       * `this is a normal key`
       */
@@ -19,14 +19,14 @@ export function useTypedTranslation(): {
     /**
       * `I am {{firstName}} {{lastName}}`
       */
-    introprolationsSimple(options: Readonly<{
+    introprolations_simple(options: Readonly<{
         firstName: string;
         lastName: string;
     }>): string;
     /**
       * `I am {{author.name.first}} {{author.name.last}}`
       */
-    introprolationsComplex(options: {
+    introprolations_complex(options: {
         readonly author: {
             readonly name: Readonly<{
                 first: string;
@@ -37,7 +37,7 @@ export function useTypedTranslation(): {
     /**
       * `I am {{author.name}} {{author}}`
       */
-    introprolationsMixed(options: {
+    introprolations_mixed(options: {
         readonly author: string & {
             readonly name: string;
         };
@@ -51,55 +51,55 @@ export function useTypedTranslation(): {
     /**
       * `The number is {{date, number}}`
       */
-    formattedNumber(options: {
+    formatted_number(options: {
         readonly date: string | number | bigint;
     }): string;
     /**
       * `The current date is {{date, datetime}}`
       */
-    formattedDate(options: {
+    formatted_Date(options: {
         readonly date: Date;
     }): string;
     /**
       * `Lorem {{val, relativetime(quarter)}}`
       */
-    formattedDate2(options: {
+    formatted_Date2(options: {
         readonly val: string | number | bigint;
     }): string;
     /**
       * `It costs {{date, currency(USD)}}`
       */
-    formattedCurrency(options: {
+    formatted_currency(options: {
         readonly date: string | number | bigint;
     }): string;
     /**
       * `A list of {{val, list}}`
       */
-    formattedList(options: {
+    formatted_list(options: {
         readonly val: readonly string[];
     }): string;
     /**
       * `No box`
       */
-    box_zero(): string;
+    ["box@zero"](): string;
     /**
       * `1 box`
       */
-    box_one(): string;
+    ["box@one"](): string;
     /**
       * `{{count}} boxes`
       */
-    box_other(options: {
+    ["box@other"](options: {
         readonly count: string;
     }): string;
     /**
       * `1 orange box`
       */
-    box_orange_one(): string;
+    ["box@orange@one"](): string;
     /**
       * `{{count}} orange boxes`
       */
-    box_orange_other(options: {
+    ["box@orange@other"](options: {
         readonly count: string;
     }): string;
     /**
@@ -110,11 +110,11 @@ export function useTypedTranslation(): {
         box: "orange";
     }>): string;
 };
-export declare const TypedTrans: {
+export declare const TypedMyTrans: {
     /**
       * `<i>hi</i>`
       */
-    htmlTag: ComponentType<TypedTransProps<Readonly<{}>, {
+    html_tag: ComponentType<TypedTransProps<Readonly<{}>, {
         i: JSX.Element;
     }>>;
 };

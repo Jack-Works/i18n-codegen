@@ -1,4 +1,5 @@
 import { i18NextParser } from '../../src/frameworks/i18next'
+import { it, expect } from '@jest/globals'
 
 import { join } from 'path'
 import { ParserInput } from '../../src/type'

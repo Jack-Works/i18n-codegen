@@ -101,7 +101,22 @@
         },
         "Parser_I18NextConfig": {
             "title": "Parser_I18NextConfig",
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "pluralSeparator": {
+                    "description": "Char to split plural from key",
+                    "type": "string",
+                    "title": "pluralSeparator",
+                    "default": "_"
+                },
+                "contextSeparator": {
+                    "description": "Char to split context from key",
+                    "type": "string",
+                    "title": "contextSeparator",
+                    "default": "_"
+                }
+            },
+            "required": []
         },
         "Generator_I18Next_ReactHooks": {
             "title": "Generator_I18Next_ReactHooks",
@@ -121,12 +136,6 @@
                     "description": "The component name that provides typed version of Trans component.",
                     "type": "string",
                     "title": "trans"
-                },
-                "sourceMap": {
-                    "description": "Generate sourcemap for .d.ts file",
-                    "default": true,
-                    "enum": [false, "inline", true],
-                    "title": "sourceMap"
                 },
                 "es6Proxy": {
                     "description": "Use ES6 Proxy for .js file",

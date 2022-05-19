@@ -2,6 +2,9 @@ import { i18NextParser, i18next_reactHooksGenerator } from '../../src/frameworks
 import { join } from 'path'
 import { GeneratorInput, ParserInput } from '../../src/type'
 import { toMatchFile } from 'jest-file-snapshot'
+import { it, expect } from '@jest/globals'
+import { Parser_I18NextConfig } from '../../src'
+
 expect.extend({ toMatchFile })
 
 it('should generate i18next output correctly', () => {
@@ -16,14 +19,15 @@ it('should generate i18next output correctly', () => {
 })
 
 it('should generate i18next output correctly, with options', () => {
-    const input = join(__dirname, './example.json')
-    const parsed = i18NextParser(ParserInput.fromFileSystem(input))
+    const input = join(__dirname, './example-parser-options.json')
+    const parsed = i18NextParser(
+        ParserInput.fromFileSystem<Parser_I18NextConfig>(input, { contextSeparator: '@', pluralSeparator: '@' }),
+    )
     const out = i18next_reactHooksGenerator(
-        new GeneratorInput(parsed, input, join(__dirname, './__file_snapshots__/example-options'), {
+        new GeneratorInput(parsed, input, join(__dirname, './__file_snapshots__/example-parser-options'), {
             es6Proxy: false,
             hooks: 'useMyHooks',
             namespace: 'ns',
-            sourceMap: 'inline',
             trans: 'TypedMyTrans',
         }),
     )

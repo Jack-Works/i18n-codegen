@@ -1,7 +1,7 @@
 {
   "name": "@magic-works/i18n-codegen",
   "packageManager": "pnpm@7.1.2",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A code generator for strongly-typed i18n resources",
   "main": "dist/index.js",
   "scripts": {
@@ -15,7 +15,7 @@
     "i18n",
     "typescript"
   ],
-  "author": "Jack Works <zjwpeter@gmail.com>",
+  "author": "Jack Works",
   "license": "MIT",
   "devDependencies": {
     "@jest/globals": "^28.1.0",
@@ -33,11 +33,10 @@
   "dependencies": {
     "chokidar": "^3.5.3",
     "i18next-translation-parser": "^1.0.1",
-    "source-map": "^0.7.3",
     "yargs": "^17.5.1"
   },
   "peerDependencies": {
-    "typescript": "^4"
+    "typescript": "^4.6"
   },
   "files": [
     "dist",

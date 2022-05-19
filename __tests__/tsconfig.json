@@ -1,8 +1,10 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "rootDir": "./"
+    "rootDir": "./",
+    "composite": true
   },
+  "references": [{ "path": "../" }],
   "ts-node": {
     "compilerOptions": { "noEmit": false }
   }

@@ -1,12 +1,3 @@
-/**
- * This file must not contains any complex TypeScript knowledge that cannot be understand by https://app.quicktype.io/
- * We use this tool to generate JSON Schema for the config file.
- *
- * Don't forget to add these lines under the JSON:
-    "type": "object",
-    "$ref": "#/definitions/ConfigFile"
- */
-
 /** #TopLevel */
 /** Configuration format of i18n-codegen */
 export type ConfigFile = { version: 1; list: Config[] }
@@ -28,7 +19,12 @@ export enum GeneratorList {
     i18next_reactHooks = 'i18next/react-hooks',
 }
 //#region i18next
-export interface Parser_I18NextConfig {}
+export interface Parser_I18NextConfig {
+    /** @default "_" */
+    pluralSeparator?: string
+    /** @default "_" */
+    contextSeparator?: string
+}
 export interface Generator_I18Next_ReactHooks {
     /** The namespace of this generator should use */
     namespace?: string
@@ -36,11 +32,6 @@ export interface Generator_I18Next_ReactHooks {
     hooks?: string
     /** The component name that provides typed version of Trans component. */
     trans?: string
-    /**
-     * Generate sourcemap for .d.ts file
-     * @default true
-     */
-    sourceMap?: boolean | 'inline'
     /**
      * Use ES6 Proxy for .js file
      * @default true

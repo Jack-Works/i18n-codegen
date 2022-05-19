@@ -10,7 +10,6 @@ specifiers:
   jest-file-snapshot: ^0.5.0
   npm-run-all: ^4.1.5
   prettier: ^2.6.2
-  source-map: ^0.7.3
   standard-version: ^9.5.0
   ts-jest: ^28.0.2
   ts-node: ^10.7.0
@@ -20,7 +19,6 @@ specifiers:
 dependencies:
   chokidar: 3.5.3
   i18next-translation-parser: 1.0.1
-  source-map: 0.7.3
   yargs: 17.5.1
 
 devDependencies:
@@ -3192,11 +3190,6 @@ packages:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
     dev: true
-
-  /source-map/0.7.3:
-    resolution: {integrity: sha512-CkCj6giN3S+n9qrYiBTX5gystlENnRW5jZeNLHpe6aue+SrHcG5VYwujhW9s4dY31mEGsxBDrHR6oI69fTXsaQ==}
-    engines: {node: '>= 8'}
-    dev: false
 
   /spdx-correct/3.1.1:
     resolution: {integrity: sha512-cOYcUWwhCuHCXi49RhFRCyJEK3iPj1Ziz9DpViV3tbZOwXD49QzIN3MpOLJNxh2qwq2lJJZaKMVw9qNi4jTC0w==}
