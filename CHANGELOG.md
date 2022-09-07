@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/Jack-Works/i18n-codegen/compare/v0.2.1...v0.3.0) (2022-09-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* migrate to pure esm
+
+### Features
+
+* migrate to pure esm ([1358bf9](https://github.com/Jack-Works/i18n-codegen/commit/1358bf96cde30557091b9cf2d97ed1d69b0588d0))
+
 ### [0.2.1](https://github.com/Jack-Works/i18n-codegen/compare/v0.0.6...v0.2.1) (2022-09-07)
 
 
