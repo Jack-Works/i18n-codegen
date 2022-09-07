@@ -1,20 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should parse i18next format correctly: i18next-parse-example 1`] = `
-Object {
+{
   "contexts": Map {
     "box" => Map {
-      "orange" => Object {
+      "orange" => {
         "interpolations": Map {
-          "count" => Array [
-            Array [
+          "count" => [
+            [
               24,
               27,
             ],
             TokenObject {
               "end": -1,
               "flags": 8,
-              "kind": 149,
+              "kind": 150,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
@@ -23,29 +23,29 @@ Object {
             true,
           ],
         },
-        "position": Array [
+        "position": [
           24,
           4,
         ],
         "tags": Map {},
         "type": "key",
         "value": "{{count}} orange boxes",
-        "value_position": Array [
+        "value_position": [
           24,
           24,
         ],
       },
-      "blue" => Object {
+      "blue" => {
         "interpolations": Map {
-          "count" => Array [
-            Array [
+          "count" => [
+            [
               26,
               25,
             ],
             TokenObject {
               "end": -1,
               "flags": 8,
-              "kind": 149,
+              "kind": 150,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
@@ -54,14 +54,14 @@ Object {
             true,
           ],
         },
-        "position": Array [
+        "position": [
           26,
           4,
         ],
         "tags": Map {},
         "type": "key",
         "value": "{{count}} blue boxes",
-        "value_position": Array [
+        "value_position": [
           26,
           22,
         ],
@@ -70,45 +70,45 @@ Object {
   },
   "plurals": Map {
     "box" => Map {
-      "zero" => Object {
+      "zero" => {
         "interpolations": Map {},
-        "position": Array [
+        "position": [
           20,
           4,
         ],
         "tags": Map {},
         "type": "key",
         "value": "No box",
-        "value_position": Array [
+        "value_position": [
           20,
           16,
         ],
       },
-      "one" => Object {
+      "one" => {
         "interpolations": Map {},
-        "position": Array [
+        "position": [
           25,
           4,
         ],
         "tags": Map {},
         "type": "key",
         "value": "1 blue box",
-        "value_position": Array [
+        "value_position": [
           25,
           20,
         ],
       },
-      "other" => Object {
+      "other" => {
         "interpolations": Map {
-          "count" => Array [
-            Array [
+          "count" => [
+            [
               26,
               25,
             ],
             TokenObject {
               "end": -1,
               "flags": 8,
-              "kind": 149,
+              "kind": 150,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
@@ -117,45 +117,45 @@ Object {
             true,
           ],
         },
-        "position": Array [
+        "position": [
           26,
           4,
         ],
         "tags": Map {},
         "type": "key",
         "value": "{{count}} blue boxes",
-        "value_position": Array [
+        "value_position": [
           26,
           22,
         ],
       },
     },
     "mergeProps" => Map {
-      "other" => Object {
+      "other" => {
         "interpolations": Map {
-          "x" => Array [
-            Array [
+          "x" => [
+            [
               29,
               27,
             ],
             NodeObject {
               "end": -1,
               "flags": 8,
-              "kind": 181,
-              "members": Array [
+              "kind": 182,
+              "members": [
                 NodeObject {
-                  "decorators": undefined,
                   "end": -1,
                   "flags": 8,
-                  "kind": 165,
+                  "initializer": undefined,
+                  "kind": 166,
                   "localSymbol": undefined,
                   "locals": undefined,
                   "modifierFlagsCache": 0,
-                  "modifiers": Array [
+                  "modifiers": [
                     TokenObject {
                       "end": -1,
                       "flags": 8,
-                      "kind": 144,
+                      "kind": 145,
                       "modifierFlagsCache": 0,
                       "parent": undefined,
                       "pos": -1,
@@ -182,7 +182,7 @@ Object {
                   "type": TokenObject {
                     "end": -1,
                     "flags": 8,
-                    "kind": 149,
+                    "kind": 150,
                     "modifierFlagsCache": 0,
                     "parent": undefined,
                     "pos": -1,
@@ -198,47 +198,47 @@ Object {
             true,
           ],
         },
-        "position": Array [
+        "position": [
           29,
           4,
         ],
         "tags": Map {},
         "type": "key",
         "value": "{{x.data2}}",
-        "value_position": Array [
+        "value_position": [
           29,
           24,
         ],
       },
     },
   },
-  "root": Object {
+  "root": {
     "items": Map {
-      "normal" => Object {
+      "normal" => {
         "interpolations": Map {},
-        "position": Array [
+        "position": [
           3,
           4,
         ],
         "tags": Map {},
         "type": "key",
         "value": "this is a normal key",
-        "value_position": Array [
+        "value_position": [
           3,
           14,
         ],
       },
-      "introprolation" => Object {
+      "introprolation" => {
         "interpolations": Map {
-          "firstName" => Array [
-            Array [
+          "firstName" => [
+            [
               5,
               30,
             ],
             TokenObject {
               "end": -1,
               "flags": 8,
-              "kind": 149,
+              "kind": 150,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
@@ -247,29 +247,29 @@ Object {
             true,
           ],
         },
-        "position": Array [
+        "position": [
           5,
           4,
         ],
         "tags": Map {},
         "type": "key",
         "value": "I am {{firstName}}",
-        "value_position": Array [
+        "value_position": [
           5,
           22,
         ],
       },
-      "introprolationsSimple" => Object {
+      "introprolationsSimple" => {
         "interpolations": Map {
-          "firstName" => Array [
-            Array [
+          "firstName" => [
+            [
               6,
               37,
             ],
             TokenObject {
               "end": -1,
               "flags": 8,
-              "kind": 149,
+              "kind": 150,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
@@ -277,15 +277,15 @@ Object {
             },
             true,
           ],
-          "lastName" => Array [
-            Array [
+          "lastName" => [
+            [
               6,
               51,
             ],
             TokenObject {
               "end": -1,
               "flags": 8,
-              "kind": 149,
+              "kind": 150,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
@@ -294,43 +294,43 @@ Object {
             true,
           ],
         },
-        "position": Array [
+        "position": [
           6,
           4,
         ],
         "tags": Map {},
         "type": "key",
         "value": "I am {{firstName}} {{lastName}}",
-        "value_position": Array [
+        "value_position": [
           6,
           29,
         ],
       },
-      "introprolationsComplex" => Object {
+      "introprolationsComplex" => {
         "interpolations": Map {
-          "author" => Array [
-            Array [
+          "author" => [
+            [
               7,
               38,
             ],
             NodeObject {
               "end": -1,
               "flags": 8,
-              "kind": 181,
-              "members": Array [
+              "kind": 182,
+              "members": [
                 NodeObject {
-                  "decorators": undefined,
                   "end": -1,
                   "flags": 8,
-                  "kind": 165,
+                  "initializer": undefined,
+                  "kind": 166,
                   "localSymbol": undefined,
                   "locals": undefined,
                   "modifierFlagsCache": 0,
-                  "modifiers": Array [
+                  "modifiers": [
                     TokenObject {
                       "end": -1,
                       "flags": 8,
-                      "kind": 144,
+                      "kind": 145,
                       "modifierFlagsCache": 0,
                       "parent": undefined,
                       "pos": -1,
@@ -357,22 +357,22 @@ Object {
                   "type": NodeObject {
                     "end": -1,
                     "flags": 8,
-                    "kind": 177,
+                    "kind": 178,
                     "modifierFlagsCache": 0,
                     "parent": undefined,
                     "pos": -1,
                     "transformFlags": 1,
-                    "typeArguments": Array [
+                    "typeArguments": [
                       NodeObject {
                         "end": -1,
                         "flags": 8,
-                        "kind": 181,
-                        "members": Array [
+                        "kind": 182,
+                        "members": [
                           NodeObject {
-                            "decorators": undefined,
                             "end": -1,
                             "flags": 8,
-                            "kind": 165,
+                            "initializer": undefined,
+                            "kind": 166,
                             "localSymbol": undefined,
                             "locals": undefined,
                             "modifierFlagsCache": 0,
@@ -397,7 +397,7 @@ Object {
                             "type": TokenObject {
                               "end": -1,
                               "flags": 8,
-                              "kind": 149,
+                              "kind": 150,
                               "modifierFlagsCache": 0,
                               "parent": undefined,
                               "pos": -1,
@@ -405,10 +405,10 @@ Object {
                             },
                           },
                           NodeObject {
-                            "decorators": undefined,
                             "end": -1,
                             "flags": 8,
-                            "kind": 165,
+                            "initializer": undefined,
+                            "kind": 166,
                             "localSymbol": undefined,
                             "locals": undefined,
                             "modifierFlagsCache": 0,
@@ -433,7 +433,7 @@ Object {
                             "type": TokenObject {
                               "end": -1,
                               "flags": 8,
-                              "kind": 149,
+                              "kind": 150,
                               "modifierFlagsCache": 0,
                               "parent": undefined,
                               "pos": -1,
@@ -469,38 +469,38 @@ Object {
             true,
           ],
         },
-        "position": Array [
+        "position": [
           7,
           4,
         ],
         "tags": Map {},
         "type": "key",
         "value": "I am {{author.name.first}} {{author.name.last}}",
-        "value_position": Array [
+        "value_position": [
           7,
           30,
         ],
       },
-      "introprolationsMixed" => Object {
+      "introprolationsMixed" => {
         "interpolations": Map {
-          "author" => Array [
-            Array [
+          "author" => [
+            [
               8,
               36,
             ],
             NodeObject {
               "end": -1,
               "flags": 8,
-              "kind": 187,
+              "kind": 188,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
               "transformFlags": 1,
-              "types": Array [
+              "types": [
                 TokenObject {
                   "end": -1,
                   "flags": 8,
-                  "kind": 149,
+                  "kind": 150,
                   "modifierFlagsCache": 0,
                   "parent": undefined,
                   "pos": -1,
@@ -509,21 +509,21 @@ Object {
                 NodeObject {
                   "end": -1,
                   "flags": 8,
-                  "kind": 181,
-                  "members": Array [
+                  "kind": 182,
+                  "members": [
                     NodeObject {
-                      "decorators": undefined,
                       "end": -1,
                       "flags": 8,
-                      "kind": 165,
+                      "initializer": undefined,
+                      "kind": 166,
                       "localSymbol": undefined,
                       "locals": undefined,
                       "modifierFlagsCache": 0,
-                      "modifiers": Array [
+                      "modifiers": [
                         TokenObject {
                           "end": -1,
                           "flags": 8,
-                          "kind": 144,
+                          "kind": 145,
                           "modifierFlagsCache": 0,
                           "parent": undefined,
                           "pos": -1,
@@ -550,7 +550,7 @@ Object {
                       "type": TokenObject {
                         "end": -1,
                         "flags": 8,
-                        "kind": 149,
+                        "kind": 150,
                         "modifierFlagsCache": 0,
                         "parent": undefined,
                         "pos": -1,
@@ -568,29 +568,29 @@ Object {
             true,
           ],
         },
-        "position": Array [
+        "position": [
           8,
           4,
         ],
         "tags": Map {},
         "type": "key",
         "value": "I am {{author.name}} {{author}}",
-        "value_position": Array [
+        "value_position": [
           8,
           28,
         ],
       },
-      "unescaped" => Object {
+      "unescaped" => {
         "interpolations": Map {
-          "var" => Array [
-            Array [
+          "var" => [
+            [
               10,
               31,
             ],
             TokenObject {
               "end": -1,
               "flags": 8,
-              "kind": 149,
+              "kind": 150,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
@@ -599,38 +599,38 @@ Object {
             true,
           ],
         },
-        "position": Array [
+        "position": [
           10,
           4,
         ],
         "tags": Map {},
         "type": "key",
         "value": "dangerous {{- var}}",
-        "value_position": Array [
+        "value_position": [
           10,
           17,
         ],
       },
-      "formattedNumber" => Object {
+      "formattedNumber" => {
         "interpolations": Map {
-          "date" => Array [
-            Array [
+          "date" => [
+            [
               12,
               40,
             ],
             NodeObject {
               "end": -1,
               "flags": 8,
-              "kind": 186,
+              "kind": 187,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
               "transformFlags": 1,
-              "types": Array [
+              "types": [
                 TokenObject {
                   "end": -1,
                   "flags": 8,
-                  "kind": 149,
+                  "kind": 150,
                   "modifierFlagsCache": 0,
                   "parent": undefined,
                   "pos": -1,
@@ -639,7 +639,7 @@ Object {
                 TokenObject {
                   "end": -1,
                   "flags": 8,
-                  "kind": 146,
+                  "kind": 147,
                   "modifierFlagsCache": 0,
                   "parent": undefined,
                   "pos": -1,
@@ -648,7 +648,7 @@ Object {
                 TokenObject {
                   "end": -1,
                   "flags": 8,
-                  "kind": 157,
+                  "kind": 158,
                   "modifierFlagsCache": 0,
                   "parent": undefined,
                   "pos": -1,
@@ -659,29 +659,29 @@ Object {
             true,
           ],
         },
-        "position": Array [
+        "position": [
           12,
           4,
         ],
         "tags": Map {},
         "type": "key",
         "value": "The number is {{date, number}}",
-        "value_position": Array [
+        "value_position": [
           12,
           23,
         ],
       },
-      "formattedDate" => Object {
+      "formattedDate" => {
         "interpolations": Map {
-          "date" => Array [
-            Array [
+          "date" => [
+            [
               13,
               44,
             ],
             NodeObject {
               "end": -1,
               "flags": 8,
-              "kind": 177,
+              "kind": 178,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
@@ -702,38 +702,38 @@ Object {
             true,
           ],
         },
-        "position": Array [
+        "position": [
           13,
           4,
         ],
         "tags": Map {},
         "type": "key",
         "value": "The current date is {{date, datetime}}",
-        "value_position": Array [
+        "value_position": [
           13,
           21,
         ],
       },
-      "formattedDate2" => Object {
+      "formattedDate2" => {
         "interpolations": Map {
-          "val" => Array [
-            Array [
+          "val" => [
+            [
               14,
               31,
             ],
             NodeObject {
               "end": -1,
               "flags": 8,
-              "kind": 186,
+              "kind": 187,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
               "transformFlags": 1,
-              "types": Array [
+              "types": [
                 TokenObject {
                   "end": -1,
                   "flags": 8,
-                  "kind": 149,
+                  "kind": 150,
                   "modifierFlagsCache": 0,
                   "parent": undefined,
                   "pos": -1,
@@ -742,7 +742,7 @@ Object {
                 TokenObject {
                   "end": -1,
                   "flags": 8,
-                  "kind": 146,
+                  "kind": 147,
                   "modifierFlagsCache": 0,
                   "parent": undefined,
                   "pos": -1,
@@ -751,7 +751,7 @@ Object {
                 TokenObject {
                   "end": -1,
                   "flags": 8,
-                  "kind": 157,
+                  "kind": 158,
                   "modifierFlagsCache": 0,
                   "parent": undefined,
                   "pos": -1,
@@ -762,38 +762,38 @@ Object {
             true,
           ],
         },
-        "position": Array [
+        "position": [
           14,
           4,
         ],
         "tags": Map {},
         "type": "key",
         "value": "Lorem {{val, relativetime(quarter)}}",
-        "value_position": Array [
+        "value_position": [
           14,
           22,
         ],
       },
-      "formattedCurrency" => Object {
+      "formattedCurrency" => {
         "interpolations": Map {
-          "date" => Array [
-            Array [
+          "date" => [
+            [
               15,
               37,
             ],
             NodeObject {
               "end": -1,
               "flags": 8,
-              "kind": 186,
+              "kind": 187,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
               "transformFlags": 1,
-              "types": Array [
+              "types": [
                 TokenObject {
                   "end": -1,
                   "flags": 8,
-                  "kind": 149,
+                  "kind": 150,
                   "modifierFlagsCache": 0,
                   "parent": undefined,
                   "pos": -1,
@@ -802,7 +802,7 @@ Object {
                 TokenObject {
                   "end": -1,
                   "flags": 8,
-                  "kind": 146,
+                  "kind": 147,
                   "modifierFlagsCache": 0,
                   "parent": undefined,
                   "pos": -1,
@@ -811,7 +811,7 @@ Object {
                 TokenObject {
                   "end": -1,
                   "flags": 8,
-                  "kind": 157,
+                  "kind": 158,
                   "modifierFlagsCache": 0,
                   "parent": undefined,
                   "pos": -1,
@@ -822,31 +822,31 @@ Object {
             true,
           ],
         },
-        "position": Array [
+        "position": [
           15,
           4,
         ],
         "tags": Map {},
         "type": "key",
         "value": "It costs {{date, currency(USD)}}",
-        "value_position": Array [
+        "value_position": [
           15,
           25,
         ],
       },
-      "formattedList" => Object {
+      "formattedList" => {
         "interpolations": Map {
-          "val" => Array [
-            Array [
+          "val" => [
+            [
               16,
               34,
             ],
             NodeObject {
               "end": -1,
               "flags": 8,
-              "kind": 192,
+              "kind": 193,
               "modifierFlagsCache": 0,
-              "operator": 144,
+              "operator": 145,
               "parent": undefined,
               "pos": -1,
               "transformFlags": 1,
@@ -854,7 +854,7 @@ Object {
                 "elementType": TokenObject {
                   "end": -1,
                   "flags": 8,
-                  "kind": 149,
+                  "kind": 150,
                   "modifierFlagsCache": 0,
                   "parent": undefined,
                   "pos": -1,
@@ -862,7 +862,7 @@ Object {
                 },
                 "end": -1,
                 "flags": 8,
-                "kind": 182,
+                "kind": 183,
                 "modifierFlagsCache": 0,
                 "parent": undefined,
                 "pos": -1,
@@ -872,76 +872,76 @@ Object {
             true,
           ],
         },
-        "position": Array [
+        "position": [
           16,
           4,
         ],
         "tags": Map {},
         "type": "key",
         "value": "A list of {{val, list}}",
-        "value_position": Array [
+        "value_position": [
           16,
           21,
         ],
       },
-      "htmlTag" => Object {
+      "htmlTag" => {
         "interpolations": Map {},
-        "position": Array [
+        "position": [
           18,
           4,
         ],
         "tags": Map {
-          "i" => Array [
+          "i" => [
             18,
             17,
           ],
         },
         "type": "key",
         "value": "<i>hi</i>",
-        "value_position": Array [
+        "value_position": [
           18,
           15,
         ],
       },
-      "box_zero" => Object {
+      "box_zero" => {
         "interpolations": Map {},
-        "position": Array [
+        "position": [
           20,
           4,
         ],
         "tags": Map {},
         "type": "key",
         "value": "No box",
-        "value_position": Array [
+        "value_position": [
           20,
           16,
         ],
       },
-      "box_one" => Object {
+      "box_one" => {
         "interpolations": Map {},
-        "position": Array [
+        "position": [
           21,
           4,
         ],
         "tags": Map {},
         "type": "key",
         "value": "1 box",
-        "value_position": Array [
+        "value_position": [
           21,
           15,
         ],
       },
-      "box_other" => Object {
+      "box_other" => {
         "interpolations": Map {
-          "count" => Array [
-            Array [
+          "count" => [
+            [
               22,
               20,
             ],
             TokenObject {
               "end": -1,
               "flags": 8,
-              "kind": 149,
+              "kind": 150,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
@@ -950,43 +950,43 @@ Object {
             true,
           ],
         },
-        "position": Array [
+        "position": [
           22,
           4,
         ],
         "tags": Map {},
         "type": "key",
         "value": "{{count}} boxes",
-        "value_position": Array [
+        "value_position": [
           22,
           17,
         ],
       },
-      "box_orange_one" => Object {
+      "box_orange_one" => {
         "interpolations": Map {},
-        "position": Array [
+        "position": [
           23,
           4,
         ],
         "tags": Map {},
         "type": "key",
         "value": "1 orange box",
-        "value_position": Array [
+        "value_position": [
           23,
           22,
         ],
       },
-      "box_orange_other" => Object {
+      "box_orange_other" => {
         "interpolations": Map {
-          "count" => Array [
-            Array [
+          "count" => [
+            [
               24,
               27,
             ],
             TokenObject {
               "end": -1,
               "flags": 8,
-              "kind": 149,
+              "kind": 150,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
@@ -995,43 +995,43 @@ Object {
             true,
           ],
         },
-        "position": Array [
+        "position": [
           24,
           4,
         ],
         "tags": Map {},
         "type": "key",
         "value": "{{count}} orange boxes",
-        "value_position": Array [
+        "value_position": [
           24,
           24,
         ],
       },
-      "box_blue_one" => Object {
+      "box_blue_one" => {
         "interpolations": Map {},
-        "position": Array [
+        "position": [
           25,
           4,
         ],
         "tags": Map {},
         "type": "key",
         "value": "1 blue box",
-        "value_position": Array [
+        "value_position": [
           25,
           20,
         ],
       },
-      "box_blue_other" => Object {
+      "box_blue_other" => {
         "interpolations": Map {
-          "count" => Array [
-            Array [
+          "count" => [
+            [
               26,
               25,
             ],
             TokenObject {
               "end": -1,
               "flags": 8,
-              "kind": 149,
+              "kind": 150,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
@@ -1040,43 +1040,43 @@ Object {
             true,
           ],
         },
-        "position": Array [
+        "position": [
           26,
           4,
         ],
         "tags": Map {},
         "type": "key",
         "value": "{{count}} blue boxes",
-        "value_position": Array [
+        "value_position": [
           26,
           22,
         ],
       },
-      "mergeProps" => Object {
+      "mergeProps" => {
         "interpolations": Map {
-          "x" => Array [
-            Array [
+          "x" => [
+            [
               28,
               21,
             ],
             NodeObject {
               "end": -1,
               "flags": 8,
-              "kind": 181,
-              "members": Array [
+              "kind": 182,
+              "members": [
                 NodeObject {
-                  "decorators": undefined,
                   "end": -1,
                   "flags": 8,
-                  "kind": 165,
+                  "initializer": undefined,
+                  "kind": 166,
                   "localSymbol": undefined,
                   "locals": undefined,
                   "modifierFlagsCache": 0,
-                  "modifiers": Array [
+                  "modifiers": [
                     TokenObject {
                       "end": -1,
                       "flags": 8,
-                      "kind": 144,
+                      "kind": 145,
                       "modifierFlagsCache": 0,
                       "parent": undefined,
                       "pos": -1,
@@ -1103,7 +1103,7 @@ Object {
                   "type": TokenObject {
                     "end": -1,
                     "flags": 8,
-                    "kind": 149,
+                    "kind": 150,
                     "modifierFlagsCache": 0,
                     "parent": undefined,
                     "pos": -1,
@@ -1119,43 +1119,43 @@ Object {
             true,
           ],
         },
-        "position": Array [
+        "position": [
           28,
           4,
         ],
         "tags": Map {},
         "type": "key",
         "value": "{{x.data}}",
-        "value_position": Array [
+        "value_position": [
           28,
           18,
         ],
       },
-      "mergeProps_other" => Object {
+      "mergeProps_other" => {
         "interpolations": Map {
-          "x" => Array [
-            Array [
+          "x" => [
+            [
               29,
               27,
             ],
             NodeObject {
               "end": -1,
               "flags": 8,
-              "kind": 181,
-              "members": Array [
+              "kind": 182,
+              "members": [
                 NodeObject {
-                  "decorators": undefined,
                   "end": -1,
                   "flags": 8,
-                  "kind": 165,
+                  "initializer": undefined,
+                  "kind": 166,
                   "localSymbol": undefined,
                   "locals": undefined,
                   "modifierFlagsCache": 0,
-                  "modifiers": Array [
+                  "modifiers": [
                     TokenObject {
                       "end": -1,
                       "flags": 8,
-                      "kind": 144,
+                      "kind": 145,
                       "modifierFlagsCache": 0,
                       "parent": undefined,
                       "pos": -1,
@@ -1182,7 +1182,7 @@ Object {
                   "type": TokenObject {
                     "end": -1,
                     "flags": 8,
-                    "kind": 149,
+                    "kind": 150,
                     "modifierFlagsCache": 0,
                     "parent": undefined,
                     "pos": -1,
@@ -1198,134 +1198,134 @@ Object {
             true,
           ],
         },
-        "position": Array [
+        "position": [
           29,
           4,
         ],
         "tags": Map {},
         "type": "key",
         "value": "{{x.data2}}",
-        "value_position": Array [
+        "value_position": [
           29,
           24,
         ],
       },
     },
-    "position": Array [
+    "position": [
       0,
       0,
     ],
     "type": "object",
   },
   "variantList": Map {
-    "normal" => Array [
-      Array [
+    "normal" => [
+      [
         "normal",
         "this is a normal key",
       ],
     ],
-    "introprolation" => Array [
-      Array [
+    "introprolation" => [
+      [
         "introprolation",
         "I am {{firstName}}",
       ],
     ],
-    "introprolationsSimple" => Array [
-      Array [
+    "introprolationsSimple" => [
+      [
         "introprolationsSimple",
         "I am {{firstName}} {{lastName}}",
       ],
     ],
-    "introprolationsComplex" => Array [
-      Array [
+    "introprolationsComplex" => [
+      [
         "introprolationsComplex",
         "I am {{author.name.first}} {{author.name.last}}",
       ],
     ],
-    "introprolationsMixed" => Array [
-      Array [
+    "introprolationsMixed" => [
+      [
         "introprolationsMixed",
         "I am {{author.name}} {{author}}",
       ],
     ],
-    "unescaped" => Array [
-      Array [
+    "unescaped" => [
+      [
         "unescaped",
         "dangerous {{- var}}",
       ],
     ],
-    "formattedNumber" => Array [
-      Array [
+    "formattedNumber" => [
+      [
         "formattedNumber",
         "The number is {{date, number}}",
       ],
     ],
-    "formattedDate" => Array [
-      Array [
+    "formattedDate" => [
+      [
         "formattedDate",
         "The current date is {{date, datetime}}",
       ],
     ],
-    "formattedDate2" => Array [
-      Array [
+    "formattedDate2" => [
+      [
         "formattedDate2",
         "Lorem {{val, relativetime(quarter)}}",
       ],
     ],
-    "formattedCurrency" => Array [
-      Array [
+    "formattedCurrency" => [
+      [
         "formattedCurrency",
         "It costs {{date, currency(USD)}}",
       ],
     ],
-    "formattedList" => Array [
-      Array [
+    "formattedList" => [
+      [
         "formattedList",
         "A list of {{val, list}}",
       ],
     ],
-    "htmlTag" => Array [
-      Array [
+    "htmlTag" => [
+      [
         "htmlTag",
         "<i>hi</i>",
       ],
     ],
-    "box" => Array [
-      Array [
+    "box" => [
+      [
         "box_zero",
         "No box",
       ],
-      Array [
+      [
         "box_one",
         "1 box",
       ],
-      Array [
+      [
         "box_other",
         "{{count}} boxes",
       ],
-      Array [
+      [
         "box_orange_one",
         "1 orange box",
       ],
-      Array [
+      [
         "box_orange_other",
         "{{count}} orange boxes",
       ],
-      Array [
+      [
         "box_blue_one",
         "1 blue box",
       ],
-      Array [
+      [
         "box_blue_other",
         "{{count}} blue boxes",
       ],
     ],
-    "mergeProps" => Array [
-      Array [
+    "mergeProps" => [
+      [
         "mergeProps",
         "{{x.data}}",
       ],
-      Array [
+      [
         "mergeProps_other",
         "{{x.data2}}",
       ],
