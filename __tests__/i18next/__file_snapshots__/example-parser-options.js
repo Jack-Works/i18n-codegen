@@ -1,7 +1,10 @@
 /* eslint-disable */
 import { createElement, useMemo } from 'react'
 import { useTranslation, Trans } from 'react-i18next'
-const bind = (i18nKey) => (props) => createElement(Trans, { i18nKey, ns: "ns", ...props })
+
+function bind(i18nKey) {
+    return (props) => createElement(Trans, { i18nKey, ns: "ns", ...props })
+}
 export function useMyHooks() {
     const { t } = useTranslation("ns")
     return useMemo(
@@ -11,4 +14,4 @@ export function useMyHooks() {
         [t],
     )
 }
-export const TypedMyTrans = {["html_tag"]: bind("html_tag")}
+export const TypedMyTrans = {["html_tag"]: /*#__PURE__*/ bind("html_tag")}

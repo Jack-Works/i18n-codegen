@@ -243,15 +243,18 @@ function generateJS(gen: GenType, [items]: ReturnType<typeof getTopLevelKeys>): 
     return `/* eslint-disable */
 import { createElement, useMemo } from 'react'
 import { useTranslation, Trans } from 'react-i18next'
-const bind = (i18nKey) => (props) => createElement(Trans, { i18nKey, ${
+${useProxy ? createProxy.toString() : ''}
+function bind(i18nKey) {
+    return (props) => createElement(Trans, { i18nKey, ${
         ns ? `ns: ${JSON.stringify(ns)}, ` : ''
     }...props })
+}
 export function ${gen.generatorOptions?.hooks || 'useTypedTranslation'}() {
     const { t } = useTranslation(${ns ? JSON.stringify(ns) : ''})
     return useMemo(
         ${
             useProxy
-                ? proxyBasedHooks.toString() + ','
+                ? `() => ${createProxy.name}((key) => t.bind(null, key))` + ','
                 : `() => ({
             ${[...items]
                 .map(generateUseTKeys)
@@ -264,7 +267,7 @@ export function ${gen.generatorOptions?.hooks || 'useTypedTranslation'}() {
 }
 export const ${gen.generatorOptions?.trans || 'TypedTrans'} = ${
         useProxy
-            ? proxyBasedTrans.toString() + '()'
+            ? `/*#__PURE__*/ ${createProxy.name}(bind)`
             : `{${[...items]
                   .map(generateComponentBinding)
                   .filter((x) => x)
@@ -284,7 +287,7 @@ function generateComponentBinding([k, r]: [k: string, r: I18NextParseNode]) {
     const key = JSON.stringify(k)
     const prop = `[${key}]` // { ["key"]: ... }
     if (!r.tags.size) return null
-    return `${prop}: bind(${key})`
+    return `${prop}: /*#__PURE__*/ bind(${key})`
 }
 //#endregion
 
@@ -369,23 +372,30 @@ function getTopLevelKeys(x: I18NextParsedFile) {
     return [nodes, comments] as const
 }
 
-function proxyBasedHooks() {
-    // @ts-ignore
-    declare const t: any
-    return new Proxy({ __proto__: null } as any, {
-        get(target, key) {
-            if (target[key]) return target[key]
-            return (target[key] = t.bind(null, key))
-        },
-    })
-}
-function proxyBasedTrans() {
-    // @ts-ignore
-    declare const bind: any
-    return new Proxy({ __proto__: null } as any, {
-        get(target, key) {
-            if (target[key]) return target[key]
-            return (target[key] = bind(key))
+function createProxy(initValue: (key: string) => any) {
+    function define(key: string) {
+        const value = initValue(key)
+        Object.defineProperty(container, key, { value, configurable: true })
+        return value
+    }
+    const container = {
+        __proto__: new Proxy(
+            { __proto__: null },
+            {
+                get(_, key) {
+                    if (typeof key === 'symbol') return undefined
+                    return define(key)
+                },
+            },
+        ),
+    }
+    return new Proxy(container, {
+        getPrototypeOf: () => null,
+        setPrototypeOf: (_, v) => v === null,
+        getOwnPropertyDescriptor: (_, key) => {
+            if (typeof key === 'symbol') return undefined
+            if (!(key in container)) define(key)
+            return Object.getOwnPropertyDescriptor(container, key)
         },
     })
 }
