@@ -34,7 +34,7 @@
     "yargs": "^17.5.1"
   },
   "peerDependencies": {
-    "typescript": "^4.6"
+    "typescript": "^4.8"
   },
   "files": [
     "dist",
