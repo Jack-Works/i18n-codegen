@@ -1,9 +1,9 @@
-import { i18NextParser, i18next_reactHooksGenerator } from '../../src/frameworks/i18next'
+import { i18NextParser, i18next_reactHooksGenerator } from '../../src/frameworks/i18next/index.js'
 import { join } from 'path'
-import { GeneratorInput, ParserInput } from '../../src/type'
+import { GeneratorInput, ParserInput } from '../../src/type.js'
 import { toMatchFile } from 'jest-file-snapshot'
-import { it, expect } from '@jest/globals'
-import { Parser_I18NextConfig } from '../../src'
+import { it, expect } from 'vitest'
+import type { Parser_I18NextConfig } from '../../src/index.js'
 
 expect.extend({ toMatchFile })
 

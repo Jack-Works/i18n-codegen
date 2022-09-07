@@ -2,31 +2,34 @@
 import { createElement, useMemo } from 'react'
 import { useTranslation, Trans } from 'react-i18next'
 function createProxy(initValue) {
-    function define(key) {
-        const value = initValue(key);
-        Object.defineProperty(container, key, { value, configurable: true });
-        return value;
+  function define(key) {
+    const value = initValue(key);
+    Object.defineProperty(container, key, { value, configurable: true });
+    return value;
+  }
+  const container = {
+    __proto__: new Proxy(
+      { __proto__: null },
+      {
+        get(_, key) {
+          if (typeof key === "symbol")
+            return void 0;
+          return define(key);
+        }
+      }
+    )
+  };
+  return new Proxy(container, {
+    getPrototypeOf: () => null,
+    setPrototypeOf: (_, v) => v === null,
+    getOwnPropertyDescriptor: (_, key) => {
+      if (typeof key === "symbol")
+        return void 0;
+      if (!(key in container))
+        define(key);
+      return Object.getOwnPropertyDescriptor(container, key);
     }
-    const container = {
-        __proto__: new Proxy({ __proto__: null }, {
-            get(_, key) {
-                if (typeof key === 'symbol')
-                    return undefined;
-                return define(key);
-            },
-        }),
-    };
-    return new Proxy(container, {
-        getPrototypeOf: () => null,
-        setPrototypeOf: (_, v) => v === null,
-        getOwnPropertyDescriptor: (_, key) => {
-            if (typeof key === 'symbol')
-                return undefined;
-            if (!(key in container))
-                define(key);
-            return Object.getOwnPropertyDescriptor(container, key);
-        },
-    });
+  });
 }
 function bind(i18nKey) {
     return (props) => createElement(Trans, { i18nKey, ...props })

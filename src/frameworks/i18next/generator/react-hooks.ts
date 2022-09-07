@@ -1,14 +1,16 @@
-import { GeneratorInput, ParseNode } from '../../../type'
-import ts, { Statement, factory, addSyntheticLeadingComment, TypeNode } from 'typescript'
-import { I18NextParsedFile, I18NextParseNode, I18NextParseNodeInfo } from '../parser/types'
-import { Generator_I18Next_ReactHooks } from '../../../json-schema'
+import type { GeneratorInput, ParseNode } from '../../../type.js'
+import ts from 'typescript'
+const { factory } = ts
+import type { I18NextParsedFile, I18NextParseNode, I18NextParseNodeInfo } from '../parser/types.js'
+import type { Generator_I18Next_ReactHooks } from '../../../json-schema.js'
 import {
     createPropertyName,
     NUMBER_TYPE,
     createReadonlyType,
     printer,
     ImportComponentTypeFromReact,
-} from '../../../utils/typescript'
+} from '../../../utils/typescript.js'
+import type { Statement, TypeNode } from 'typescript'
 
 type GenType = GeneratorInput<I18NextParsedFile, Generator_I18Next_ReactHooks>
 
@@ -45,7 +47,6 @@ function generateDTS(gen: GenType, [items, comments]: ReturnType<typeof getTopLe
                     factory.createParameterDeclaration(
                         undefined,
                         undefined,
-                        undefined,
                         'options',
                         undefined,
                         createInterpolationType(detail.interpolations),
@@ -65,14 +66,13 @@ function generateDTS(gen: GenType, [items, comments]: ReturnType<typeof getTopLe
                 returnType,
             )
             const comment = getCommentForKey(key)
-            comment && addSyntheticLeadingComment(node, ts.SyntaxKind.MultiLineCommentTrivia, comment, true)
+            comment && ts.addSyntheticLeadingComment(node, ts.SyntaxKind.MultiLineCommentTrivia, comment, true)
             elements.push(node)
         }
 
         // export function useTypedTranslation(): { elements... }
         statements.push(
             factory.createFunctionDeclaration(
-                undefined,
                 factory.createModifiersFromModifierFlags(ts.ModifierFlags.Export),
                 undefined,
                 gen.generatorOptions?.hooks || 'useTypedTranslation',
@@ -98,7 +98,7 @@ function generateDTS(gen: GenType, [items, comments]: ReturnType<typeof getTopLe
                 createTagType(createInterpolationType(detail.interpolations), [...detail.tags.keys()]),
             )
             const comment = getCommentForKey(key)
-            comment && addSyntheticLeadingComment(node, ts.SyntaxKind.MultiLineCommentTrivia, comment, true)
+            comment && ts.addSyntheticLeadingComment(node, ts.SyntaxKind.MultiLineCommentTrivia, comment, true)
             elements.push(node)
         }
         statements.push(
@@ -139,11 +139,10 @@ function generateDTS(gen: GenType, [items, comments]: ReturnType<typeof getTopLe
 // type TypedTransProps<Value, Components> = Omit<TransProps<string>, 'values' | 'ns' | 'i18nKey'> & ({} extends Value ? {} : { values: Value }) & { components: Components }
 const TypedTransProps = factory.createTypeAliasDeclaration(
     undefined,
-    undefined,
     factory.createIdentifier('TypedTransProps'),
     [
-        factory.createTypeParameterDeclaration(factory.createIdentifier('Value'), undefined, undefined),
-        factory.createTypeParameterDeclaration(factory.createIdentifier('Components'), undefined, undefined),
+        factory.createTypeParameterDeclaration(undefined, factory.createIdentifier('Value')),
+        factory.createTypeParameterDeclaration(undefined, factory.createIdentifier('Components')),
     ],
     factory.createIntersectionTypeNode([
         factory.createTypeReferenceNode(factory.createIdentifier('Omit'), [
@@ -184,7 +183,6 @@ const TypedTransProps = factory.createTypeAliasDeclaration(
 
 // import type { TransProps } from 'react-i18next'
 const TransProps = factory.createImportDeclaration(
-    undefined,
     undefined,
     factory.createImportClause(
         true,
@@ -245,9 +243,7 @@ import { createElement, useMemo } from 'react'
 import { useTranslation, Trans } from 'react-i18next'
 ${useProxy ? createProxy.toString() : ''}
 function bind(i18nKey) {
-    return (props) => createElement(Trans, { i18nKey, ${
-        ns ? `ns: ${JSON.stringify(ns)}, ` : ''
-    }...props })
+    return (props) => createElement(Trans, { i18nKey, ${ns ? `ns: ${JSON.stringify(ns)}, ` : ''}...props })
 }
 export function ${gen.generatorOptions?.hooks || 'useTypedTranslation'}() {
     const { t } = useTranslation(${ns ? JSON.stringify(ns) : ''})

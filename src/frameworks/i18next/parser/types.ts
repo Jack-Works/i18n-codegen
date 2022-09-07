@@ -1,6 +1,6 @@
-import { ParseNode, StringParseNode } from '../../../type'
+import type { ParseNode, StringParseNode } from '../../../type.js'
 import type { TypeNode } from 'typescript'
-import { Position } from '../../../utils/position'
+import type { Position } from '../../../utils/position.js'
 
 export type I18NextParseNodeInfo = {
     interpolations: Map<string, [position: Position, type: TypeNode, required: boolean]>

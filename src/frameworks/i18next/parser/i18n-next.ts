@@ -1,19 +1,18 @@
-import ts, {
-    isStringLiteral,
-    NodeArray,
-    PropertyAssignment,
-    StringLiteral,
-    getLineAndCharacterOfPosition,
-    isObjectLiteralExpression,
-    factory,
-    TypeNode,
-} from 'typescript'
-import { ParserInput, ParseNode } from '../../../type'
-import { addPosition, Position } from '../../../utils/position'
+import type { NodeArray, PropertyAssignment, StringLiteral, TypeNode } from 'typescript'
+import ts from 'typescript'
+const { isStringLiteral, isObjectLiteralExpression, factory, getLineAndCharacterOfPosition } = ts
+import type { ParserInput, ParseNode } from '../../../type.js'
+import { addPosition, Position } from '../../../utils/position.js'
 import { AST, Node, parse } from 'i18next-translation-parser'
-import { I18NextParsedFile, I18NextParseNodeInfo, I18NextParseNode_String } from './types'
-import { Parser_I18NextConfig } from '../../../json-schema'
-import { STRING_TYPE, NUMBER_TYPE, DATE_TYPE, createPropertyName, createReadonlyType } from '../../../utils/typescript'
+import type { I18NextParsedFile, I18NextParseNodeInfo, I18NextParseNode_String } from './types.js'
+import type { Parser_I18NextConfig } from '../../../json-schema.js'
+import {
+    STRING_TYPE,
+    NUMBER_TYPE,
+    DATE_TYPE,
+    createPropertyName,
+    createReadonlyType,
+} from '../../../utils/typescript.js'
 
 const StartQuoteLength = 1
 const TagStartLength = 1

@@ -1,11 +1,11 @@
-import { i18NextParser } from './frameworks/i18next/parser/i18n-next'
-import { Config, ConfigFile, GeneratorList, ParserList } from './json-schema'
-import { GeneratorInput, ParserInput } from './type'
+import { i18NextParser } from './frameworks/i18next/parser/i18n-next.js'
+import { Config, ConfigFile, GeneratorList, ParserList } from './json-schema.js'
+import { GeneratorInput, ParserInput } from './type.js'
 import { dirname, resolve } from 'path'
-import { i18next_reactHooksGenerator } from './frameworks/i18next'
+import { i18next_reactHooksGenerator } from './frameworks/i18next/index.js'
 import { readFileSync, writeFileSync } from 'fs'
 import { watch } from 'chokidar'
-export * from './json-schema'
+export * from './json-schema.js'
 
 type Args = [config: Pick<Config, 'generator' | 'parser'>, absoluteInputPath: string, absoluteOutputPath: string]
 type E = (error: unknown, ...args: Args) => void

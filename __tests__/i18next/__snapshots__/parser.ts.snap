@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`should parse i18next format correctly: i18next-parse-example 1`] = `
+exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
 {
   "contexts": Map {
     "box" => Map {

@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 import yargs from 'yargs'
-// @ts-ignore
 import { hideBin } from 'yargs/helpers'
-import { runCli } from './index'
+import { runCli } from './index.js'
 
 const argv = yargs(hideBin(process.argv))
     .scriptName('i18n-codegen')

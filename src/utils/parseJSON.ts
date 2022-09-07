@@ -1,14 +1,14 @@
 import { readFileSync } from 'fs'
-import {
+import type {
     ArrayLiteralExpression,
     BooleanLiteral,
     ExpressionStatement,
     NullLiteral,
     NumericLiteral,
     ObjectLiteralExpression,
-    parseJsonText,
     StringLiteral,
 } from 'typescript'
+import ts from 'typescript'
 
 export type JSONNode =
     | ObjectLiteralExpression
@@ -18,7 +18,7 @@ export type JSONNode =
     | StringLiteral
     | NullLiteral
 export function parseJson(fileName: string, sourceText: string) {
-    const json = parseJsonText(fileName, sourceText)
+    const json = ts.parseJsonText(fileName, sourceText)
     return (json.getChildAt(0).getChildAt(0) as ExpressionStatement).expression as JSONNode
 }
 export function parseJsonFromFile(file: string) {

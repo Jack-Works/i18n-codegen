@@ -1,6 +1,12 @@
-// @ts-expect-error private api
-import { isIdentifierText, isPropertySignature, isTypeLiteralNode, TypeNode } from 'typescript'
-import ts, { factory } from 'typescript'
+import type { TypeNode } from 'typescript'
+import ts from 'typescript'
+const {
+    factory,
+    isPropertySignature,
+    isTypeLiteralNode,
+    // @ts-expect-error private api
+    isIdentifierText,
+} = ts
 
 export const printer = ts.createPrinter({
     newLine: ts.NewLineKind.LineFeed,

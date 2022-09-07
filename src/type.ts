@@ -1,11 +1,11 @@
 import { readFileSync } from 'fs'
-import { SourceFile } from 'typescript'
-import { Position } from './utils/position'
-import { JSONNode, parseJson } from './utils/parseJSON'
+import type { SourceFile } from 'typescript'
+import type { Position } from './utils/position.js'
+import { JSONNode, parseJson } from './utils/parseJSON.js'
 import { dirname, join, relative } from 'path'
-import { GeneratorList, ParserList } from './json-schema'
+import type { GeneratorList, ParserList } from './json-schema.js'
 
-export { GeneratorList, ParserList } from './json-schema'
+export { GeneratorList, ParserList } from './json-schema.js'
 export interface PluginConfig {
     input: string
     output: string
