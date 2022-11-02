@@ -19,21 +19,21 @@ const TagStartLength = 1
 const pluralPostfixes = ['zero', 'one', 'two', 'few', 'many', 'other']
 
 export function i18NextParser(opts: ParserInput<Parser_I18NextConfig>): I18NextParsedFile {
-    const { mockSourceFile, sourceFile, parserOptions = {} } = opts
+    const { sourceFile, jsonNode, parserOptions = {} } = opts
 
     const result = new Map<string, ParseNode<I18NextParseNodeInfo>>()
 
-    if (!isObjectLiteralExpression(sourceFile)) return makeResult()
+    if (!isObjectLiteralExpression(jsonNode)) return makeResult()
 
-    for (const prop of sourceFile.properties as NodeArray<PropertyAssignment>) {
+    for (const prop of jsonNode.properties as NodeArray<PropertyAssignment>) {
         const key = (prop.name as StringLiteral).text
         if (!isStringLiteral(prop.initializer)) continue
         const value = prop.initializer.text
         const propResult: I18NextParseNode_String = {
             type: 'key',
             value,
-            position: posToPosition(prop.name.getStart(mockSourceFile)),
-            value_position: posToPosition(prop.initializer.getStart(mockSourceFile)),
+            position: posToPosition(prop.name.getStart(sourceFile)),
+            value_position: posToPosition(prop.initializer.getStart(sourceFile)),
             interpolations: new Map(),
             tags: new Map(),
         }
@@ -96,7 +96,7 @@ export function i18NextParser(opts: ParserInput<Parser_I18NextConfig>): I18NextP
     return makeResult()
 
     function posToPosition(pos: number): Position {
-        const x = getLineAndCharacterOfPosition(mockSourceFile, pos)
+        const x = getLineAndCharacterOfPosition(sourceFile, pos)
         return [x.line + 1, x.character]
     }
     function makeResult(): I18NextParsedFile {

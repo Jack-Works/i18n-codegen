@@ -1,9 +1,10 @@
 import { readFileSync } from 'fs'
-import type { SourceFile } from 'typescript'
+import type { ExpressionStatement, JsonSourceFile } from 'typescript'
 import type { Position } from './utils/position.js'
-import { JSONNode, parseJson } from './utils/parseJSON.js'
+import type { JSONNode } from './utils/parseJSON.js'
 import { dirname, join, relative } from 'path'
 import type { GeneratorList, ParserList } from './json-schema.js'
+import ts from 'typescript'
 
 export { GeneratorList, ParserList } from './json-schema.js'
 export interface PluginConfig {
@@ -20,14 +21,16 @@ export type Generator = (input: GeneratorInput<any, any>) => Map<string, Generat
 export type GeneratorResult = string
 export class ParserInput<Options> {
     private constructor(
-        public sourceFile: JSONNode,
+        public sourceFile: JsonSourceFile,
         public readonly originalFile: string,
         public readonly parserOptions?: Options,
-    ) {}
-    readonly mockSourceFile: SourceFile = { text: this.originalFile } as any
+    ) {
+        this.jsonNode = (this.sourceFile.getChildAt(0).getChildAt(0) as ExpressionStatement).expression as JSONNode
+    }
+    readonly jsonNode: JSONNode
     static fromFileSystem<T>(path: string, parserOptions?: T) {
         const orig = readFileSync(path, 'utf-8')
-        return new ParserInput(parseJson(path, orig), orig, parserOptions)
+        return new ParserInput(ts.parseJsonText(path, orig), orig, parserOptions)
     }
 }
 export class GeneratorInput<R extends object, Options> {
