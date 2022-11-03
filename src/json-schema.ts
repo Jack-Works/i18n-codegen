@@ -37,5 +37,10 @@ export interface Generator_I18Next_ReactHooks {
      * @default true
      */
     es6Proxy?: boolean
+    /**
+     * Emit a .ts file instead of a .js and .d.ts file
+     * @default false
+     */
+    emitTS?: boolean
 }
 //#endregion

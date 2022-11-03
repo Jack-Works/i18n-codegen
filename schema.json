@@ -142,6 +142,11 @@
                     "default": true,
                     "type": "boolean",
                     "title": "es6Proxy"
+                },
+                "emitTS": {
+                    "description": "Emit a .ts file instead of a .js and .d.ts file",
+                    "type": "boolean",
+                    "default": false
                 }
             }
         }

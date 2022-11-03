@@ -1,11 +1,11 @@
-import type { ComponentType } from "react";
-import type { TransProps } from "react-i18next";
-type TypedTransProps<Value, Components> = Omit<TransProps<string>, "values" | "ns" | "i18nKey"> & ({} extends Value ? {} : {
+import { type ComponentType } from "react";
+import { type TransProps } from "react-i18next";
+declare type TypedTransProps<Value, Components> = Omit<TransProps<string>, "values" | "ns" | "i18nKey"> & ({} extends Value ? {} : {
     values: Value;
 }) & {
     components: Components;
 };
-export function useMyHooks(): {
+export declare function useMyHooks(): {
     /**
       * `this is a normal key`
       */
@@ -161,3 +161,4 @@ export declare const TypedMyTrans: {
         i: JSX.Element;
     }>>;
 };
+export {};

@@ -1,11 +1,40 @@
-import { type ComponentType } from "react";
-import { type TransProps } from "react-i18next";
-declare type TypedTransProps<Value, Components> = Omit<TransProps<string>, "values" | "ns" | "i18nKey"> & ({} extends Value ? {} : {
+// @ts-nocheck
+/* eslint-disable */
+import { createElement, useMemo, type ComponentType } from "react";
+import { useTranslation, Trans, type TransProps } from "react-i18next";
+type TypedTransProps<Value, Components> = Omit<TransProps<string>, "values" | "ns" | "i18nKey"> & ({} extends Value ? {} : {
     values: Value;
 }) & {
     components: Components;
 };
-export declare function useTypedTranslation(): {
+function createProxy(initValue: (key: string) => any) {
+    function define(key: string) {
+        const value = initValue(key);
+        Object.defineProperty(container, key, { value, configurable: true });
+        return value;
+    }
+    const container = {
+        __proto__: new Proxy({ __proto__: null }, {
+            get(_, key) {
+                if (typeof key === "symbol")
+                    return undefined;
+                return define(key);
+            }
+        })
+    };
+    return new Proxy(container, {
+        getPrototypeOf: () => null,
+        setPrototypeOf: (_, v) => v === null,
+        getOwnPropertyDescriptor: (_, key) => {
+            if (typeof key === "symbol")
+                return undefined;
+            if (!(key in container))
+                define(key);
+            return Object.getOwnPropertyDescriptor(container, key);
+        }
+    });
+}
+export function useTypedTranslation(): {
     /**
       * `this is a normal key`
       */
@@ -152,13 +181,15 @@ export declare function useTypedTranslation(): {
         count?: string | number | bigint;
         context?: "orange" | "blue";
     }>): string;
-};
-export declare const TypedTrans: {
+} { const { t } = useTranslation(); return useMemo(() => createProxy((key) => t.bind(null, key)), [t]); }
+function createComponent(i18nKey: string) {
+    return (props) => createElement(Trans, { i18nKey, ...props });
+}
+export const TypedTrans: {
     /**
       * `<i>hi</i>`
       */
     htmlTag: ComponentType<TypedTransProps<Readonly<{}>, {
         i: JSX.Element;
     }>>;
-};
-export {};
+} = /*#__PURE__*/ createProxy(createComponent);

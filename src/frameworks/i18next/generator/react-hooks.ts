@@ -1,6 +1,7 @@
 import type { GeneratorInput, ParseNode } from '../../../type.js'
 import ts from 'typescript'
-const { factory } = ts
+import type { CompilerHost, CompilerOptions } from 'typescript'
+const { factory, SyntaxKind, NodeFlags, ModuleKind, ScriptTarget } = ts
 import type { I18NextParsedFile, I18NextParseNode, I18NextParseNodeInfo } from '../parser/types.js'
 import type { Generator_I18Next_ReactHooks } from '../../../json-schema.js'
 import {
@@ -8,7 +9,11 @@ import {
     NUMBER_TYPE,
     createReadonlyType,
     printer,
-    ImportComponentTypeFromReact,
+    isIdent,
+    castStatement,
+    castExpression,
+    stdlib,
+    pureAnnotate,
 } from '../../../utils/typescript.js'
 import type { Statement, TypeNode } from 'typescript'
 
@@ -16,24 +21,21 @@ type GenType = GeneratorInput<I18NextParsedFile, Generator_I18Next_ReactHooks>
 
 export function i18NextReactHooksGenerator(gen: GenType) {
     // nested key not supported yet.
-    const items = getTopLevelKeys(gen.parseResult)
-    return new Map([
-        //
-        [gen.outputBase + '.js', generateJS(gen, items)],
-        ...Object.entries(generateDTS(gen, items)),
-    ])
-}
+    const [items, comments] = getTopLevelKeys(gen.parseResult)
 
-//#region Generate .d.ts
-function generateDTS(gen: GenType, [items, comments]: ReturnType<typeof getTopLevelKeys>) {
-    const statements: Statement[] = []
+    const statements: Statement[] = [
+        castStatement`import { useMemo } from 'react'`,
+        castStatement`import { useTranslation } from 'react-i18next'`,
+    ]
+    if (gen.generatorOptions?.es6Proxy !== false) {
+        statements.push(castStatement`${createProxy.toString()}`)
+    }
 
     const htmlTags: typeof items = new Map()
-
-    // useTypedTranslation
+    let hooksReturnType: TypeNode
+    // hooks return type
     {
         const elements: ts.TypeElement[] = []
-
         for (const [key, detail] of items) {
             if (detail.type !== 'key') continue // TODO
             if (detail.tags.size) {
@@ -54,7 +56,7 @@ function generateDTS(gen: GenType, [items, comments]: ReturnType<typeof getTopLe
                 )
             }
             // TODO: maybe support return JSX from the hooks, then this should be a JSXElement
-            const returnType = factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword)
+            const returnType = factory.createKeywordTypeNode(SyntaxKind.StringKeyword)
 
             // key(...params): type
             const node = factory.createMethodSignature(
@@ -69,24 +71,81 @@ function generateDTS(gen: GenType, [items, comments]: ReturnType<typeof getTopLe
             comment && ts.addSyntheticLeadingComment(node, ts.SyntaxKind.MultiLineCommentTrivia, comment, true)
             elements.push(node)
         }
+        hooksReturnType = factory.createTypeLiteralNode(elements)
+    }
+    const hooksCode = [
+        // const { t } = useTranslation(ns)
+        factory.createVariableStatement(
+            undefined,
+            factory.createVariableDeclarationList(
+                [
+                    factory.createVariableDeclaration(
+                        factory.createObjectBindingPattern([
+                            factory.createBindingElement(
+                                undefined,
+                                undefined,
+                                factory.createIdentifier('t'),
+                                undefined,
+                            ),
+                        ]),
+                        undefined,
+                        undefined,
+                        factory.createCallExpression(
+                            factory.createIdentifier('useTranslation'),
+                            undefined,
+                            gen.generatorOptions?.namespace
+                                ? [factory.createStringLiteral(gen.generatorOptions.namespace)]
+                                : [],
+                        ),
+                    ),
+                ],
+                ts.NodeFlags.Const,
+            ),
+        ),
+        factory.createReturnStatement(
+            gen.generatorOptions?.es6Proxy === false
+                ? castExpression`useMemo(() => ({
+                        ${[...items].map(generateUseTKeys).filter(Boolean).join(', ')}
+                    }), [t])`
+                : castExpression`useMemo(() => createProxy((key) => t.bind(null, key)), [t])`,
+        ),
+    ]
 
-        // export function useTypedTranslation(): { elements... }
+    // create hooks function
+    statements.push(
+        factory.createFunctionDeclaration(
+            [factory.createModifier(ts.SyntaxKind.ExportKeyword)],
+            undefined,
+            factory.createIdentifier(gen.generatorOptions?.hooks || 'useTypedTranslation'),
+            undefined,
+            [],
+            hooksReturnType,
+            factory.createBlock(hooksCode, false),
+        ),
+    )
+
+    // create TypedTranslate
+    if (htmlTags.size) {
+        statements[0] = castStatement`import { createElement, useMemo, type ComponentType } from 'react'`
+        statements[1] = castStatement`import { useTranslation, Trans, type TransProps } from 'react-i18next'`
         statements.push(
-            factory.createFunctionDeclaration(
-                factory.createModifiersFromModifierFlags(ts.ModifierFlags.Export),
-                undefined,
-                gen.generatorOptions?.hooks || 'useTypedTranslation',
-                undefined,
-                [],
-                factory.createTypeLiteralNode(elements),
-                undefined,
+            ...statements.splice(
+                2,
+                statements.length - 2,
+                castStatement`
+                    type TypedTransProps<Value, Components> =
+                        Omit<TransProps<string>, 'values' | 'ns' | 'i18nKey'> &
+                        ({} extends Value ? {} : { values: Value }) & { components: Components }
+                `,
             ),
         )
-    }
-
-    // TypedTrans
-    if (htmlTags.size) {
-        statements.unshift(ImportComponentTypeFromReact, TransProps, TypedTransProps)
+        statements.push(castStatement`
+            function createComponent(i18nKey: string) {
+                return (props) => createElement(Trans, { i18nKey ${
+                    gen.generatorOptions?.namespace ? ', ns:' + JSON.stringify(gen.generatorOptions.namespace) : ''
+                }, ...props })
+            }
+        `)
 
         const elements: ts.TypeElement[] = []
         for (const [key, detail] of htmlTags) {
@@ -103,17 +162,27 @@ function generateDTS(gen: GenType, [items, comments]: ReturnType<typeof getTopLe
         }
         statements.push(
             factory.createVariableStatement(
-                [
-                    factory.createModifier(ts.SyntaxKind.ExportKeyword),
-                    factory.createModifier(ts.SyntaxKind.DeclareKeyword),
-                ],
+                [factory.createModifier(ts.SyntaxKind.ExportKeyword)],
                 factory.createVariableDeclarationList(
                     [
                         factory.createVariableDeclaration(
                             factory.createIdentifier(gen.generatorOptions?.trans || 'TypedTrans'),
                             undefined,
                             factory.createTypeLiteralNode(elements),
-                            undefined,
+                            gen.generatorOptions?.es6Proxy === false
+                                ? factory.createObjectLiteralExpression(
+                                      [...htmlTags]
+                                          .map(([k, r]): ts.PropertyAssignment => {
+                                              if (r.type !== 'key') return null!
+                                              return factory.createPropertyAssignment(
+                                                  createPropertyName(k),
+                                                  pureAnnotate(castExpression`createComponent(${JSON.stringify(k)})`),
+                                              )
+                                          })
+                                          .filter(Boolean),
+                                      true,
+                                  )
+                                : pureAnnotate(castExpression`createProxy(createComponent)`),
                         ),
                     ],
                     ts.NodeFlags.Const,
@@ -122,10 +191,67 @@ function generateDTS(gen: GenType, [items, comments]: ReturnType<typeof getTopLe
         )
     }
 
-    const file = ts.createSourceFile('index.d.ts', '', ts.ScriptTarget.ESNext, false, ts.ScriptKind.TS)
-    return {
-        [gen.outputBase + '.d.ts']: printer.printFile(ts.factory.updateSourceFile(file, statements, true)),
+    // Codegen
+    const printedSourceFile = [
+        gen.generatorOptions?.emitTS && '// @ts-nocheck',
+        '/* eslint-disable */',
+        printer.printFile(
+            factory.createSourceFile(statements, factory.createToken(SyntaxKind.EndOfFileToken), NodeFlags.Synthesized),
+        ),
+    ]
+        .filter(Boolean)
+        .join('\n')
+
+    if (gen.generatorOptions?.emitTS) return new Map([[gen.outputBase + '.ts', printedSourceFile]])
+
+    const options: CompilerOptions = {
+        declaration: true,
+        strict: true,
+        skipLibCheck: true,
+        module: ModuleKind.ESNext,
+        target: ScriptTarget.ES2015,
+        lib: ['lib.es2015.d.ts', 'lib.jsx.d.ts'],
+        outDir: '/out/',
     }
+    const fs: Record<string, string> = {
+        ['/index.ts']: printedSourceFile,
+    }
+    const host: CompilerHost = {
+        fileExists: (fileName) => false,
+        readFile: (fileName) => undefined,
+        writeFile: (fileName, content) => (fs[fileName] = content),
+        getSourceFile: (fileName, option) => {
+            if (fileName.endsWith('.d.ts')) return stdlib(fileName)
+            if (fs[fileName]) return ts.createSourceFile(fileName, fs[fileName], option)
+            console.trace('get', fileName)
+            return undefined
+        },
+        getDefaultLibFileName: () => 'NONE',
+        getCurrentDirectory: () => '/',
+        getCanonicalFileName: (x) => x,
+        useCaseSensitiveFileNames: () => true,
+        getNewLine: () => '\n',
+    }
+
+    const program = ts.createProgram(['/index.ts'], options, host, undefined, [])
+    const result = program.emit()
+
+    const js = fs['/out/index.js']
+    const dts = fs['/out/index.d.ts']
+    if (!js || !dts) {
+        console.log(
+            ts.formatDiagnostics(result.diagnostics, {
+                getCanonicalFileName: (x) => x,
+                getCurrentDirectory: () => '/',
+                getNewLine: () => '\n',
+            }),
+        )
+        throw new Error('internal error: file not emitted')
+    }
+    return new Map([
+        [gen.outputBase + '.js', js],
+        [gen.outputBase + '.d.ts', dts],
+    ])
 
     function getCommentForKey(key: string) {
         const comment = comments.get(key)
@@ -135,64 +261,6 @@ function generateDTS(gen: GenType, [items, comments]: ReturnType<typeof getTopLe
         return `*\n${string}\n  `
     }
 }
-
-// type TypedTransProps<Value, Components> = Omit<TransProps<string>, 'values' | 'ns' | 'i18nKey'> & ({} extends Value ? {} : { values: Value }) & { components: Components }
-const TypedTransProps = factory.createTypeAliasDeclaration(
-    undefined,
-    factory.createIdentifier('TypedTransProps'),
-    [
-        factory.createTypeParameterDeclaration(undefined, factory.createIdentifier('Value')),
-        factory.createTypeParameterDeclaration(undefined, factory.createIdentifier('Components')),
-    ],
-    factory.createIntersectionTypeNode([
-        factory.createTypeReferenceNode(factory.createIdentifier('Omit'), [
-            factory.createTypeReferenceNode(factory.createIdentifier('TransProps'), [
-                factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword),
-            ]),
-            factory.createUnionTypeNode([
-                factory.createLiteralTypeNode(factory.createStringLiteral('values')),
-                factory.createLiteralTypeNode(factory.createStringLiteral('ns')),
-                factory.createLiteralTypeNode(factory.createStringLiteral('i18nKey')),
-            ]),
-        ]),
-        factory.createParenthesizedType(
-            factory.createConditionalTypeNode(
-                factory.createTypeLiteralNode([]),
-                factory.createTypeReferenceNode(factory.createIdentifier('Value'), undefined),
-                factory.createTypeLiteralNode([]),
-                factory.createTypeLiteralNode([
-                    factory.createPropertySignature(
-                        undefined,
-                        factory.createIdentifier('values'),
-                        undefined,
-                        factory.createTypeReferenceNode(factory.createIdentifier('Value'), undefined),
-                    ),
-                ]),
-            ),
-        ),
-        factory.createTypeLiteralNode([
-            factory.createPropertySignature(
-                undefined,
-                factory.createIdentifier('components'),
-                undefined,
-                factory.createTypeReferenceNode(factory.createIdentifier('Components'), undefined),
-            ),
-        ]),
-    ]),
-)
-
-// import type { TransProps } from 'react-i18next'
-const TransProps = factory.createImportDeclaration(
-    undefined,
-    factory.createImportClause(
-        true,
-        undefined,
-        factory.createNamedImports([
-            factory.createImportSpecifier(false, undefined, factory.createIdentifier('TransProps')),
-        ]),
-    ),
-    factory.createStringLiteral('react-i18next'),
-)
 
 function createTagType(props: TypeNode, tagNames: string[]) {
     return factory.createTypeReferenceNode(factory.createIdentifier('ComponentType'), [
@@ -232,60 +300,18 @@ function createInterpolationType(interpolations: I18NextParseNodeInfo['interpola
     )
 }
 
-//#endregion
-
-//#region Generate JS
-function generateJS(gen: GenType, [items]: ReturnType<typeof getTopLevelKeys>): string {
-    const ns = gen.generatorOptions?.namespace
-    const useProxy = gen.generatorOptions?.es6Proxy !== false
-    return `/* eslint-disable */
-import { createElement, useMemo } from 'react'
-import { useTranslation, Trans } from 'react-i18next'
-${useProxy ? createProxy.toString() : ''}
-function bind(i18nKey) {
-    return (props) => createElement(Trans, { i18nKey, ${ns ? `ns: ${JSON.stringify(ns)}, ` : ''}...props })
-}
-export function ${gen.generatorOptions?.hooks || 'useTypedTranslation'}() {
-    const { t } = useTranslation(${ns ? JSON.stringify(ns) : ''})
-    return useMemo(
-        ${
-            useProxy
-                ? `() => ${createProxy.name}((key) => t.bind(null, key))` + ','
-                : `() => ({
-            ${[...items]
-                .map(generateUseTKeys)
-                .filter((x) => x)
-                .join(', ')}
-        }),`
-        }
-        [t],
-    )
-}
-export const ${gen.generatorOptions?.trans || 'TypedTrans'} = ${
-        useProxy
-            ? `/*#__PURE__*/ ${createProxy.name}(bind)`
-            : `{${[...items]
-                  .map(generateComponentBinding)
-                  .filter((x) => x)
-                  .join(', ')}}`
-    }`
+function getPropertyKeyTextFromText(text: string) {
+    if (isIdent(text)) return text
+    return `[${JSON.stringify(text)}]`
 }
 function generateUseTKeys([k, r]: [k: string, r: I18NextParseNode]) {
     if (r.type !== 'key') return null
-    const key = JSON.stringify(k)
-    const prop = `[${key}]` // { ["key"]: ... }
     if (r.tags.size) return null
+    const key = JSON.stringify(k)
+    const prop = getPropertyKeyTextFromText(k)
     if (r.interpolations.size) return `${prop}: x => t(${key}, x)`
     return `${prop}: () => t(${key})`
 }
-function generateComponentBinding([k, r]: [k: string, r: I18NextParseNode]) {
-    if (r.type !== 'key') return null
-    const key = JSON.stringify(k)
-    const prop = `[${key}]` // { ["key"]: ... }
-    if (!r.tags.size) return null
-    return `${prop}: /*#__PURE__*/ bind(${key})`
-}
-//#endregion
 
 function getTopLevelKeys(x: I18NextParsedFile) {
     if (x.root.type !== 'object') throw new Error()
@@ -368,7 +394,7 @@ function getTopLevelKeys(x: I18NextParsedFile) {
     return [nodes, comments] as const
 }
 
-function createProxy(initValue: (key: string) => any) {
+const createProxy = `function createProxy(initValue: (key: string) => any) {
     function define(key: string) {
         const value = initValue(key)
         Object.defineProperty(container, key, { value, configurable: true })
@@ -394,4 +420,4 @@ function createProxy(initValue: (key: string) => any) {
             return Object.getOwnPropertyDescriptor(container, key)
         },
     })
-}
+}`
