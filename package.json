@@ -9,6 +9,7 @@
   "scripts": {
     "start": "tsc -p src -w",
     "build": "tsc -p src",
+    "release": "pnpm run build && pnpm test && npx changeset publish",
     "test": "vitest"
   },
   "bin": "./dist/cli.js",
