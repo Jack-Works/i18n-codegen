@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.1
+
+### Patch Changes
+
+- 3e7f017: add typescript 5.\* peer
+
 ## 0.4.0
 
 ### Minor Changes
