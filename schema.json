@@ -147,6 +147,11 @@
                     "description": "Emit a .ts file instead of a .js and .d.ts file",
                     "type": "boolean",
                     "default": false
+                },
+                "shouldUnescape": {
+                    "description": "See https://react.i18next.com/latest/trans-component#trans-props",
+                    "type": "boolean",
+                    "default": false
                 }
             }
         }

@@ -14,7 +14,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
             TokenObject {
               "end": -1,
               "flags": 8,
-              "kind": 150,
+              "kind": 152,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
@@ -45,7 +45,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
             TokenObject {
               "end": -1,
               "flags": 8,
-              "kind": 150,
+              "kind": 152,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
@@ -108,7 +108,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
             TokenObject {
               "end": -1,
               "flags": 8,
-              "kind": 150,
+              "kind": 152,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
@@ -141,13 +141,13 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
             NodeObject {
               "end": -1,
               "flags": 8,
-              "kind": 182,
+              "kind": 184,
               "members": [
                 NodeObject {
                   "end": -1,
                   "flags": 8,
                   "initializer": undefined,
-                  "kind": 166,
+                  "kind": 168,
                   "localSymbol": undefined,
                   "locals": undefined,
                   "modifierFlagsCache": 0,
@@ -155,7 +155,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
                     TokenObject {
                       "end": -1,
                       "flags": 8,
-                      "kind": 145,
+                      "kind": 146,
                       "modifierFlagsCache": 0,
                       "parent": undefined,
                       "pos": -1,
@@ -182,7 +182,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
                   "type": TokenObject {
                     "end": -1,
                     "flags": 8,
-                    "kind": 150,
+                    "kind": 152,
                     "modifierFlagsCache": 0,
                     "parent": undefined,
                     "pos": -1,
@@ -238,7 +238,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
             TokenObject {
               "end": -1,
               "flags": 8,
-              "kind": 150,
+              "kind": 152,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
@@ -269,7 +269,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
             TokenObject {
               "end": -1,
               "flags": 8,
-              "kind": 150,
+              "kind": 152,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
@@ -285,7 +285,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
             TokenObject {
               "end": -1,
               "flags": 8,
-              "kind": 150,
+              "kind": 152,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
@@ -316,13 +316,13 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
             NodeObject {
               "end": -1,
               "flags": 8,
-              "kind": 182,
+              "kind": 184,
               "members": [
                 NodeObject {
                   "end": -1,
                   "flags": 8,
                   "initializer": undefined,
-                  "kind": 166,
+                  "kind": 168,
                   "localSymbol": undefined,
                   "locals": undefined,
                   "modifierFlagsCache": 0,
@@ -330,7 +330,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
                     TokenObject {
                       "end": -1,
                       "flags": 8,
-                      "kind": 145,
+                      "kind": 146,
                       "modifierFlagsCache": 0,
                       "parent": undefined,
                       "pos": -1,
@@ -357,7 +357,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
                   "type": NodeObject {
                     "end": -1,
                     "flags": 8,
-                    "kind": 178,
+                    "kind": 180,
                     "modifierFlagsCache": 0,
                     "parent": undefined,
                     "pos": -1,
@@ -366,13 +366,13 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
                       NodeObject {
                         "end": -1,
                         "flags": 8,
-                        "kind": 182,
+                        "kind": 184,
                         "members": [
                           NodeObject {
                             "end": -1,
                             "flags": 8,
                             "initializer": undefined,
-                            "kind": 166,
+                            "kind": 168,
                             "localSymbol": undefined,
                             "locals": undefined,
                             "modifierFlagsCache": 0,
@@ -397,7 +397,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
                             "type": TokenObject {
                               "end": -1,
                               "flags": 8,
-                              "kind": 150,
+                              "kind": 152,
                               "modifierFlagsCache": 0,
                               "parent": undefined,
                               "pos": -1,
@@ -408,7 +408,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
                             "end": -1,
                             "flags": 8,
                             "initializer": undefined,
-                            "kind": 166,
+                            "kind": 168,
                             "localSymbol": undefined,
                             "locals": undefined,
                             "modifierFlagsCache": 0,
@@ -433,7 +433,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
                             "type": TokenObject {
                               "end": -1,
                               "flags": 8,
-                              "kind": 150,
+                              "kind": 152,
                               "modifierFlagsCache": 0,
                               "parent": undefined,
                               "pos": -1,
@@ -491,7 +491,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
             NodeObject {
               "end": -1,
               "flags": 8,
-              "kind": 188,
+              "kind": 190,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
@@ -500,7 +500,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
                 TokenObject {
                   "end": -1,
                   "flags": 8,
-                  "kind": 150,
+                  "kind": 152,
                   "modifierFlagsCache": 0,
                   "parent": undefined,
                   "pos": -1,
@@ -509,13 +509,13 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
                 NodeObject {
                   "end": -1,
                   "flags": 8,
-                  "kind": 182,
+                  "kind": 184,
                   "members": [
                     NodeObject {
                       "end": -1,
                       "flags": 8,
                       "initializer": undefined,
-                      "kind": 166,
+                      "kind": 168,
                       "localSymbol": undefined,
                       "locals": undefined,
                       "modifierFlagsCache": 0,
@@ -523,7 +523,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
                         TokenObject {
                           "end": -1,
                           "flags": 8,
-                          "kind": 145,
+                          "kind": 146,
                           "modifierFlagsCache": 0,
                           "parent": undefined,
                           "pos": -1,
@@ -550,7 +550,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
                       "type": TokenObject {
                         "end": -1,
                         "flags": 8,
-                        "kind": 150,
+                        "kind": 152,
                         "modifierFlagsCache": 0,
                         "parent": undefined,
                         "pos": -1,
@@ -590,7 +590,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
             TokenObject {
               "end": -1,
               "flags": 8,
-              "kind": 150,
+              "kind": 152,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
@@ -621,7 +621,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
             NodeObject {
               "end": -1,
               "flags": 8,
-              "kind": 187,
+              "kind": 189,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
@@ -630,7 +630,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
                 TokenObject {
                   "end": -1,
                   "flags": 8,
-                  "kind": 150,
+                  "kind": 152,
                   "modifierFlagsCache": 0,
                   "parent": undefined,
                   "pos": -1,
@@ -639,7 +639,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
                 TokenObject {
                   "end": -1,
                   "flags": 8,
-                  "kind": 147,
+                  "kind": 148,
                   "modifierFlagsCache": 0,
                   "parent": undefined,
                   "pos": -1,
@@ -648,7 +648,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
                 TokenObject {
                   "end": -1,
                   "flags": 8,
-                  "kind": 158,
+                  "kind": 160,
                   "modifierFlagsCache": 0,
                   "parent": undefined,
                   "pos": -1,
@@ -681,7 +681,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
             NodeObject {
               "end": -1,
               "flags": 8,
-              "kind": 178,
+              "kind": 180,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
@@ -724,7 +724,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
             NodeObject {
               "end": -1,
               "flags": 8,
-              "kind": 187,
+              "kind": 189,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
@@ -733,7 +733,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
                 TokenObject {
                   "end": -1,
                   "flags": 8,
-                  "kind": 150,
+                  "kind": 152,
                   "modifierFlagsCache": 0,
                   "parent": undefined,
                   "pos": -1,
@@ -742,7 +742,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
                 TokenObject {
                   "end": -1,
                   "flags": 8,
-                  "kind": 147,
+                  "kind": 148,
                   "modifierFlagsCache": 0,
                   "parent": undefined,
                   "pos": -1,
@@ -751,7 +751,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
                 TokenObject {
                   "end": -1,
                   "flags": 8,
-                  "kind": 158,
+                  "kind": 160,
                   "modifierFlagsCache": 0,
                   "parent": undefined,
                   "pos": -1,
@@ -784,7 +784,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
             NodeObject {
               "end": -1,
               "flags": 8,
-              "kind": 187,
+              "kind": 189,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
@@ -793,7 +793,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
                 TokenObject {
                   "end": -1,
                   "flags": 8,
-                  "kind": 150,
+                  "kind": 152,
                   "modifierFlagsCache": 0,
                   "parent": undefined,
                   "pos": -1,
@@ -802,7 +802,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
                 TokenObject {
                   "end": -1,
                   "flags": 8,
-                  "kind": 147,
+                  "kind": 148,
                   "modifierFlagsCache": 0,
                   "parent": undefined,
                   "pos": -1,
@@ -811,7 +811,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
                 TokenObject {
                   "end": -1,
                   "flags": 8,
-                  "kind": 158,
+                  "kind": 160,
                   "modifierFlagsCache": 0,
                   "parent": undefined,
                   "pos": -1,
@@ -844,9 +844,9 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
             NodeObject {
               "end": -1,
               "flags": 8,
-              "kind": 193,
+              "kind": 195,
               "modifierFlagsCache": 0,
-              "operator": 145,
+              "operator": 146,
               "parent": undefined,
               "pos": -1,
               "transformFlags": 1,
@@ -854,7 +854,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
                 "elementType": TokenObject {
                   "end": -1,
                   "flags": 8,
-                  "kind": 150,
+                  "kind": 152,
                   "modifierFlagsCache": 0,
                   "parent": undefined,
                   "pos": -1,
@@ -862,7 +862,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
                 },
                 "end": -1,
                 "flags": 8,
-                "kind": 183,
+                "kind": 185,
                 "modifierFlagsCache": 0,
                 "parent": undefined,
                 "pos": -1,
@@ -941,7 +941,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
             TokenObject {
               "end": -1,
               "flags": 8,
-              "kind": 150,
+              "kind": 152,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
@@ -986,7 +986,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
             TokenObject {
               "end": -1,
               "flags": 8,
-              "kind": 150,
+              "kind": 152,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
@@ -1031,7 +1031,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
             TokenObject {
               "end": -1,
               "flags": 8,
-              "kind": 150,
+              "kind": 152,
               "modifierFlagsCache": 0,
               "parent": undefined,
               "pos": -1,
@@ -1062,13 +1062,13 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
             NodeObject {
               "end": -1,
               "flags": 8,
-              "kind": 182,
+              "kind": 184,
               "members": [
                 NodeObject {
                   "end": -1,
                   "flags": 8,
                   "initializer": undefined,
-                  "kind": 166,
+                  "kind": 168,
                   "localSymbol": undefined,
                   "locals": undefined,
                   "modifierFlagsCache": 0,
@@ -1076,7 +1076,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
                     TokenObject {
                       "end": -1,
                       "flags": 8,
-                      "kind": 145,
+                      "kind": 146,
                       "modifierFlagsCache": 0,
                       "parent": undefined,
                       "pos": -1,
@@ -1103,7 +1103,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
                   "type": TokenObject {
                     "end": -1,
                     "flags": 8,
-                    "kind": 150,
+                    "kind": 152,
                     "modifierFlagsCache": 0,
                     "parent": undefined,
                     "pos": -1,
@@ -1141,13 +1141,13 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
             NodeObject {
               "end": -1,
               "flags": 8,
-              "kind": 182,
+              "kind": 184,
               "members": [
                 NodeObject {
                   "end": -1,
                   "flags": 8,
                   "initializer": undefined,
-                  "kind": 166,
+                  "kind": 168,
                   "localSymbol": undefined,
                   "locals": undefined,
                   "modifierFlagsCache": 0,
@@ -1155,7 +1155,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
                     TokenObject {
                       "end": -1,
                       "flags": 8,
-                      "kind": 145,
+                      "kind": 146,
                       "modifierFlagsCache": 0,
                       "parent": undefined,
                       "pos": -1,
@@ -1182,7 +1182,7 @@ exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
                   "type": TokenObject {
                     "end": -1,
                     "flags": 8,
-                    "kind": 150,
+                    "kind": 152,
                     "modifierFlagsCache": 0,
                     "parent": undefined,
                     "pos": -1,

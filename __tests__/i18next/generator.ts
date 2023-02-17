@@ -29,6 +29,7 @@ it('should generate i18next output correctly, with options', () => {
             hooks: 'useMyHooks',
             namespace: 'my.namespace',
             trans: 'TypedMyTrans',
+            shouldUnescape: true,
         }),
     )
     for (const [path, content] of out) {

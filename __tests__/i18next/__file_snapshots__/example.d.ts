@@ -1,6 +1,6 @@
 import { type ComponentType } from "react";
 import { type TransProps } from "react-i18next";
-declare type TypedTransProps<Value, Components> = Omit<TransProps<string>, "values" | "ns" | "i18nKey"> & ({} extends Value ? {} : {
+type TypedTransProps<Value, Components> = Omit<TransProps<string>, "values" | "ns" | "i18nKey"> & ({} extends Value ? {} : {
     values: Value;
 }) & {
     components: Components;

@@ -42,5 +42,10 @@ export interface Generator_I18Next_ReactHooks {
      * @default false
      */
     emitTS?: boolean
+    /**
+     * See https://react.i18next.com/latest/trans-component#trans-props
+     * @default false
+     */
+    shouldUnescape?: boolean
 }
 //#endregion

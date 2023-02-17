@@ -28,7 +28,7 @@ export function useMyHooks() {
     }), [t]);
 }
 function createComponent(i18nKey) {
-    return (props) => createElement(Trans, Object.assign({ i18nKey, ns: "my.namespace" }, props));
+    return (props) => createElement(Trans, Object.assign({ i18nKey, ns: "my.namespace", shouldUnescape: true }, props));
 }
 export const TypedMyTrans = {
     html_tag: /*#__PURE__*/ createComponent("html_tag")

@@ -114,7 +114,7 @@ export function i18NextReactHooksGenerator(gen: GenType) {
     // create hooks function
     statements.push(
         factory.createFunctionDeclaration(
-            [factory.createModifier(ts.SyntaxKind.ExportKeyword)],
+            [factory.createModifier(ts.SyntaxKind.ExportKeyword)] as ts.ModifierLike[],
             undefined,
             factory.createIdentifier(gen.generatorOptions?.hooks || 'useTypedTranslation'),
             undefined,
@@ -141,9 +141,14 @@ export function i18NextReactHooksGenerator(gen: GenType) {
         )
         statements.push(castStatement`
             function createComponent(i18nKey: string) {
-                return (props) => createElement(Trans, { i18nKey ${
-                    gen.generatorOptions?.namespace ? ', ns:' + JSON.stringify(gen.generatorOptions.namespace) : ''
-                }, ...props })
+                return (props) => createElement(Trans, { ${[
+                    'i18nKey',
+                    gen.generatorOptions?.namespace ? 'ns: ' + JSON.stringify(gen.generatorOptions.namespace) : '',
+                    gen.generatorOptions?.shouldUnescape ? 'shouldUnescape: true' : '',
+                    '...props',
+                ]
+                    .filter(Boolean)
+                    .join(', ')} })
             }
         `)
 
