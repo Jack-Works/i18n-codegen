@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.0
+
+### Minor Changes
+
+- 63667cf: add support for unescape
+
 ## 0.4.1
 
 ### Patch Changes
