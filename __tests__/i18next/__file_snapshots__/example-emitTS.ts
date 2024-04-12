@@ -1,12 +1,19 @@
 // @ts-nocheck
 /* eslint-disable */
 import { createElement, useMemo, type ComponentType } from "react";
+import type { InterpolationOptions, TOptionsBase } from "i18next";
 import { useTranslation, Trans, type TransProps } from "react-i18next";
 type TypedTransProps<Value, Components> = Omit<TransProps<string>, "values" | "ns" | "i18nKey"> & ({} extends Value ? {} : {
     values: Value;
 }) & {
     components: Components;
 };
+type I18NextOptions<T> = (T | {
+    readonly replace: T;
+}) & (Pick<TOptionsBase, "lng" | "lngs" | "fallbackLng" | "postProcess" | "interpolation"> & {
+    interpolation?: SupportedInterpolationOptions;
+});
+type SupportedInterpolationOptions = Omit<InterpolationOptions, "formatSeparator" | "prefix" | "suffix" | "prefixEscaped" | "suffixEscaped" | "unescapeSuffix" | "unescapePrefix" | "nestingPrefix" | "nestingSuffix" | "nestingPrefixEscaped" | "nestingSuffixEscaped" | "nestingOptionsSeparator" | "defaultVariables">;
 function createProxy(initValue: (key: string) => any) {
     function define(key: string) {
         const value = initValue(key);
@@ -105,7 +112,7 @@ export function useTypedTranslation(): {
       * `A list of {{val, list}}`
       */
     formattedList(options: {
-        readonly val: readonly string[];
+        readonly val: readonly (readonly unknown[]);
     }): string;
     /**
       * `No box`
@@ -161,6 +168,45 @@ export function useTypedTranslation(): {
         readonly x: {
             readonly data2: string;
         };
+    }): string;
+    /**
+      * `text: $t(common:normal)`
+      */
+    nesting1(): string;
+    /**
+      * `They have $t(girls, {"count": {{girls}} }) and $t(boys, {"count": {{boys}} })`
+      */
+    girlsAndBoys(options: Readonly<{
+        girls: string;
+        boys: string;
+    }>): string;
+    /**
+      * `{{count}} boy`
+    
+      * - boys_other: `{{count}} boys`
+      */
+    boys(options: {
+        readonly count: string | number | bigint;
+    }): string;
+    /**
+      * `{{count}} boys`
+      */
+    boys_other(options: {
+        readonly count: string | number | bigint;
+    }): string;
+    /**
+      * `{{count}} girl`
+    
+      * - girls_other: `{{count}} girls`
+      */
+    girls(options: {
+        readonly count: string | number | bigint;
+    }): string;
+    /**
+      * `{{count}} girls`
+      */
+    girls_other(options: {
+        readonly count: string | number | bigint;
     }): string;
     /**
       * - box_zero: `No box`

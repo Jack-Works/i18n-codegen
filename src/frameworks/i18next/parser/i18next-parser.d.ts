@@ -20,8 +20,8 @@ declare module 'i18next-translation-parser' {
         /** warn: may contain invalid var "a.b" or "a, format" */
         variable: string
     }
-    export type Node = TagNode | TextNode | InterpolationOrNestingNode
-    export type AST = Node[]
+    export type StringNode = TagNode | TextNode | InterpolationOrNestingNode
+    export type AST = StringNode[]
     export function parse(str: string): AST
     export function stringify(ast: AST): string
     export function astStats(

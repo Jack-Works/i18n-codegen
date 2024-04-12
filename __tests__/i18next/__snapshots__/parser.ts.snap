@@ -1,1335 +1,1032 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`should parse i18next format correctly > i18next-parse-example 1`] = `
+exports[`should parse i18next format correctly 1`] = `
 {
-  "contexts": Map {
-    "box" => Map {
-      "orange" => {
-        "interpolations": Map {
-          "count" => [
-            [
-              24,
-              27,
+  "diagnostics": [],
+  "filename": "input.json",
+  "members": [],
+  "namespaces": [
+    TranslateSymbol {
+      "contributed_by": "input.json",
+      "members": Map {
+        "normal" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "normal",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "references": [],
+            "slots": [],
+            "string": "this is a normal key",
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (normal)",
+          },
+        ],
+        "introprolation" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "introprolation",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "references": [],
+            "slots": [
+              TranslateSlot {
+                "key": [
+                  "firstName",
+                ],
+                "type": "string",
+              },
             ],
-            TokenObject {
-              "end": -1,
-              "flags": 8,
-              "kind": 152,
-              "modifierFlagsCache": 0,
-              "parent": undefined,
-              "pos": -1,
-              "transformFlags": 1,
-            },
-            true,
-          ],
-        },
-        "position": [
-          24,
-          4,
+            "string": "I am {{firstName}}",
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (introprolation)",
+          },
         ],
-        "tags": Map {},
-        "type": "key",
-        "value": "{{count}} orange boxes",
-        "value_position": [
-          24,
-          24,
-        ],
-      },
-      "blue" => {
-        "interpolations": Map {
-          "count" => [
-            [
-              26,
-              25,
+        "introprolationsSimple" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "introprolationsSimple",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "references": [],
+            "slots": [
+              TranslateSlot {
+                "key": [
+                  "firstName",
+                ],
+                "type": "string",
+              },
+              TranslateSlot {
+                "key": [
+                  "lastName",
+                ],
+                "type": "string",
+              },
             ],
-            TokenObject {
-              "end": -1,
-              "flags": 8,
-              "kind": 152,
-              "modifierFlagsCache": 0,
-              "parent": undefined,
-              "pos": -1,
-              "transformFlags": 1,
-            },
-            true,
-          ],
-        },
-        "position": [
-          26,
-          4,
+            "string": "I am {{firstName}} {{lastName}}",
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (introprolationsSimple)",
+          },
         ],
-        "tags": Map {},
-        "type": "key",
-        "value": "{{count}} blue boxes",
-        "value_position": [
-          26,
-          22,
-        ],
-      },
-    },
-  },
-  "plurals": Map {
-    "box" => Map {
-      "zero" => {
-        "interpolations": Map {},
-        "position": [
-          20,
-          4,
-        ],
-        "tags": Map {},
-        "type": "key",
-        "value": "No box",
-        "value_position": [
-          20,
-          16,
-        ],
-      },
-      "one" => {
-        "interpolations": Map {},
-        "position": [
-          25,
-          4,
-        ],
-        "tags": Map {},
-        "type": "key",
-        "value": "1 blue box",
-        "value_position": [
-          25,
-          20,
-        ],
-      },
-      "other" => {
-        "interpolations": Map {
-          "count" => [
-            [
-              26,
-              25,
+        "introprolationsComplex" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "introprolationsComplex",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "references": [],
+            "slots": [
+              TranslateSlot {
+                "key": [
+                  "author",
+                  "name",
+                  "first",
+                ],
+                "type": "string",
+              },
+              TranslateSlot {
+                "key": [
+                  "author",
+                  "name",
+                  "last",
+                ],
+                "type": "string",
+              },
             ],
-            TokenObject {
-              "end": -1,
-              "flags": 8,
-              "kind": 152,
-              "modifierFlagsCache": 0,
-              "parent": undefined,
-              "pos": -1,
-              "transformFlags": 1,
-            },
-            true,
-          ],
-        },
-        "position": [
-          26,
-          4,
+            "string": "I am {{author.name.first}} {{author.name.last}}",
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (introprolationsComplex)",
+          },
         ],
-        "tags": Map {},
-        "type": "key",
-        "value": "{{count}} blue boxes",
-        "value_position": [
-          26,
-          22,
-        ],
-      },
-    },
-    "mergeProps" => Map {
-      "other" => {
-        "interpolations": Map {
-          "x" => [
-            [
-              29,
-              27,
+        "introprolationsMixed" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "introprolationsMixed",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "references": [],
+            "slots": [
+              TranslateSlot {
+                "key": [
+                  "author",
+                  "name",
+                ],
+                "type": "string",
+              },
+              TranslateSlot {
+                "key": [
+                  "author",
+                ],
+                "type": "string",
+              },
             ],
-            NodeObject {
-              "end": -1,
-              "flags": 8,
-              "kind": 184,
-              "members": [
-                NodeObject {
-                  "end": -1,
-                  "flags": 8,
-                  "initializer": undefined,
-                  "kind": 168,
-                  "localSymbol": undefined,
-                  "locals": undefined,
-                  "modifierFlagsCache": 0,
-                  "modifiers": [
-                    TokenObject {
-                      "end": -1,
-                      "flags": 8,
-                      "kind": 146,
-                      "modifierFlagsCache": 0,
-                      "parent": undefined,
-                      "pos": -1,
-                      "transformFlags": 1,
-                    },
-                  ],
-                  "name": IdentifierObject {
-                    "end": -1,
-                    "escapedText": "data2",
-                    "flags": 8,
-                    "kind": 79,
-                    "modifierFlagsCache": 0,
-                    "originalKeywordKind": undefined,
-                    "parent": undefined,
-                    "pos": -1,
-                    "transformFlags": 0,
-                  },
-                  "nextContainer": undefined,
-                  "parent": undefined,
-                  "pos": -1,
-                  "questionToken": undefined,
-                  "symbol": undefined,
-                  "transformFlags": 1,
-                  "type": TokenObject {
-                    "end": -1,
-                    "flags": 8,
-                    "kind": 152,
-                    "modifierFlagsCache": 0,
-                    "parent": undefined,
-                    "pos": -1,
-                    "transformFlags": 1,
-                  },
-                },
-              ],
-              "modifierFlagsCache": 0,
-              "parent": undefined,
-              "pos": -1,
-              "transformFlags": 1,
-            },
-            true,
-          ],
-        },
-        "position": [
-          29,
-          4,
+            "string": "I am {{author.name}} {{author}}",
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (introprolationsMixed)",
+          },
         ],
-        "tags": Map {},
-        "type": "key",
-        "value": "{{x.data2}}",
-        "value_position": [
-          29,
-          24,
-        ],
-      },
-    },
-  },
-  "root": {
-    "items": Map {
-      "normal" => {
-        "interpolations": Map {},
-        "position": [
-          3,
-          4,
-        ],
-        "tags": Map {},
-        "type": "key",
-        "value": "this is a normal key",
-        "value_position": [
-          3,
-          14,
-        ],
-      },
-      "introprolation" => {
-        "interpolations": Map {
-          "firstName" => [
-            [
-              5,
-              30,
+        "unescaped" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "unescaped",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "references": [],
+            "slots": [
+              TranslateSlot {
+                "key": [
+                  "var",
+                ],
+                "type": "string",
+              },
             ],
-            TokenObject {
-              "end": -1,
-              "flags": 8,
-              "kind": 152,
-              "modifierFlagsCache": 0,
-              "parent": undefined,
-              "pos": -1,
-              "transformFlags": 1,
-            },
-            true,
-          ],
-        },
-        "position": [
-          5,
-          4,
+            "string": "dangerous {{- var}}",
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (unescaped)",
+          },
         ],
-        "tags": Map {},
-        "type": "key",
-        "value": "I am {{firstName}}",
-        "value_position": [
-          5,
-          22,
-        ],
-      },
-      "introprolationsSimple" => {
-        "interpolations": Map {
-          "firstName" => [
-            [
-              6,
-              37,
+        "formattedNumber" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "formattedNumber",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "references": [],
+            "slots": [
+              TranslateSlot {
+                "key": [
+                  "date",
+                ],
+                "type": "string | number | bigint",
+              },
             ],
-            TokenObject {
-              "end": -1,
-              "flags": 8,
-              "kind": 152,
-              "modifierFlagsCache": 0,
-              "parent": undefined,
-              "pos": -1,
-              "transformFlags": 1,
-            },
-            true,
-          ],
-          "lastName" => [
-            [
-              6,
-              51,
-            ],
-            TokenObject {
-              "end": -1,
-              "flags": 8,
-              "kind": 152,
-              "modifierFlagsCache": 0,
-              "parent": undefined,
-              "pos": -1,
-              "transformFlags": 1,
-            },
-            true,
-          ],
-        },
-        "position": [
-          6,
-          4,
+            "string": "The number is {{date, number}}",
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (formattedNumber)",
+          },
         ],
-        "tags": Map {},
-        "type": "key",
-        "value": "I am {{firstName}} {{lastName}}",
-        "value_position": [
-          6,
-          29,
-        ],
-      },
-      "introprolationsComplex" => {
-        "interpolations": Map {
-          "author" => [
-            [
-              7,
-              38,
+        "formattedDate" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "formattedDate",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "references": [],
+            "slots": [
+              TranslateSlot {
+                "key": [
+                  "date",
+                ],
+                "type": "Date",
+              },
             ],
-            NodeObject {
-              "end": -1,
-              "flags": 8,
-              "kind": 184,
-              "members": [
-                NodeObject {
-                  "end": -1,
-                  "flags": 8,
-                  "initializer": undefined,
-                  "kind": 168,
-                  "localSymbol": undefined,
-                  "locals": undefined,
-                  "modifierFlagsCache": 0,
-                  "modifiers": [
-                    TokenObject {
-                      "end": -1,
-                      "flags": 8,
-                      "kind": 146,
-                      "modifierFlagsCache": 0,
-                      "parent": undefined,
-                      "pos": -1,
-                      "transformFlags": 1,
-                    },
-                  ],
-                  "name": IdentifierObject {
-                    "end": -1,
-                    "escapedText": "name",
-                    "flags": 8,
-                    "kind": 79,
-                    "modifierFlagsCache": 0,
-                    "originalKeywordKind": undefined,
-                    "parent": undefined,
-                    "pos": -1,
-                    "transformFlags": 0,
-                  },
-                  "nextContainer": undefined,
-                  "parent": undefined,
-                  "pos": -1,
-                  "questionToken": undefined,
-                  "symbol": undefined,
-                  "transformFlags": 1,
-                  "type": NodeObject {
-                    "end": -1,
-                    "flags": 8,
-                    "kind": 180,
-                    "modifierFlagsCache": 0,
-                    "parent": undefined,
-                    "pos": -1,
-                    "transformFlags": 1,
-                    "typeArguments": [
-                      NodeObject {
-                        "end": -1,
-                        "flags": 8,
-                        "kind": 184,
-                        "members": [
-                          NodeObject {
-                            "end": -1,
-                            "flags": 8,
-                            "initializer": undefined,
-                            "kind": 168,
-                            "localSymbol": undefined,
-                            "locals": undefined,
-                            "modifierFlagsCache": 0,
-                            "modifiers": undefined,
-                            "name": IdentifierObject {
-                              "end": -1,
-                              "escapedText": "first",
-                              "flags": 8,
-                              "kind": 79,
-                              "modifierFlagsCache": 0,
-                              "originalKeywordKind": undefined,
-                              "parent": undefined,
-                              "pos": -1,
-                              "transformFlags": 0,
-                            },
-                            "nextContainer": undefined,
-                            "parent": undefined,
-                            "pos": -1,
-                            "questionToken": undefined,
-                            "symbol": undefined,
-                            "transformFlags": 1,
-                            "type": TokenObject {
-                              "end": -1,
-                              "flags": 8,
-                              "kind": 152,
-                              "modifierFlagsCache": 0,
-                              "parent": undefined,
-                              "pos": -1,
-                              "transformFlags": 1,
-                            },
-                          },
-                          NodeObject {
-                            "end": -1,
-                            "flags": 8,
-                            "initializer": undefined,
-                            "kind": 168,
-                            "localSymbol": undefined,
-                            "locals": undefined,
-                            "modifierFlagsCache": 0,
-                            "modifiers": undefined,
-                            "name": IdentifierObject {
-                              "end": -1,
-                              "escapedText": "last",
-                              "flags": 8,
-                              "kind": 79,
-                              "modifierFlagsCache": 0,
-                              "originalKeywordKind": undefined,
-                              "parent": undefined,
-                              "pos": -1,
-                              "transformFlags": 0,
-                            },
-                            "nextContainer": undefined,
-                            "parent": undefined,
-                            "pos": -1,
-                            "questionToken": undefined,
-                            "symbol": undefined,
-                            "transformFlags": 1,
-                            "type": TokenObject {
-                              "end": -1,
-                              "flags": 8,
-                              "kind": 152,
-                              "modifierFlagsCache": 0,
-                              "parent": undefined,
-                              "pos": -1,
-                              "transformFlags": 1,
-                            },
-                          },
-                        ],
-                        "modifierFlagsCache": 0,
-                        "parent": undefined,
-                        "pos": -1,
-                        "transformFlags": 1,
-                      },
+            "string": "The current date is {{date, datetime}}",
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (formattedDate)",
+          },
+        ],
+        "formattedDate2" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "formattedDate2",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "references": [],
+            "slots": [
+              TranslateSlot {
+                "key": [
+                  "val",
+                ],
+                "type": "string | number | bigint",
+              },
+            ],
+            "string": "Lorem {{val, relativetime(quarter)}}",
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (formattedDate2)",
+          },
+        ],
+        "formattedCurrency" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "formattedCurrency",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "references": [],
+            "slots": [
+              TranslateSlot {
+                "key": [
+                  "date",
+                ],
+                "type": "string | number | bigint",
+              },
+            ],
+            "string": "It costs {{date, currency(USD)}}",
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (formattedCurrency)",
+          },
+        ],
+        "formattedList" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "formattedList",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "references": [],
+            "slots": [
+              TranslateSlot {
+                "key": [
+                  "val",
+                ],
+                "type": "readonly unknown[]",
+              },
+            ],
+            "string": "A list of {{val, list}}",
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (formattedList)",
+          },
+        ],
+        "htmlTag" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "htmlTag",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "references": [],
+            "slots": [],
+            "string": "<i>hi</i>",
+            "tags": [
+              "i",
+            ],
+            Symbol(Symbol.toStringTag): "Symbol (htmlTag)",
+          },
+        ],
+        "box_zero" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "box_zero",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "references": [],
+            "slots": [],
+            "string": "No box",
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (box_zero)",
+          },
+        ],
+        "box" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "box",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "plural_symbol": [
+              TranslateSymbol {
+                "contributed_by": "input.json",
+                "members": Map {},
+                "name": "box_zero",
+                "namespace": Map {},
+                "node": PropertyAssignment { ... },
+                "references": [],
+                "slots": [],
+                "string": "No box",
+                "tags": [],
+                Symbol(Symbol.toStringTag): "Symbol (box_zero)",
+              },
+              "zero",
+            ],
+            "references": [],
+            "slots": [],
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (box (from box_zero))",
+          },
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "box",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "plural_symbol": [
+              TranslateSymbol {
+                "contributed_by": "input.json",
+                "members": Map {},
+                "name": "box_one",
+                "namespace": Map {},
+                "node": PropertyAssignment { ... },
+                "references": [],
+                "slots": [],
+                "string": "1 box",
+                "tags": [],
+                Symbol(Symbol.toStringTag): "Symbol (box_one)",
+              },
+              "one",
+            ],
+            "references": [],
+            "slots": [],
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (box (from box_one))",
+          },
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "box",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "plural_symbol": [
+              TranslateSymbol {
+                "contributed_by": "input.json",
+                "members": Map {},
+                "name": "box_other",
+                "namespace": Map {},
+                "node": PropertyAssignment { ... },
+                "references": [],
+                "slots": [
+                  TranslateSlot {
+                    "key": [
+                      "count",
                     ],
-                    "typeName": IdentifierObject {
-                      "end": -1,
-                      "escapedText": "Readonly",
-                      "flags": 8,
-                      "kind": 79,
-                      "modifierFlagsCache": 0,
-                      "originalKeywordKind": undefined,
-                      "parent": undefined,
-                      "pos": -1,
-                      "transformFlags": 0,
-                    },
+                    "type": "string",
                   },
-                },
-              ],
-              "modifierFlagsCache": 0,
-              "parent": undefined,
-              "pos": -1,
-              "transformFlags": 1,
-            },
-            true,
-          ],
-        },
-        "position": [
-          7,
-          4,
-        ],
-        "tags": Map {},
-        "type": "key",
-        "value": "I am {{author.name.first}} {{author.name.last}}",
-        "value_position": [
-          7,
-          30,
-        ],
-      },
-      "introprolationsMixed" => {
-        "interpolations": Map {
-          "author" => [
-            [
-              8,
-              36,
-            ],
-            NodeObject {
-              "end": -1,
-              "flags": 8,
-              "kind": 190,
-              "modifierFlagsCache": 0,
-              "parent": undefined,
-              "pos": -1,
-              "transformFlags": 1,
-              "types": [
-                TokenObject {
-                  "end": -1,
-                  "flags": 8,
-                  "kind": 152,
-                  "modifierFlagsCache": 0,
-                  "parent": undefined,
-                  "pos": -1,
-                  "transformFlags": 1,
-                },
-                NodeObject {
-                  "end": -1,
-                  "flags": 8,
-                  "kind": 184,
-                  "members": [
-                    NodeObject {
-                      "end": -1,
-                      "flags": 8,
-                      "initializer": undefined,
-                      "kind": 168,
-                      "localSymbol": undefined,
-                      "locals": undefined,
-                      "modifierFlagsCache": 0,
-                      "modifiers": [
-                        TokenObject {
-                          "end": -1,
-                          "flags": 8,
-                          "kind": 146,
-                          "modifierFlagsCache": 0,
-                          "parent": undefined,
-                          "pos": -1,
-                          "transformFlags": 1,
-                        },
-                      ],
-                      "name": IdentifierObject {
-                        "end": -1,
-                        "escapedText": "name",
-                        "flags": 8,
-                        "kind": 79,
-                        "modifierFlagsCache": 0,
-                        "originalKeywordKind": undefined,
-                        "parent": undefined,
-                        "pos": -1,
-                        "transformFlags": 0,
-                      },
-                      "nextContainer": undefined,
-                      "parent": undefined,
-                      "pos": -1,
-                      "questionToken": undefined,
-                      "symbol": undefined,
-                      "transformFlags": 1,
-                      "type": TokenObject {
-                        "end": -1,
-                        "flags": 8,
-                        "kind": 152,
-                        "modifierFlagsCache": 0,
-                        "parent": undefined,
-                        "pos": -1,
-                        "transformFlags": 1,
-                      },
-                    },
-                  ],
-                  "modifierFlagsCache": 0,
-                  "parent": undefined,
-                  "pos": -1,
-                  "transformFlags": 1,
-                },
-              ],
-            },
-            true,
-          ],
-        },
-        "position": [
-          8,
-          4,
-        ],
-        "tags": Map {},
-        "type": "key",
-        "value": "I am {{author.name}} {{author}}",
-        "value_position": [
-          8,
-          28,
-        ],
-      },
-      "unescaped" => {
-        "interpolations": Map {
-          "var" => [
-            [
-              10,
-              31,
-            ],
-            TokenObject {
-              "end": -1,
-              "flags": 8,
-              "kind": 152,
-              "modifierFlagsCache": 0,
-              "parent": undefined,
-              "pos": -1,
-              "transformFlags": 1,
-            },
-            true,
-          ],
-        },
-        "position": [
-          10,
-          4,
-        ],
-        "tags": Map {},
-        "type": "key",
-        "value": "dangerous {{- var}}",
-        "value_position": [
-          10,
-          17,
-        ],
-      },
-      "formattedNumber" => {
-        "interpolations": Map {
-          "date" => [
-            [
-              12,
-              40,
-            ],
-            NodeObject {
-              "end": -1,
-              "flags": 8,
-              "kind": 189,
-              "modifierFlagsCache": 0,
-              "parent": undefined,
-              "pos": -1,
-              "transformFlags": 1,
-              "types": [
-                TokenObject {
-                  "end": -1,
-                  "flags": 8,
-                  "kind": 152,
-                  "modifierFlagsCache": 0,
-                  "parent": undefined,
-                  "pos": -1,
-                  "transformFlags": 1,
-                },
-                TokenObject {
-                  "end": -1,
-                  "flags": 8,
-                  "kind": 148,
-                  "modifierFlagsCache": 0,
-                  "parent": undefined,
-                  "pos": -1,
-                  "transformFlags": 1,
-                },
-                TokenObject {
-                  "end": -1,
-                  "flags": 8,
-                  "kind": 160,
-                  "modifierFlagsCache": 0,
-                  "parent": undefined,
-                  "pos": -1,
-                  "transformFlags": 1,
-                },
-              ],
-            },
-            true,
-          ],
-        },
-        "position": [
-          12,
-          4,
-        ],
-        "tags": Map {},
-        "type": "key",
-        "value": "The number is {{date, number}}",
-        "value_position": [
-          12,
-          23,
-        ],
-      },
-      "formattedDate" => {
-        "interpolations": Map {
-          "date" => [
-            [
-              13,
-              44,
-            ],
-            NodeObject {
-              "end": -1,
-              "flags": 8,
-              "kind": 180,
-              "modifierFlagsCache": 0,
-              "parent": undefined,
-              "pos": -1,
-              "transformFlags": 1,
-              "typeArguments": undefined,
-              "typeName": IdentifierObject {
-                "end": -1,
-                "escapedText": "Date",
-                "flags": 8,
-                "kind": 79,
-                "modifierFlagsCache": 0,
-                "originalKeywordKind": undefined,
-                "parent": undefined,
-                "pos": -1,
-                "transformFlags": 0,
+                ],
+                "string": "{{count}} boxes",
+                "tags": [],
+                Symbol(Symbol.toStringTag): "Symbol (box_other)",
               },
-            },
-            true,
-          ],
-        },
-        "position": [
-          13,
-          4,
-        ],
-        "tags": Map {},
-        "type": "key",
-        "value": "The current date is {{date, datetime}}",
-        "value_position": [
-          13,
-          21,
-        ],
-      },
-      "formattedDate2" => {
-        "interpolations": Map {
-          "val" => [
-            [
-              14,
-              31,
+              "other",
             ],
-            NodeObject {
-              "end": -1,
-              "flags": 8,
-              "kind": 189,
-              "modifierFlagsCache": 0,
-              "parent": undefined,
-              "pos": -1,
-              "transformFlags": 1,
-              "types": [
-                TokenObject {
-                  "end": -1,
-                  "flags": 8,
-                  "kind": 152,
-                  "modifierFlagsCache": 0,
-                  "parent": undefined,
-                  "pos": -1,
-                  "transformFlags": 1,
-                },
-                TokenObject {
-                  "end": -1,
-                  "flags": 8,
-                  "kind": 148,
-                  "modifierFlagsCache": 0,
-                  "parent": undefined,
-                  "pos": -1,
-                  "transformFlags": 1,
-                },
-                TokenObject {
-                  "end": -1,
-                  "flags": 8,
-                  "kind": 160,
-                  "modifierFlagsCache": 0,
-                  "parent": undefined,
-                  "pos": -1,
-                  "transformFlags": 1,
-                },
-              ],
-            },
-            true,
-          ],
-        },
-        "position": [
-          14,
-          4,
-        ],
-        "tags": Map {},
-        "type": "key",
-        "value": "Lorem {{val, relativetime(quarter)}}",
-        "value_position": [
-          14,
-          22,
-        ],
-      },
-      "formattedCurrency" => {
-        "interpolations": Map {
-          "date" => [
-            [
-              15,
-              37,
-            ],
-            NodeObject {
-              "end": -1,
-              "flags": 8,
-              "kind": 189,
-              "modifierFlagsCache": 0,
-              "parent": undefined,
-              "pos": -1,
-              "transformFlags": 1,
-              "types": [
-                TokenObject {
-                  "end": -1,
-                  "flags": 8,
-                  "kind": 152,
-                  "modifierFlagsCache": 0,
-                  "parent": undefined,
-                  "pos": -1,
-                  "transformFlags": 1,
-                },
-                TokenObject {
-                  "end": -1,
-                  "flags": 8,
-                  "kind": 148,
-                  "modifierFlagsCache": 0,
-                  "parent": undefined,
-                  "pos": -1,
-                  "transformFlags": 1,
-                },
-                TokenObject {
-                  "end": -1,
-                  "flags": 8,
-                  "kind": 160,
-                  "modifierFlagsCache": 0,
-                  "parent": undefined,
-                  "pos": -1,
-                  "transformFlags": 1,
-                },
-              ],
-            },
-            true,
-          ],
-        },
-        "position": [
-          15,
-          4,
-        ],
-        "tags": Map {},
-        "type": "key",
-        "value": "It costs {{date, currency(USD)}}",
-        "value_position": [
-          15,
-          25,
-        ],
-      },
-      "formattedList" => {
-        "interpolations": Map {
-          "val" => [
-            [
-              16,
-              34,
-            ],
-            NodeObject {
-              "end": -1,
-              "flags": 8,
-              "kind": 195,
-              "modifierFlagsCache": 0,
-              "operator": 146,
-              "parent": undefined,
-              "pos": -1,
-              "transformFlags": 1,
-              "type": NodeObject {
-                "elementType": TokenObject {
-                  "end": -1,
-                  "flags": 8,
-                  "kind": 152,
-                  "modifierFlagsCache": 0,
-                  "parent": undefined,
-                  "pos": -1,
-                  "transformFlags": 1,
-                },
-                "end": -1,
-                "flags": 8,
-                "kind": 185,
-                "modifierFlagsCache": 0,
-                "parent": undefined,
-                "pos": -1,
-                "transformFlags": 1,
+            "references": [],
+            "slots": [
+              TranslateSlot {
+                "key": [
+                  "count",
+                ],
+                "type": "string",
               },
-            },
-            true,
-          ],
-        },
-        "position": [
-          16,
-          4,
-        ],
-        "tags": Map {},
-        "type": "key",
-        "value": "A list of {{val, list}}",
-        "value_position": [
-          16,
-          21,
-        ],
-      },
-      "htmlTag" => {
-        "interpolations": Map {},
-        "position": [
-          18,
-          4,
-        ],
-        "tags": Map {
-          "i" => [
-            18,
-            17,
-          ],
-        },
-        "type": "key",
-        "value": "<i>hi</i>",
-        "value_position": [
-          18,
-          15,
-        ],
-      },
-      "box_zero" => {
-        "interpolations": Map {},
-        "position": [
-          20,
-          4,
-        ],
-        "tags": Map {},
-        "type": "key",
-        "value": "No box",
-        "value_position": [
-          20,
-          16,
-        ],
-      },
-      "box_one" => {
-        "interpolations": Map {},
-        "position": [
-          21,
-          4,
-        ],
-        "tags": Map {},
-        "type": "key",
-        "value": "1 box",
-        "value_position": [
-          21,
-          15,
-        ],
-      },
-      "box_other" => {
-        "interpolations": Map {
-          "count" => [
-            [
-              22,
-              20,
             ],
-            TokenObject {
-              "end": -1,
-              "flags": 8,
-              "kind": 152,
-              "modifierFlagsCache": 0,
-              "parent": undefined,
-              "pos": -1,
-              "transformFlags": 1,
-            },
-            true,
-          ],
-        },
-        "position": [
-          22,
-          4,
-        ],
-        "tags": Map {},
-        "type": "key",
-        "value": "{{count}} boxes",
-        "value_position": [
-          22,
-          17,
-        ],
-      },
-      "box_orange_one" => {
-        "interpolations": Map {},
-        "position": [
-          23,
-          4,
-        ],
-        "tags": Map {},
-        "type": "key",
-        "value": "1 orange box",
-        "value_position": [
-          23,
-          22,
-        ],
-      },
-      "box_orange_other" => {
-        "interpolations": Map {
-          "count" => [
-            [
-              24,
-              27,
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (box (from box_other))",
+          },
+          TranslateSymbol {
+            "contextual_symbol": [
+              TranslateSymbol {
+                "contributed_by": "input.json",
+                "members": Map {},
+                "name": "box_orange_one",
+                "namespace": Map {},
+                "node": PropertyAssignment { ... },
+                "references": [],
+                "slots": [],
+                "string": "1 orange box",
+                "tags": [],
+                Symbol(Symbol.toStringTag): "Symbol (box_orange_one)",
+              },
+              "orange",
             ],
-            TokenObject {
-              "end": -1,
-              "flags": 8,
-              "kind": 152,
-              "modifierFlagsCache": 0,
-              "parent": undefined,
-              "pos": -1,
-              "transformFlags": 1,
-            },
-            true,
-          ],
-        },
-        "position": [
-          24,
-          4,
-        ],
-        "tags": Map {},
-        "type": "key",
-        "value": "{{count}} orange boxes",
-        "value_position": [
-          24,
-          24,
-        ],
-      },
-      "box_blue_one" => {
-        "interpolations": Map {},
-        "position": [
-          25,
-          4,
-        ],
-        "tags": Map {},
-        "type": "key",
-        "value": "1 blue box",
-        "value_position": [
-          25,
-          20,
-        ],
-      },
-      "box_blue_other" => {
-        "interpolations": Map {
-          "count" => [
-            [
-              26,
-              25,
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "box",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "plural_symbol": [
+              TranslateSymbol {
+                "contributed_by": "input.json",
+                "members": Map {},
+                "name": "box_orange_one",
+                "namespace": Map {},
+                "node": PropertyAssignment { ... },
+                "references": [],
+                "slots": [],
+                "string": "1 orange box",
+                "tags": [],
+                Symbol(Symbol.toStringTag): "Symbol (box_orange_one)",
+              },
+              "one",
             ],
-            TokenObject {
-              "end": -1,
-              "flags": 8,
-              "kind": 152,
-              "modifierFlagsCache": 0,
-              "parent": undefined,
-              "pos": -1,
-              "transformFlags": 1,
-            },
-            true,
-          ],
-        },
-        "position": [
-          26,
-          4,
-        ],
-        "tags": Map {},
-        "type": "key",
-        "value": "{{count}} blue boxes",
-        "value_position": [
-          26,
-          22,
-        ],
-      },
-      "mergeProps" => {
-        "interpolations": Map {
-          "x" => [
-            [
-              28,
-              21,
-            ],
-            NodeObject {
-              "end": -1,
-              "flags": 8,
-              "kind": 184,
-              "members": [
-                NodeObject {
-                  "end": -1,
-                  "flags": 8,
-                  "initializer": undefined,
-                  "kind": 168,
-                  "localSymbol": undefined,
-                  "locals": undefined,
-                  "modifierFlagsCache": 0,
-                  "modifiers": [
-                    TokenObject {
-                      "end": -1,
-                      "flags": 8,
-                      "kind": 146,
-                      "modifierFlagsCache": 0,
-                      "parent": undefined,
-                      "pos": -1,
-                      "transformFlags": 1,
-                    },
-                  ],
-                  "name": IdentifierObject {
-                    "end": -1,
-                    "escapedText": "data",
-                    "flags": 8,
-                    "kind": 79,
-                    "modifierFlagsCache": 0,
-                    "originalKeywordKind": undefined,
-                    "parent": undefined,
-                    "pos": -1,
-                    "transformFlags": 0,
+            "references": [],
+            "slots": [],
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (box (from box_orange_one))",
+          },
+          TranslateSymbol {
+            "contextual_symbol": [
+              TranslateSymbol {
+                "contributed_by": "input.json",
+                "members": Map {},
+                "name": "box_orange_other",
+                "namespace": Map {},
+                "node": PropertyAssignment { ... },
+                "references": [],
+                "slots": [
+                  TranslateSlot {
+                    "key": [
+                      "count",
+                    ],
+                    "type": "string",
                   },
-                  "nextContainer": undefined,
-                  "parent": undefined,
-                  "pos": -1,
-                  "questionToken": undefined,
-                  "symbol": undefined,
-                  "transformFlags": 1,
-                  "type": TokenObject {
-                    "end": -1,
-                    "flags": 8,
-                    "kind": 152,
-                    "modifierFlagsCache": 0,
-                    "parent": undefined,
-                    "pos": -1,
-                    "transformFlags": 1,
-                  },
-                },
-              ],
-              "modifierFlagsCache": 0,
-              "parent": undefined,
-              "pos": -1,
-              "transformFlags": 1,
-            },
-            true,
-          ],
-        },
-        "position": [
-          28,
-          4,
-        ],
-        "tags": Map {},
-        "type": "key",
-        "value": "{{x.data}}",
-        "value_position": [
-          28,
-          18,
-        ],
-      },
-      "mergeProps_other" => {
-        "interpolations": Map {
-          "x" => [
-            [
-              29,
-              27,
+                ],
+                "string": "{{count}} orange boxes",
+                "tags": [],
+                Symbol(Symbol.toStringTag): "Symbol (box_orange_other)",
+              },
+              "orange",
             ],
-            NodeObject {
-              "end": -1,
-              "flags": 8,
-              "kind": 184,
-              "members": [
-                NodeObject {
-                  "end": -1,
-                  "flags": 8,
-                  "initializer": undefined,
-                  "kind": 168,
-                  "localSymbol": undefined,
-                  "locals": undefined,
-                  "modifierFlagsCache": 0,
-                  "modifiers": [
-                    TokenObject {
-                      "end": -1,
-                      "flags": 8,
-                      "kind": 146,
-                      "modifierFlagsCache": 0,
-                      "parent": undefined,
-                      "pos": -1,
-                      "transformFlags": 1,
-                    },
-                  ],
-                  "name": IdentifierObject {
-                    "end": -1,
-                    "escapedText": "data2",
-                    "flags": 8,
-                    "kind": 79,
-                    "modifierFlagsCache": 0,
-                    "originalKeywordKind": undefined,
-                    "parent": undefined,
-                    "pos": -1,
-                    "transformFlags": 0,
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "box",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "plural_symbol": [
+              TranslateSymbol {
+                "contributed_by": "input.json",
+                "members": Map {},
+                "name": "box_orange_other",
+                "namespace": Map {},
+                "node": PropertyAssignment { ... },
+                "references": [],
+                "slots": [
+                  TranslateSlot {
+                    "key": [
+                      "count",
+                    ],
+                    "type": "string",
                   },
-                  "nextContainer": undefined,
-                  "parent": undefined,
-                  "pos": -1,
-                  "questionToken": undefined,
-                  "symbol": undefined,
-                  "transformFlags": 1,
-                  "type": TokenObject {
-                    "end": -1,
-                    "flags": 8,
-                    "kind": 152,
-                    "modifierFlagsCache": 0,
-                    "parent": undefined,
-                    "pos": -1,
-                    "transformFlags": 1,
+                ],
+                "string": "{{count}} orange boxes",
+                "tags": [],
+                Symbol(Symbol.toStringTag): "Symbol (box_orange_other)",
+              },
+              "other",
+            ],
+            "references": [],
+            "slots": [
+              TranslateSlot {
+                "key": [
+                  "count",
+                ],
+                "type": "string",
+              },
+            ],
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (box (from box_orange_other))",
+          },
+          TranslateSymbol {
+            "contextual_symbol": [
+              TranslateSymbol {
+                "contributed_by": "input.json",
+                "members": Map {},
+                "name": "box_blue_one",
+                "namespace": Map {},
+                "node": PropertyAssignment { ... },
+                "references": [],
+                "slots": [],
+                "string": "1 blue box",
+                "tags": [],
+                Symbol(Symbol.toStringTag): "Symbol (box_blue_one)",
+              },
+              "blue",
+            ],
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "box",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "plural_symbol": [
+              TranslateSymbol {
+                "contributed_by": "input.json",
+                "members": Map {},
+                "name": "box_blue_one",
+                "namespace": Map {},
+                "node": PropertyAssignment { ... },
+                "references": [],
+                "slots": [],
+                "string": "1 blue box",
+                "tags": [],
+                Symbol(Symbol.toStringTag): "Symbol (box_blue_one)",
+              },
+              "one",
+            ],
+            "references": [],
+            "slots": [],
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (box (from box_blue_one))",
+          },
+          TranslateSymbol {
+            "contextual_symbol": [
+              TranslateSymbol {
+                "contributed_by": "input.json",
+                "members": Map {},
+                "name": "box_blue_other",
+                "namespace": Map {},
+                "node": PropertyAssignment { ... },
+                "references": [],
+                "slots": [
+                  TranslateSlot {
+                    "key": [
+                      "count",
+                    ],
+                    "type": "string",
                   },
-                },
-              ],
-              "modifierFlagsCache": 0,
-              "parent": undefined,
-              "pos": -1,
-              "transformFlags": 1,
-            },
-            true,
-          ],
-        },
-        "position": [
-          29,
-          4,
+                ],
+                "string": "{{count}} blue boxes",
+                "tags": [],
+                Symbol(Symbol.toStringTag): "Symbol (box_blue_other)",
+              },
+              "blue",
+            ],
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "box",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "plural_symbol": [
+              TranslateSymbol {
+                "contributed_by": "input.json",
+                "members": Map {},
+                "name": "box_blue_other",
+                "namespace": Map {},
+                "node": PropertyAssignment { ... },
+                "references": [],
+                "slots": [
+                  TranslateSlot {
+                    "key": [
+                      "count",
+                    ],
+                    "type": "string",
+                  },
+                ],
+                "string": "{{count}} blue boxes",
+                "tags": [],
+                Symbol(Symbol.toStringTag): "Symbol (box_blue_other)",
+              },
+              "other",
+            ],
+            "references": [],
+            "slots": [
+              TranslateSlot {
+                "key": [
+                  "count",
+                ],
+                "type": "string",
+              },
+            ],
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (box (from box_blue_other))",
+          },
         ],
-        "tags": Map {},
-        "type": "key",
-        "value": "{{x.data2}}",
-        "value_position": [
-          29,
-          24,
+        "box_one" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "box_one",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "references": [],
+            "slots": [],
+            "string": "1 box",
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (box_one)",
+          },
+        ],
+        "box_other" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "box_other",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "references": [],
+            "slots": [
+              TranslateSlot {
+                "key": [
+                  "count",
+                ],
+                "type": "string",
+              },
+            ],
+            "string": "{{count}} boxes",
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (box_other)",
+          },
+        ],
+        "box_orange_one" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "box_orange_one",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "references": [],
+            "slots": [],
+            "string": "1 orange box",
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (box_orange_one)",
+          },
+        ],
+        "box_orange_other" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "box_orange_other",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "references": [],
+            "slots": [
+              TranslateSlot {
+                "key": [
+                  "count",
+                ],
+                "type": "string",
+              },
+            ],
+            "string": "{{count}} orange boxes",
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (box_orange_other)",
+          },
+        ],
+        "box_blue_one" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "box_blue_one",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "references": [],
+            "slots": [],
+            "string": "1 blue box",
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (box_blue_one)",
+          },
+        ],
+        "box_blue_other" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "box_blue_other",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "references": [],
+            "slots": [
+              TranslateSlot {
+                "key": [
+                  "count",
+                ],
+                "type": "string",
+              },
+            ],
+            "string": "{{count}} blue boxes",
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (box_blue_other)",
+          },
+        ],
+        "mergeProps" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "mergeProps",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "references": [],
+            "slots": [
+              TranslateSlot {
+                "key": [
+                  "x",
+                  "data",
+                ],
+                "type": "string",
+              },
+            ],
+            "string": "{{x.data}}",
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (mergeProps)",
+          },
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "mergeProps",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "plural_symbol": [
+              TranslateSymbol {
+                "contributed_by": "input.json",
+                "members": Map {},
+                "name": "mergeProps_other",
+                "namespace": Map {},
+                "node": PropertyAssignment { ... },
+                "references": [],
+                "slots": [
+                  TranslateSlot {
+                    "key": [
+                      "x",
+                      "data2",
+                    ],
+                    "type": "string",
+                  },
+                ],
+                "string": "{{x.data2}}",
+                "tags": [],
+                Symbol(Symbol.toStringTag): "Symbol (mergeProps_other)",
+              },
+              "other",
+            ],
+            "references": [],
+            "slots": [
+              TranslateSlot {
+                "key": [
+                  "x",
+                  "data2",
+                ],
+                "type": "string",
+              },
+            ],
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (mergeProps (from mergeProps_other))",
+          },
+        ],
+        "mergeProps_other" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "mergeProps_other",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "references": [],
+            "slots": [
+              TranslateSlot {
+                "key": [
+                  "x",
+                  "data2",
+                ],
+                "type": "string",
+              },
+            ],
+            "string": "{{x.data2}}",
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (mergeProps_other)",
+          },
+        ],
+        "nesting1" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "nesting1",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "references": [
+              TranslateReference {
+                "bound_slot_names": [],
+                "reference": [
+                  "common",
+                  "normal",
+                ],
+                "reference_is_namespace": [
+                  true,
+                  false,
+                ],
+              },
+            ],
+            "slots": [],
+            "string": "text: $t(common:normal)",
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (nesting1)",
+          },
+        ],
+        "girlsAndBoys" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "girlsAndBoys",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "references": [
+              TranslateReference {
+                "bound_slot_names": [
+                  "count",
+                ],
+                "reference": [
+                  "girls",
+                ],
+                "reference_is_namespace": [
+                  false,
+                ],
+              },
+              TranslateReference {
+                "bound_slot_names": [
+                  "count",
+                ],
+                "reference": [
+                  "boys",
+                ],
+                "reference_is_namespace": [
+                  false,
+                ],
+              },
+            ],
+            "slots": [
+              TranslateSlot {
+                "key": [
+                  "girls",
+                ],
+                "type": "string",
+              },
+              TranslateSlot {
+                "key": [
+                  "boys",
+                ],
+                "type": "string",
+              },
+            ],
+            "string": "They have $t(girls, {\\"count\\": {{girls}} }) and $t(boys, {\\"count\\": {{boys}} })",
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (girlsAndBoys)",
+          },
+        ],
+        "boys" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "boys",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "references": [],
+            "slots": [
+              TranslateSlot {
+                "key": [
+                  "count",
+                ],
+                "type": "string",
+              },
+            ],
+            "string": "{{count}} boy",
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (boys)",
+          },
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "boys",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "plural_symbol": [
+              TranslateSymbol {
+                "contributed_by": "input.json",
+                "members": Map {},
+                "name": "boys_other",
+                "namespace": Map {},
+                "node": PropertyAssignment { ... },
+                "references": [],
+                "slots": [
+                  TranslateSlot {
+                    "key": [
+                      "count",
+                    ],
+                    "type": "string",
+                  },
+                ],
+                "string": "{{count}} boys",
+                "tags": [],
+                Symbol(Symbol.toStringTag): "Symbol (boys_other)",
+              },
+              "other",
+            ],
+            "references": [],
+            "slots": [
+              TranslateSlot {
+                "key": [
+                  "count",
+                ],
+                "type": "string",
+              },
+            ],
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (boys (from boys_other))",
+          },
+        ],
+        "boys_other" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "boys_other",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "references": [],
+            "slots": [
+              TranslateSlot {
+                "key": [
+                  "count",
+                ],
+                "type": "string",
+              },
+            ],
+            "string": "{{count}} boys",
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (boys_other)",
+          },
+        ],
+        "girls" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "girls",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "references": [],
+            "slots": [
+              TranslateSlot {
+                "key": [
+                  "count",
+                ],
+                "type": "string",
+              },
+            ],
+            "string": "{{count}} girl",
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (girls)",
+          },
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "girls",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "plural_symbol": [
+              TranslateSymbol {
+                "contributed_by": "input.json",
+                "members": Map {},
+                "name": "girls_other",
+                "namespace": Map {},
+                "node": PropertyAssignment { ... },
+                "references": [],
+                "slots": [
+                  TranslateSlot {
+                    "key": [
+                      "count",
+                    ],
+                    "type": "string",
+                  },
+                ],
+                "string": "{{count}} girls",
+                "tags": [],
+                Symbol(Symbol.toStringTag): "Symbol (girls_other)",
+              },
+              "other",
+            ],
+            "references": [],
+            "slots": [
+              TranslateSlot {
+                "key": [
+                  "count",
+                ],
+                "type": "string",
+              },
+            ],
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (girls (from girls_other))",
+          },
+        ],
+        "girls_other" => [
+          TranslateSymbol {
+            "contributed_by": "input.json",
+            "members": Map {},
+            "name": "girls_other",
+            "namespace": Map {},
+            "node": PropertyAssignment { ... },
+            "references": [],
+            "slots": [
+              TranslateSlot {
+                "key": [
+                  "count",
+                ],
+                "type": "string",
+              },
+            ],
+            "string": "{{count}} girls",
+            "tags": [],
+            Symbol(Symbol.toStringTag): "Symbol (girls_other)",
+          },
         ],
       },
+      "name": "translation",
+      "namespace": Map {},
+      "node": ObjectLiteralExpression { ... },
+      "references": [],
+      "slots": [],
+      "tags": [],
+      Symbol(Symbol.toStringTag): "Symbol (FILE_ROOT)",
     },
-    "position": [
-      0,
-      0,
-    ],
-    "type": "object",
-  },
-  "variantList": Map {
-    "normal" => [
-      [
-        "normal",
-        "this is a normal key",
-      ],
-    ],
-    "introprolation" => [
-      [
-        "introprolation",
-        "I am {{firstName}}",
-      ],
-    ],
-    "introprolationsSimple" => [
-      [
-        "introprolationsSimple",
-        "I am {{firstName}} {{lastName}}",
-      ],
-    ],
-    "introprolationsComplex" => [
-      [
-        "introprolationsComplex",
-        "I am {{author.name.first}} {{author.name.last}}",
-      ],
-    ],
-    "introprolationsMixed" => [
-      [
-        "introprolationsMixed",
-        "I am {{author.name}} {{author}}",
-      ],
-    ],
-    "unescaped" => [
-      [
-        "unescaped",
-        "dangerous {{- var}}",
-      ],
-    ],
-    "formattedNumber" => [
-      [
-        "formattedNumber",
-        "The number is {{date, number}}",
-      ],
-    ],
-    "formattedDate" => [
-      [
-        "formattedDate",
-        "The current date is {{date, datetime}}",
-      ],
-    ],
-    "formattedDate2" => [
-      [
-        "formattedDate2",
-        "Lorem {{val, relativetime(quarter)}}",
-      ],
-    ],
-    "formattedCurrency" => [
-      [
-        "formattedCurrency",
-        "It costs {{date, currency(USD)}}",
-      ],
-    ],
-    "formattedList" => [
-      [
-        "formattedList",
-        "A list of {{val, list}}",
-      ],
-    ],
-    "htmlTag" => [
-      [
-        "htmlTag",
-        "<i>hi</i>",
-      ],
-    ],
-    "box" => [
-      [
-        "box_zero",
-        "No box",
-      ],
-      [
-        "box_one",
-        "1 box",
-      ],
-      [
-        "box_other",
-        "{{count}} boxes",
-      ],
-      [
-        "box_orange_one",
-        "1 orange box",
-      ],
-      [
-        "box_orange_other",
-        "{{count}} orange boxes",
-      ],
-      [
-        "box_blue_one",
-        "1 blue box",
-      ],
-      [
-        "box_blue_other",
-        "{{count}} blue boxes",
-      ],
-    ],
-    "mergeProps" => [
-      [
-        "mergeProps",
-        "{{x.data}}",
-      ],
-      [
-        "mergeProps_other",
-        "{{x.data2}}",
-      ],
-    ],
-  },
+  ],
+  "source_file": SourceFile { ... },
 }
 `;

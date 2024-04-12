@@ -1,2 +1,2 @@
-export { i18NextReactHooksGenerator as i18next_reactHooksGenerator } from './generator/react-hooks.js'
-export { i18NextParser } from './parser/index.js'
+export { i18next_react_hooks_emitter } from './emitter/react-hooks.js'
+export { i18next_parser } from './parser/index.js'

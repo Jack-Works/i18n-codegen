@@ -76,7 +76,7 @@ export declare function useTypedTranslation(): {
       * `A list of {{val, list}}`
       */
     formattedList(options: {
-        readonly val: readonly string[];
+        readonly val: readonly (readonly unknown[]);
     }): string;
     /**
       * `No box`
@@ -132,6 +132,45 @@ export declare function useTypedTranslation(): {
         readonly x: {
             readonly data2: string;
         };
+    }): string;
+    /**
+      * `text: $t(common:normal)`
+      */
+    nesting1(): string;
+    /**
+      * `They have $t(girls, {"count": {{girls}} }) and $t(boys, {"count": {{boys}} })`
+      */
+    girlsAndBoys(options: Readonly<{
+        girls: string;
+        boys: string;
+    }>): string;
+    /**
+      * `{{count}} boy`
+    
+      * - boys_other: `{{count}} boys`
+      */
+    boys(options: {
+        readonly count: string | number | bigint;
+    }): string;
+    /**
+      * `{{count}} boys`
+      */
+    boys_other(options: {
+        readonly count: string | number | bigint;
+    }): string;
+    /**
+      * `{{count}} girl`
+    
+      * - girls_other: `{{count}} girls`
+      */
+    girls(options: {
+        readonly count: string | number | bigint;
+    }): string;
+    /**
+      * `{{count}} girls`
+      */
+    girls_other(options: {
+        readonly count: string | number | bigint;
     }): string;
     /**
       * - box_zero: `No box`

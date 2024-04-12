@@ -1,4 +1,4 @@
-import type { Expression, ExpressionStatement, SourceFile, Statement, TypeNode } from 'typescript'
+import type { Diagnostic, Expression, ExpressionStatement, SourceFile, Statement, TypeNode } from 'typescript'
 import { readFileSync } from 'fs'
 import { createRequire } from 'module'
 import ts from 'typescript'
@@ -86,4 +86,14 @@ function getLibDTS(libName: string) {
     if (!target.endsWith('.d.ts')) throw new Error('lib.d.ts failed to reach')
     const text = readFileSync(require.resolve(target), 'utf-8')
     return text
+}
+
+export function default_diagnostic_formatter(diagnostics: readonly Diagnostic[]) {
+    console.log(
+        ts.formatDiagnosticsWithColorAndContext(diagnostics, {
+            getCanonicalFileName: (x) => x,
+            getCurrentDirectory: () => process.cwd(),
+            getNewLine: () => ts.sys.newLine,
+        }),
+    )
 }

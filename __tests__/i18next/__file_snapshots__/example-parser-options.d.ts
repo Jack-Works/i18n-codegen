@@ -76,7 +76,7 @@ export declare function useMyHooks(): {
       * `A list of {{val, list}}`
       */
     formatted_list(options: {
-        readonly val: readonly string[];
+        readonly val: readonly (readonly unknown[]);
     }): string;
     /**
       * `No box`
@@ -114,7 +114,7 @@ export declare function useMyHooks(): {
     }): string;
     /**
       * `{{x.data}}`
-    
+
       * - merge_props@other: `{{x.data2}}`
       */
     merge_props(options: Readonly<{
@@ -135,17 +135,17 @@ export declare function useMyHooks(): {
     }): string;
     /**
       * - box@zero: `No box`
-    
+
       * - box@one: `1 box`
-    
+
       * - box@other: `{{count}} boxes`
-    
+
       * - box@orange@one: `1 orange box`
-    
+
       * - box@orange@other: `{{count}} orange boxes`
-    
+
       * - box@blue@one: `1 blue box`
-    
+
       * - box@blue@other: `{{count}} blue boxes`
       */
     box(options: Readonly<{

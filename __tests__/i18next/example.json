@@ -27,4 +27,11 @@
 
     "mergeProps": "{{x.data}}",
     "mergeProps_other": "{{x.data2}}",
+
+    "nesting1": "text: $t(common:normal)",
+    "girlsAndBoys": "They have $t(girls, {\"count\": {{girls}} }) and $t(boys, {\"count\": {{boys}} })",
+    "boys": "{{count}} boy",
+    "boys_other": "{{count}} boys",
+    "girls": "{{count}} girl",
+    "girls_other": "{{count}} girls"
 }

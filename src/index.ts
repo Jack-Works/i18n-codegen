@@ -1,49 +1,80 @@
-import { i18NextParser } from './frameworks/i18next/parser/i18n-next.js'
-import { Config, ConfigFile, GeneratorList, ParserList } from './json-schema.js'
-import { GeneratorInput, ParserInput } from './type.js'
+import { type Config, type ConfigFile, type BaseConfig } from './json-schema.js'
+import { type EmittedFile } from './analyzer/type.js'
 import { dirname, resolve } from 'path'
-import { i18next_reactHooksGenerator } from './frameworks/i18next/index.js'
-import { readFileSync, writeFileSync } from 'fs'
+import { readFileSync } from 'fs'
 import { watch } from 'chokidar'
+import { sys, write_emitted_result } from './sys.js'
+import { isAbsolute } from 'path'
+import { Project } from './analyzer/project.js'
+import { default_diagnostic_formatter } from './utils/typescript.js'
 export * from './json-schema.js'
 
-type Args = [config: Pick<Config, 'generator' | 'parser'>, absoluteInputPath: string, absoluteOutputPath: string]
-type E = (error: unknown, ...args: Args) => void
-export function handleConfig(...[config, input, output]: Args) {
-    let { generator, parser } = config
-    if (typeof generator === 'string') generator = { type: generator }
-    if (typeof parser === 'string') parser = { type: parser }
-
-    const table = { [ParserList.i18next]: i18NextParser }
-    const table2 = { [GeneratorList.i18next_reactHooks]: i18next_reactHooksGenerator }
-
-    const result = table[parser.type](ParserInput.fromFileSystem(input, parser))
-    const files = table2[generator.type](new GeneratorInput(result, input, output, generator))
-
-    for (const [file, content] of files) {
-        writeFileSync(file, content)
-    }
+/**
+ * Transpile a single file without cross-file knowledge.
+ *
+ * This method does not have IO.
+ * @param config The config to be used.
+ * @param jsonFileContent The JSON file to be transpiled.
+ * @returns A map contains the generated result.
+ */
+export function transpileFilePure(config: BaseConfig, jsonFileContent: string): EmittedFile {
+    const project = new Project()
+    const filename = '/input.json'
+    project.add_file_from_content(config, filename, jsonFileContent)
+    return project.emit(filename, 'output')
 }
+/**
+ * Transpile a single file without cross-file knowledge and write it to the file system.
+ * @param config The config to be used.
+ * @param configFilePath The base path of relative path in the config file. It will be an error if relative path is used but no configFilePath is provided.
+ * @param diagnostics_reporter The function to report diagnostics.
+ */
+export function transpileFile(
+    config: Config,
+    configFilePath?: string,
+    diagnostics_reporter = default_diagnostic_formatter,
+): EmittedFile {
+    const { input, output } = resolve_path(configFilePath, config.input, config.output)
 
-const watchOptions = { atomic: true, awaitWriteFinish: true, ignoreInitial: false }
-export function watchConfig(onError: E, ...[config, input, output]: Args) {
+    const project = new Project()
+    const filename = '/input.json'
+    project.add_file_from_content(config, filename, sys.readFile(input))
+
+    const result = project.emit(filename, output)
+    write_emitted_result(result, diagnostics_reporter)
+    return result
+}
+/**
+ * Transpile a single file in the watch mode without cross-file knowledge and write it to the file system.
+ * @param config The config to be used.
+ * @param configFilePath The base path of relative path in the config file. It will be an error if relative path is used but no configFilePath is provided.
+ * @param diagnostics_reporter The function to report diagnostics.
+ * @returns
+ */
+export function transpileFileWatch(
+    config: Config,
+    configFilePath?: string,
+    diagnostics_reporter = default_diagnostic_formatter,
+) {
+    const { input, output } = resolve_path(configFilePath, config.input, config.output)
+    const project = new Project()
     const watcher = watch(input, watchOptions)
     watcher.on('all', () => {
-        try {
-            handleConfig(config, input, output)
-        } catch (e) {
-            onError(e, config, input, output)
-        }
+        project.add_file_from_content(config, input, sys.readFile(input))
+        const result = project.emit(input, output)
+        write_emitted_result(result, diagnostics_reporter)
     })
     return () => watcher.close()
 }
+
+const watchOptions = { atomic: true, awaitWriteFinish: true, ignoreInitial: false }
 
 export function runConfigList(watchMode: true, onError: E, configs: Args[]): () => void
 export function runConfigList(watchMode: false, onError: E, configs: Args[]): void
 export function runConfigList(watchMode: boolean, onError: E, configs: Args[]): void | (() => void)
 export function runConfigList(watchMode: boolean, onError: E, configs: Args[]) {
     if (watchMode) {
-        const cancel = configs.map((x) => watchConfig(onError, ...x))
+        const cancel = configs.map((x) => transpileFilePureWatch(onError, ...x))
         return () => cancel.forEach((x) => x())
     }
     for (const x of configs) {
@@ -80,4 +111,16 @@ export function runCli(argv: { config?: string; cwd?: string; watch?: boolean },
         })
         return () => watcher.close()
     } else return runConfigFile(false, onError, config)
+}
+
+function resolve_path(config_file_path: string | undefined, input: string, output: string) {
+    if (isAbsolute(input) && isAbsolute(output)) return { input, output }
+    if (!config_file_path)
+        throw new TypeError('config_file_path should be provided when input or output is not absolute.')
+
+    const base = dirname(config_file_path)
+    const absolute_input_path = resolve(base, input)
+    const absolute_output_path = resolve(base, output)
+
+    return { input: absolute_input_path, output: absolute_output_path }
 }

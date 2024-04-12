@@ -1,16 +1,18 @@
 /** #TopLevel */
 /** Configuration format of i18n-codegen */
 export type ConfigFile = { version: 1; list: Config[] }
+export interface BaseConfig {
+    parser: ParserList | ({ type: ParserList.i18next } & Parser_I18NextConfig)
+    generator: GeneratorList | ({ type: GeneratorList.i18next_reactHooks } & Generator_I18Next_ReactHooks)
+}
 /**
  * Each configuration entry
  */
-export interface Config {
+export interface Config extends BaseConfig {
     /** The input file, must be a JSON (can be a JSON with comment) */
     input: string
     /** The base name of the output files. It might generate multiple files. */
     output: string
-    parser: ParserList | ({ type: ParserList.i18next } & Parser_I18NextConfig)
-    generator: GeneratorList | ({ type: GeneratorList.i18next_reactHooks } & Generator_I18Next_ReactHooks)
 }
 export enum ParserList {
     i18next = 'i18next',

@@ -1,6 +1,6 @@
 {
   "name": "@magic-works/i18n-codegen",
-  "packageManager": "pnpm@7.14.2",
+  "packageManager": "pnpm@8.1.0",
   "version": "0.5.0",
   "type": "module",
   "description": "A code generator for strongly-typed i18n resources",
@@ -20,19 +20,19 @@
   "author": "Jack Works",
   "license": "MIT",
   "devDependencies": {
-    "@changesets/cli": "^2.26.0",
-    "@types/node": "^18.13.0",
-    "@types/yargs": "^17.0.22",
+    "@changesets/cli": "^2.26.1",
+    "@types/node": "^18.15.11",
+    "@types/yargs": "^17.0.24",
     "jest-file-snapshot": "^0.5.0",
-    "prettier": "^2.8.4",
-    "typescript": "^4.9.5",
-    "vite": "^4.1.1",
-    "vitest": "^0.28.5"
+    "prettier": "^2.8.7",
+    "typescript": "^5.0.3",
+    "vite": "^4.2.1",
+    "vitest": "^0.29.8"
   },
   "dependencies": {
     "chokidar": "^3.5.3",
     "i18next-translation-parser": "^1.0.1",
-    "yargs": "^17.7.0"
+    "yargs": "^17.7.1"
   },
   "peerDependencies": {
     "typescript": "^4.8 || ^5"

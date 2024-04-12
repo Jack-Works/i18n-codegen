@@ -2,9 +2,10 @@
   "compilerOptions": {
     "composite": true,
     "target": "ES2021",
+    "lib": ["ES2022"],
     "strict": true,
     "noImplicitReturns": true,
-    "importsNotUsedAsValues": "error",
+    "verbatimModuleSyntax": true,
     "moduleResolution": "NodeNext",
     "module": "NodeNext",
     "skipLibCheck": true,
