@@ -126,7 +126,7 @@ export function i18NextReactHooksGenerator(gen: GenType) {
 
     // create TypedTranslate
     if (htmlTags.size) {
-        statements[0] = castStatement`import { createElement, useMemo, type ComponentType } from 'react'`
+        statements[0] = castStatement`import { createElement, useMemo, type ComponentType, type JSX } from 'react'`
         statements[1] = castStatement`import { useTranslation, Trans, type TransProps } from 'react-i18next'`
         statements.push(
             ...statements.splice(

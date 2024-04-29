@@ -1,4 +1,5 @@
-import { type ComponentType } from "react";
+/// <reference path="../lib.jsx.d.ts" />
+import { type ComponentType, type JSX } from "react";
 import { type TransProps } from "react-i18next";
 type TypedTransProps<Value, Components> = Omit<TransProps<string>, "values" | "ns" | "i18nKey"> & ({} extends Value ? {} : {
     values: Value;

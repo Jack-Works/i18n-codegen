@@ -81,7 +81,7 @@ export function stdlib(libName: string) {
 function getLibDTS(libName: string) {
     let lib = libName
     if (libName.startsWith('ES')) lib = `lib.${libName.toLowerCase()}`
-    if (lib === 'lib.jsx.d.ts') return 'namespace JSX { export interface Element {} }'
+    if (lib === 'lib.jsx.d.ts') return 'declare module "react" { namespace JSX { export interface Element {} } }'
     const require = createRequire(import.meta.url)
     const target = `typescript/lib/${lib}`
     if (!target.endsWith('.d.ts')) throw new Error('lib.d.ts failed to reach')
