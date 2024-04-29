@@ -143,7 +143,7 @@ export function i18NextReactHooksGenerator(gen: GenType) {
             function createComponent(i18nKey: string) {
                 return (props) => createElement(Trans, { ${[
                     'i18nKey',
-                    gen.generatorOptions?.namespace ? 'ns: ' + JSON.stringify(gen.generatorOptions.namespace) : '',
+                    gen.generatorOptions?.namespace ? `ns: ${JSON.stringify(gen.generatorOptions.namespace)}` : '',
                     gen.generatorOptions?.shouldUnescape ? 'shouldUnescape: true' : '',
                     '...props',
                 ]
@@ -207,7 +207,7 @@ export function i18NextReactHooksGenerator(gen: GenType) {
         .filter(Boolean)
         .join('\n')
 
-    if (gen.generatorOptions?.emitTS) return new Map([[gen.outputBase + '.ts', printedSourceFile]])
+    if (gen.generatorOptions?.emitTS) return new Map([[`${gen.outputBase}.ts`, printedSourceFile]])
 
     const options: CompilerOptions = {
         declaration: true,
@@ -219,12 +219,14 @@ export function i18NextReactHooksGenerator(gen: GenType) {
         outDir: '/out/',
     }
     const fs: Record<string, string> = {
-        ['/index.ts']: printedSourceFile,
+        '/index.ts': printedSourceFile,
     }
     const host: CompilerHost = {
         fileExists: (fileName) => false,
         readFile: (fileName) => undefined,
-        writeFile: (fileName, content) => (fs[fileName] = content),
+        writeFile: (fileName, content) => {
+            fs[fileName] = content
+        },
         getSourceFile: (fileName, option) => {
             if (fileName.endsWith('.d.ts')) return stdlib(fileName)
             if (fs[fileName]) return ts.createSourceFile(fileName, fs[fileName], option)
@@ -254,8 +256,8 @@ export function i18NextReactHooksGenerator(gen: GenType) {
         throw new Error('internal error: file not emitted')
     }
     return new Map([
-        [gen.outputBase + '.js', js],
-        [gen.outputBase + '.d.ts', dts],
+        [`${gen.outputBase}.js`, js],
+        [`${gen.outputBase}.d.ts`, dts],
     ])
 
     function getCommentForKey(key: string) {
@@ -330,12 +332,12 @@ function getTopLevelKeys(x: I18NextParsedFile) {
 
     for (const [key, node] of realNodes) {
         if (node.type !== 'key') continue
-        appendComment(key, '`' + node.value + '`')
+        appendComment(key, `\`${node.value}\``)
     }
     for (const [key, variants] of x.variantList) {
         for (const [k, v] of variants) {
             if (k === key) continue
-            appendComment(key, '- ' + k + ': `' + v + '`')
+            appendComment(key, `- ${k}: \`${v}\``)
         }
     }
 

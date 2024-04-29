@@ -2,8 +2,8 @@ import type { NodeArray, PropertyAssignment, StringLiteral, TypeNode } from 'typ
 import ts from 'typescript'
 const { isStringLiteral, isObjectLiteralExpression, factory, getLineAndCharacterOfPosition } = ts
 import type { ParserInput, ParseNode } from '../../../type.js'
-import { addPosition, Position } from '../../../utils/position.js'
-import { AST, Node, parse } from 'i18next-translation-parser'
+import { addPosition, type Position } from '../../../utils/position.js'
+import { type AST, type Node, parse } from 'i18next-translation-parser'
 import type { I18NextParsedFile, I18NextParseNodeInfo, I18NextParseNode_String } from './types.js'
 import type { Parser_I18NextConfig } from '../../../json-schema.js'
 import {
@@ -45,7 +45,7 @@ export function i18NextParser(opts: ParserInput<Parser_I18NextConfig>): I18NextP
             if (node.type === 'tag') {
                 tags.set(node.name, addPosition(value_position, [0, pos + StartQuoteLength + TagStartLength]))
             } else if (node.type === 'interpolation' || node.type === 'interpolation_unescaped') {
-                let { variable, prefix } = node
+                const { variable, prefix } = node
                 const { name, usedAs } = parseInterpolation(variable)
                 const [propertyAccess] = name.split('.', 1)
 
@@ -109,7 +109,8 @@ export function i18NextParser(opts: ParserInput<Parser_I18NextConfig>): I18NextP
     }
 }
 
-function visitAST(ast: AST, callback: (node: Node, position: number) => void, position = 0): number {
+function visitAST(ast: AST, callback: (node: Node, position: number) => void, p = 0): number {
+    let position = p
     for (const node of ast) {
         callback(node, position)
         if (node.type === 'text') {
@@ -134,7 +135,8 @@ function visitAST(ast: AST, callback: (node: Node, position: number) => void, po
  * example:
  * "base_context$one", "base$one"
  */
-function parseKey(parserOptions: Parser_I18NextConfig, key: string): KeyParseResult {
+function parseKey(parserOptions: Parser_I18NextConfig, k: string): KeyParseResult {
+    let key = k
     const { contextSeparator = '_', pluralSeparator = '_' } = parserOptions
     const result: KeyParseResult = { base: key }
 

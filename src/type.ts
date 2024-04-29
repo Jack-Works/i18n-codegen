@@ -1,8 +1,8 @@
-import { readFileSync } from 'fs'
+import { readFileSync } from 'node:fs'
 import type { ExpressionStatement, JsonSourceFile } from 'typescript'
 import type { Position } from './utils/position.js'
 import type { JSONNode } from './utils/parseJSON.js'
-import { dirname, join, relative } from 'path'
+import { dirname, join, relative } from 'node:path'
 import type { GeneratorList, ParserList } from './json-schema.js'
 import ts from 'typescript'
 

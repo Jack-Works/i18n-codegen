@@ -1,9 +1,9 @@
 import { i18NextParser } from './frameworks/i18next/parser/i18n-next.js'
-import { Config, ConfigFile, GeneratorList, ParserList } from './json-schema.js'
+import { type Config, type ConfigFile, GeneratorList, ParserList } from './json-schema.js'
 import { GeneratorInput, ParserInput } from './type.js'
-import { dirname, resolve } from 'path'
+import { dirname, resolve } from 'node:path'
 import { i18next_reactHooksGenerator } from './frameworks/i18next/index.js'
-import { readFileSync, writeFileSync } from 'fs'
+import { readFileSync, writeFileSync } from 'node:fs'
 import { watch } from 'chokidar'
 export * from './json-schema.js'
 
@@ -40,10 +40,11 @@ export function watchConfig(onError: E, ...[config, input, output]: Args) {
 
 export function runConfigList(watchMode: true, onError: E, configs: Args[]): () => void
 export function runConfigList(watchMode: false, onError: E, configs: Args[]): void
-export function runConfigList(watchMode: boolean, onError: E, configs: Args[]): void | (() => void)
+export function runConfigList(watchMode: boolean, onError: E, configs: Args[]): undefined | (() => void)
 export function runConfigList(watchMode: boolean, onError: E, configs: Args[]) {
     if (watchMode) {
         const cancel = configs.map((x) => watchConfig(onError, ...x))
+        // biome-ignore lint/complexity/noForEach: <explanation>
         return () => cancel.forEach((x) => x())
     }
     for (const x of configs) {
@@ -57,7 +58,11 @@ export function runConfigList(watchMode: boolean, onError: E, configs: Args[]) {
 }
 export function runConfigFile(watchMode: true, onRecoverableError: E, configFilePath: string): () => void
 export function runConfigFile(watchMode: false, onRecoverableError: E, configFilePath: string): void
-export function runConfigFile(watchMode: boolean, onRecoverableError: E, configFilePath: string): void | (() => void)
+export function runConfigFile(
+    watchMode: boolean,
+    onRecoverableError: E,
+    configFilePath: string,
+): undefined | (() => void)
 export function runConfigFile(watchMode: boolean, onRecoverableError: E, configFilePath: string) {
     const config: ConfigFile = JSON.parse(readFileSync(configFilePath, 'utf-8'))
     if (config.version !== 1) return
@@ -79,5 +84,6 @@ export function runCli(argv: { config?: string; cwd?: string; watch?: boolean },
             r = runConfigFile(true, onError, config)
         })
         return () => watcher.close()
-    } else return runConfigFile(false, onError, config)
+    }
+    return runConfigFile(false, onError, config)
 }

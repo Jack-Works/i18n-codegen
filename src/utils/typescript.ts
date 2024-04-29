@@ -1,6 +1,6 @@
 import type { Expression, ExpressionStatement, SourceFile, Statement, TypeNode } from 'typescript'
-import { readFileSync } from 'fs'
-import { createRequire } from 'module'
+import { readFileSync } from 'node:fs'
+import { createRequire } from 'node:module'
 import ts from 'typescript'
 const { factory, isPropertySignature, isTypeLiteralNode } = ts
 
@@ -50,7 +50,7 @@ function getAST(source: string) {
     const sourceFile = ts.createSourceFile('index.ts', source, ts.ScriptTarget.ESNext, false)
     ts.forEachChild(sourceFile, function visitor(node): void {
         ;(node as any).flags |= ts.NodeFlags.Synthesized
-        return ts.forEachChild(node, visitor)
+        ts.forEachChild(node, visitor)
     })
     return sourceFile.statements
 }
@@ -70,7 +70,7 @@ export function pureAnnotate<T extends ts.Node>(node: T) {
     return ts.addSyntheticLeadingComment(node, ts.SyntaxKind.MultiLineCommentTrivia, '#__PURE__', false)
 }
 
-let stdlibs = new Map<string, SourceFile>()
+const stdlibs = new Map<string, SourceFile>()
 export function stdlib(libName: string) {
     if (stdlibs.has(libName)) return stdlibs.get(libName)!
     const sourceFile = ts.createSourceFile(libName, getLibDTS(libName), ts.ScriptTarget.ESNext, true, ts.ScriptKind.TS)
@@ -79,10 +79,11 @@ export function stdlib(libName: string) {
 }
 
 function getLibDTS(libName: string) {
-    libName.startsWith('ES') && (libName = 'lib.' + libName.toLowerCase())
-    if (libName === 'lib.jsx.d.ts') return `namespace JSX { export interface Element {} }`
+    let lib = libName
+    if (libName.startsWith('ES')) lib = `lib.${libName.toLowerCase()}`
+    if (lib === 'lib.jsx.d.ts') return 'namespace JSX { export interface Element {} }'
     const require = createRequire(import.meta.url)
-    const target = 'typescript/lib/' + libName
+    const target = `typescript/lib/${lib}`
     if (!target.endsWith('.d.ts')) throw new Error('lib.d.ts failed to reach')
     const text = readFileSync(require.resolve(target), 'utf-8')
     return text
