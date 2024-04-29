@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.6.0
+
+### Minor Changes
+
+- 49d865d: now generated code requires @types/react for react 19
+- 49d865d: require typescript 5.4 or above
+
 ## 0.5.0
 
 ### Minor Changes
