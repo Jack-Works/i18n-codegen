@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.1
+
+### Patch Changes
+
+- 1239283: Support new react-i18next
+
 ## 0.6.0
 
 ### Minor Changes
