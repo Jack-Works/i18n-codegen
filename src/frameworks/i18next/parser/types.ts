@@ -2,12 +2,13 @@ import type { ParseNode, StringParseNode } from '../../../type.js'
 import type { TypeNode } from 'typescript'
 import type { Position } from '../../../utils/position.js'
 
-export type I18NextParseNodeInfo = {
+export interface I18NextParseNodeInfo {
     interpolations: Map<string, [position: Position, type: TypeNode, required: boolean]>
     tags: Map<string, Position>
+    relatedContexts?: string[]
     comments?: string
 }
-export type I18NextParsedFile = {
+export interface I18NextParsedFile {
     root: ParseNode<I18NextParseNodeInfo>
     // Map<baseName, Map<pluralName, ParseNode>>
     plurals: Map<string, Map<string, ParseNode<I18NextParseNodeInfo>>>

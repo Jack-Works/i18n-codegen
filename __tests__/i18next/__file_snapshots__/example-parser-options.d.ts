@@ -1,7 +1,7 @@
 /// <reference path="../lib.jsx.d.ts" />
 import { type ComponentType, type JSX } from "react";
 import { type TransProps } from "react-i18next";
-type TypedTransProps<Value, Components> = Omit<TransProps<string>, "values" | "ns" | "i18nKey"> & ({} extends Value ? {} : {
+type TypedTransProps<Value, Components, Context extends string | undefined = undefined> = Omit<TransProps<string, never, never, Context>, "values" | "ns" | "i18nKey"> & ({} extends Value ? {} : {
     values: Value;
 }) & {
     components: Components;

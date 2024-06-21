@@ -133,8 +133,8 @@ export function i18NextReactHooksGenerator(gen: GenType) {
                 2,
                 statements.length - 2,
                 castStatement`
-                    type TypedTransProps<Value, Components> =
-                        Omit<TransProps<string>, 'values' | 'ns' | 'i18nKey'> &
+                    type TypedTransProps<Value, Components, Context extends string | undefined = undefined> =
+                        Omit<TransProps<string, never, never, Context>, 'values' | 'ns' | 'i18nKey'> &
                         ({} extends Value ? {} : { values: Value }) & { components: Components }
                 `,
             ),
@@ -159,7 +159,11 @@ export function i18NextReactHooksGenerator(gen: GenType) {
                 undefined,
                 createPropertyName(key),
                 undefined,
-                createTagType(createInterpolationType(detail.interpolations), [...detail.tags.keys()]),
+                createTagType(
+                    createInterpolationType(detail.interpolations),
+                    [...detail.tags.keys()],
+                    detail.relatedContexts,
+                ),
             )
             const comment = getCommentForKey(key)
             comment && ts.addSyntheticLeadingComment(node, ts.SyntaxKind.MultiLineCommentTrivia, comment, true)
@@ -269,27 +273,35 @@ export function i18NextReactHooksGenerator(gen: GenType) {
     }
 }
 
-function createTagType(props: TypeNode, tagNames: string[]) {
+function createTagType(props: TypeNode, tagNames: string[], context: undefined | string[]) {
     return factory.createTypeReferenceNode(factory.createIdentifier('ComponentType'), [
-        factory.createTypeReferenceNode(factory.createIdentifier('TypedTransProps'), [
-            props,
-            factory.createTypeLiteralNode(
-                tagNames.map((tag) =>
-                    factory.createPropertySignature(
-                        undefined,
-                        createPropertyName(tag),
-                        undefined,
-                        factory.createTypeReferenceNode(
-                            factory.createQualifiedName(
-                                factory.createIdentifier('JSX'),
-                                factory.createIdentifier('Element'),
-                            ),
+        factory.createTypeReferenceNode(
+            factory.createIdentifier('TypedTransProps'),
+            [
+                props,
+                factory.createTypeLiteralNode(
+                    tagNames.map((tag) =>
+                        factory.createPropertySignature(
                             undefined,
+                            createPropertyName(tag),
+                            undefined,
+                            factory.createTypeReferenceNode(
+                                factory.createQualifiedName(
+                                    factory.createIdentifier('JSX'),
+                                    factory.createIdentifier('Element'),
+                                ),
+                                undefined,
+                            ),
                         ),
                     ),
                 ),
-            ),
-        ]),
+                context?.length
+                    ? factory.createUnionTypeNode(
+                          context.map((context) => factory.createLiteralTypeNode(factory.createStringLiteral(context))),
+                      )
+                    : null!,
+            ].filter(Boolean),
+        ),
     ])
 }
 function createInterpolationType(interpolations: I18NextParseNodeInfo['interpolations']) {
@@ -320,7 +332,9 @@ function generateUseTKeys([k, r]: [k: string, r: I18NextParseNode]) {
     return `${prop}: () => t(${key})`
 }
 
-function getTopLevelKeys(x: I18NextParsedFile) {
+function getTopLevelKeys(
+    x: I18NextParsedFile,
+): [Map<string, ParseNode<I18NextParseNode>>, Map<string, readonly string[]>] {
     if (x.root.type !== 'object') throw new Error()
     const realNodes: ReadonlyMap<string, ParseNode<I18NextParseNode>> = x.root.items
     const nodes = new Map(realNodes)
@@ -387,12 +401,13 @@ function getTopLevelKeys(x: I18NextParsedFile) {
         const baseNode = nodes.get(contextBase)!
 
         if (baseNode.type === 'key') {
+            baseNode.relatedContexts = [...contextNodes.keys()].map(String)
             baseNode.interpolations.set('context', [
                 [null, null],
                 factory.createUnionTypeNode(
-                    [...contextNodes.keys()]
-                        .map(String)
-                        .map((string) => factory.createLiteralTypeNode(factory.createStringLiteral(string))),
+                    baseNode.relatedContexts.map((string) =>
+                        factory.createLiteralTypeNode(factory.createStringLiteral(string)),
+                    ),
                 ),
                 false,
             ])

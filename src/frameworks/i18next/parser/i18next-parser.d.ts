@@ -24,9 +24,7 @@ declare module 'i18next-translation-parser' {
     export type AST = Node[]
     export function parse(str: string): AST
     export function stringify(ast: AST): string
-    export function astStats(
-        ast: AST,
-    ): {
+    export function astStats(ast: AST): {
         interpolation: number
         interpolation_unescaped: number
         nesting: number
